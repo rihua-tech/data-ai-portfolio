@@ -20,7 +20,7 @@ export function ProjectsSection() {
   return (
     <Section id="projects" title="Projects" showHeader={false}>
       {featuredProject && (
-        <div className="mb-24">
+        <div className="mb-16 md:mb-24">
           <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
             Featured Project
           </h3>
@@ -29,7 +29,7 @@ export function ProjectsSection() {
         </div>
       )}
 
-      <div className="mb-24">
+      <div className="mb-16 md:mb-24">
         <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
           Data Engineering
         </h3>

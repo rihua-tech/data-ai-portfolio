@@ -14,7 +14,7 @@ export function ContactSection() {
         <p className="mb-8 text-pretty text-muted-foreground">
           Interested in collaborating on data engineering work or portfolio projects? Reach out and I will follow up.
         </p>
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           <Button asChild variant="outline" size="lg">
             <a
               href={EMAIL_HREF}

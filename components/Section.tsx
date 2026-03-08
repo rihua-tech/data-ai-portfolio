@@ -19,7 +19,7 @@ export function Section({
   showHeader = true,
 }: SectionProps) {
   return (
-    <section id={id} className={cn("scroll-mt-20 px-6 py-20", className)}>
+    <section id={id} className={cn("scroll-mt-16 px-6 py-12 md:py-16", className)}>
       <div className={cn("mx-auto max-w-6xl", containerClassName)}>
         {showHeader && (
           <>

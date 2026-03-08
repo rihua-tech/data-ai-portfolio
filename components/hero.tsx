@@ -67,7 +67,7 @@ export function Hero() {
         : "Copy email"
 
   return (
-    <section className="relative flex min-h-[62vh] items-center justify-center px-6 pt-2 pb-6 md:min-h-[66vh]">
+    <section className="relative flex items-center justify-center px-6 pt-12 pb-14 sm:pt-14 sm:pb-16 xl:min-h-[62vh] xl:pt-12 xl:pb-12">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
