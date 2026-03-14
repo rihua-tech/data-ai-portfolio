@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "Data Engineer Portfolio",
   title: "Rihua Van Steenburgh | Data Engineer",
   description:
-    "Data Engineer building reliable pipelines and analytics-ready datasets. Portfolio showcasing data engineering, analytics, and data science projects.",
+    "Data Engineer building reliable pipelines, cloud data workflows, and analytics-ready datasets. Portfolio showcasing end-to-end data engineering projects.",
   ogImage: "/projects/flight-fare-pipeline.jpg",
 } as const
 
