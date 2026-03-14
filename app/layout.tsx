@@ -1,15 +1,40 @@
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { getSiteUrl, siteConfig } from "@/lib/site"
 import "./globals.css"
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" })
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" })
+const siteUrl = getSiteUrl()
 
 export const metadata: Metadata = {
-  title: "Rihua Van Steenburgh | Data Engineer",
-  description:
-    "Data Engineer building reliable pipelines and analytics-ready datasets. Portfolio showcasing data engineering, analytics, and data science projects.",
+  metadataBase: siteUrl,
+  title: siteConfig.title,
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: siteConfig.ogImage,
+        alt: siteConfig.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
   icons: {
     icon: [
       {
