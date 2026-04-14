@@ -2,6 +2,8 @@ export type ProjectCategory = "DE" | "DA" | "DS"
 
 export interface PortfolioProject {
   category: ProjectCategory
+  featuredLabel?: string
+  topLabel?: string
   title: string
   subtitle: string
   image: string
@@ -17,8 +19,37 @@ export interface PortfolioProject {
 export const projects: PortfolioProject[] = [
   {
     category: "DE",
+    featuredLabel: "AZURE DATA ENGINEERING",
+    title: "NYC 311 Service Requests Lakehouse",
+    subtitle:
+      "Azure-first medallion lakehouse for NYC 311 operational analytics, transforming raw API data into analytics-ready bronze, silver, and gold datasets.",
+    image: "/projects/nyc-311-lakehouse.jpg",
+    repoUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse",
+    architectureUrl:
+      "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/blob/main/docs/architecture/medallion-design.md",
+    docsUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/blob/main/README.md",
+    stack: [
+      "Azure Data Factory",
+      "ADLS Gen2",
+      "Databricks",
+      "PySpark",
+      "Delta Lake",
+      "Python",
+      "SQL",
+      "Power BI",
+      "GitHub Actions",
+    ],
+    highlights: [
+      "Azure Data Factory → ADLS Gen2 → Databricks pipeline with proven raw landing and medallion processing",
+      "Reusable data quality checks, dimensional models, and reporting marts",
+      "Architecture notes, runbooks, SQL assets, notebook exports, and cloud execution proof",
+    ],
+  },
+  {
+    category: "DE",
     title: "Cloud Flight Fare Pipeline",
-    subtitle: "End-to-end ELT pipeline producing analytics-ready flight fare marts.",
+    topLabel: "AWS DATA ENGINEERING",
+    subtitle: "AWS-focused end-to-end ELT pipeline producing analytics-ready flight fare marts.",
     image: "/projects/flight-fare-pipeline.jpg",
     repoUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline",
     architectureUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline#architecture",
@@ -33,8 +64,9 @@ export const projects: PortfolioProject[] = [
   {
     category: "DE",
     title: "Travelpayouts Flight Collector",
+    topLabel: "PYTHON DATA INGESTION",
     subtitle:
-      "Python-based daily flight fare collector that ingests live Travelpayouts API data and publishes dated CSV snapshots for downstream analytics.",
+      "Python API ingestion project that collects live Travelpayouts flight fare data and publishes dated CSV snapshots for analytics.",
     image: "/projects/travelpayouts-flight-collector.jpg",
     repoUrl: "https://github.com/rihua-tech/travelpayouts-flight-collector",
     dataUrl: "https://github.com/rihua-tech/flight-price-data",

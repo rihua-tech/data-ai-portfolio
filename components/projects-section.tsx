@@ -5,17 +5,11 @@ import { ProjectCard } from "@/components/ProjectCard"
 import { Section } from "@/components/Section"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-const FEATURED_TITLE = "Cloud Flight Fare Pipeline"
-
 export function ProjectsSection() {
   const deProjects = projects.filter((project) => project.category === "DE")
   const daProjects = projects.filter((project) => project.category === "DA")
   const dsProjects = projects.filter((project) => project.category === "DS")
-  const featuredProject =
-    deProjects.find((project) => project.title === FEATURED_TITLE) ?? deProjects[0]
-  const supportingDeProjects = deProjects.filter(
-    (project) => project.title !== featuredProject?.title,
-  )
+  const [featuredProject, ...supportingDeProjects] = deProjects
 
   return (
     <Section id="projects" title="Projects" showHeader={false}>

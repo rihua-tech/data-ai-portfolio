@@ -1,10 +1,10 @@
 export type SkillCategory =
-  | "Orchestration"
-  | "Storage & Warehousing"
+  | "Orchestration & Workflow"
+  | "Storage, Lakehouse & Warehousing"
   | "Transformation & Modeling"
+  | "Data Processing & Platforms"
   | "Data Quality & CI"
   | "Analytics Enablement"
-  | "Data Processing"
 
 export interface SkillGroup {
   category: SkillCategory
@@ -13,16 +13,20 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: "Orchestration",
-    skills: ["Apache Airflow", "GitHub Actions", "Docker"],
+    category: "Orchestration & Workflow",
+    skills: ["Apache Airflow", "Azure Data Factory", "GitHub Actions", "Docker"],
   },
   {
-    category: "Storage & Warehousing",
-    skills: ["Amazon Redshift", "PostgreSQL", "BigQuery", "Snowflake", "S3"],
+    category: "Storage, Lakehouse & Warehousing",
+    skills: ["ADLS Gen2", "Delta Lake", "Amazon Redshift", "PostgreSQL", "S3"],
   },
   {
     category: "Transformation & Modeling",
-    skills: ["dbt", "SQL", "Star Schema", "Dimensional Modeling"],
+    skills: ["dbt", "SQL", "Dimensional Modeling", "Star Schema", "PySpark"],
+  },
+  {
+    category: "Data Processing & Platforms",
+    skills: ["Python", "Pandas", "Databricks", "Batch Pipelines"],
   },
   {
     category: "Data Quality & CI",
@@ -30,10 +34,6 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: "Analytics Enablement",
-    skills: ["KPI Design", "SQL", "BI Handoff", "Documentation"],
-  },
-  {
-    category: "Data Processing",
-    skills: ["Python", "Pandas", "PySpark", "Batch Pipelines"],
+    skills: ["Power BI", "KPI Design", "BI Handoff", "Documentation"],
   },
 ]

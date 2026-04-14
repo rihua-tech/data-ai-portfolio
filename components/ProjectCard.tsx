@@ -100,22 +100,24 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
           className,
         )}
       >
-        <div className="grid gap-0 md:grid-cols-2">
-          <div className="relative aspect-video overflow-hidden bg-secondary md:aspect-auto md:min-h-[320px]">
-            <Image
-              src={project.image}
-              alt={`${project.title} project thumbnail`}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+        <div className="grid gap-0 md:grid-cols-[58%_42%] md:items-center">
+          <div className="p-1.5 md:p-2">
+            <div className="relative aspect-[3/2] overflow-hidden bg-black">
+              <Image
+                src={project.image}
+                alt={`${project.title} project thumbnail`}
+                fill
+                className="object-contain object-center"
+                sizes="(max-width: 768px) 100vw, 58vw"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/20 via-transparent to-transparent" />
+            </div>
           </div>
 
           <div className="flex flex-col justify-center gap-5 p-6 md:p-8">
             <div>
               <p className="mb-2 text-xs font-medium tracking-wider text-primary uppercase">
-                Data Engineering
+                {project.featuredLabel ?? "Data Engineering"}
               </p>
               <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">{project.subtitle}</p>
@@ -176,6 +178,11 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
 
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex-1">
+          {project.topLabel && (
+            <p className="mb-2 text-xs font-medium tracking-wider text-primary uppercase">
+              {project.topLabel}
+            </p>
+          )}
           <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
           <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
         </div>

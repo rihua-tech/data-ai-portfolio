@@ -12,12 +12,12 @@ import { Tag } from "@/components/Tag"
 import { skillGroups, type SkillCategory } from "@/data/skills"
 
 const iconByCategory: Record<SkillCategory, LucideIcon> = {
-  Orchestration: Workflow,
-  "Storage & Warehousing": Database,
+  "Orchestration & Workflow": Workflow,
+  "Storage, Lakehouse & Warehousing": Database,
   "Transformation & Modeling": Layers,
+  "Data Processing & Platforms": Cpu,
   "Data Quality & CI": ShieldCheck,
   "Analytics Enablement": BarChart3,
-  "Data Processing": Cpu,
 }
 
 export function SkillsSection() {
