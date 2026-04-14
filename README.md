@@ -1,6 +1,6 @@
 # Data Engineer Portfolio
 
-[![CI](https://github.com/rihua-tech/data-engineer-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/rihua-tech/data-engineer-portfolio/actions/workflows/ci.yml)
+[![CI](https://github.com/rihua-tech/data-engineer-portfolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rihua-tech/data-engineer-portfolio/actions/workflows/ci.yml?query=branch%3Amain)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://data-engineer-portfolio-eta.vercel.app/)
 
 Recruiter-facing portfolio site for data engineering roles, built with Next.js, TypeScript, and Tailwind CSS. The site highlights production-minded pipeline work, analytics-ready data modeling, and supporting analytics/data science projects.
