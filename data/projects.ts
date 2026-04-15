@@ -4,6 +4,7 @@ export interface PortfolioProject {
   category: ProjectCategory
   featuredLabel?: string
   topLabel?: string
+  liveLabel?: string
   title: string
   subtitle: string
   image: string
@@ -79,8 +80,27 @@ export const projects: PortfolioProject[] = [
   },
   {
     category: "DA",
+    topLabel: "AI REPORTING SAAS",
+    title: "Sumryze – AI-Powered SEO Reporting Dashboard",
+    subtitle:
+      "SaaS-style dashboard for automated SEO reporting, AI-generated summaries, analytics visualizations, and client-ready insights.",
+    image: "/projects/sumryze-seo-reporting-dashboard.jpg",
+    repoUrl: "https://github.com/rihua-tech/sumryze-saas-website",
+    liveUrl: "https://sumryze-saas-website.vercel.app/",
+    liveLabel: "Live Site",
+    stack: ["Next.js", "TypeScript", "Tailwind", "OpenAI", "REST APIs", "Vercel"],
+    highlights: [
+      "Automated SEO reporting workflows",
+      "Analytics visualizations for performance summaries",
+      "AI-generated insights for reporting output",
+    ],
+  },
+  {
+    category: "DA",
+    topLabel: "DATA ANALYTICS",
     title: "Floral Daily SKU Analysis",
-    subtitle: "Daily SKU analysis focused on sales movement and inventory behavior.",
+    subtitle:
+      "Sales and inventory analysis project focused on daily SKU movement, reporting, and business decision support.",
     image: "/projects/floral-sku-analysis.jpg",
     repoUrl: "https://github.com/rihua-tech/floral_daily_sku_analysis",
     stack: ["SQL", "Analytics", "Reporting"],

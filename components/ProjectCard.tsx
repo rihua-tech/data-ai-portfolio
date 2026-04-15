@@ -31,7 +31,7 @@ function RepoButton({ repoUrl }: { repoUrl: string }) {
   )
 }
 
-function LiveButton({ liveUrl }: { liveUrl?: string }) {
+function LiveButton({ liveUrl, label = "Live" }: { liveUrl?: string; label?: string }) {
   if (!liveUrl) {
     return null
   }
@@ -40,7 +40,7 @@ function LiveButton({ liveUrl }: { liveUrl?: string }) {
     <Button asChild size="sm" variant="outline">
       <a href={liveUrl} target="_blank" rel="noopener noreferrer">
         <ExternalLink className="size-4" />
-        Live
+        {label}
       </a>
     </Button>
   )
@@ -96,25 +96,27 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
     return (
       <article
         className={cn(
-          "group overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30",
+          "group mx-auto w-full max-w-6xl overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30",
           className,
         )}
       >
-        <div className="grid gap-0 md:grid-cols-[58%_42%] md:items-center">
-          <div className="p-1.5 md:p-2">
-            <div className="relative aspect-[3/2] overflow-hidden bg-black">
-              <Image
-                src={project.image}
-                alt={`${project.title} project thumbnail`}
-                fill
-                className="object-contain object-center"
-                sizes="(max-width: 768px) 100vw, 58vw"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/20 via-transparent to-transparent" />
+        <div className="grid gap-0 min-[1100px]:grid-cols-[56%_44%] min-[1100px]:items-center">
+          <div className="min-[1100px]:self-center">
+            <div className="min-[1100px]:p-3">
+              <div className="relative aspect-video overflow-hidden bg-black min-[1100px]:aspect-[3/2]">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} project thumbnail`}
+                  fill
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02] min-[1100px]:object-contain"
+                  sizes="(max-width: 1099px) 100vw, 56vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col justify-center gap-5 p-6 md:p-8">
+          <div className="flex flex-col justify-center gap-4 p-5 sm:p-6 min-[1100px]:gap-5 min-[1100px]:p-7 xl:p-8">
             <div>
               <p className="mb-2 text-xs font-medium tracking-wider text-primary uppercase">
                 {project.featuredLabel ?? "Data Engineering"}
@@ -150,7 +152,7 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
               <DataButton dataUrl={project.dataUrl} />
               <ArchitectureButton architectureUrl={project.architectureUrl} />
               <DocsButton docsUrl={project.docsUrl} />
-              <LiveButton liveUrl={project.liveUrl} />
+              <LiveButton liveUrl={project.liveUrl} label={project.liveLabel} />
             </div>
           </div>
         </div>
@@ -200,7 +202,7 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
           <DataButton dataUrl={project.dataUrl} />
           <ArchitectureButton architectureUrl={project.architectureUrl} />
           <DocsButton docsUrl={project.docsUrl} />
-          <LiveButton liveUrl={project.liveUrl} />
+          <LiveButton liveUrl={project.liveUrl} label={project.liveLabel} />
         </div>
       </div>
     </article>

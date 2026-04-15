@@ -1,10 +1,13 @@
 import { Section } from "@/components/Section"
 
 const aboutParagraphs = [
-  "I am a Data Engineer focused on building reliable pipelines and analytics-ready datasets for day-to-day decision-making.",
-  "My work starts with ingestion and quality checks, then moves through transformation layers and modeled marts built for trust and reuse.",
-  "I prioritize clear SQL, maintainable Python, and automation that keeps pipelines stable as data volume and complexity grow.",
-  "With a background in analytics and supporting data science work, I shape datasets and features that answer business questions quickly and support experimentation when needed.",
+
+
+  "I am a Data Engineer focused on building reliable pipelines and analytics-ready datasets for business decision-making.",
+  "My work starts with ingestion and data quality checks, then moves through transformation layers, dimensional modeling, and reusable data marts.",
+  "I prioritize clear SQL, maintainable Python, automation, and CI practices that keep pipelines stable as data volume and complexity grow.",
+  "With a background in analytics and web development, I bridge technical data engineering work with practical reporting, dashboard, and business needs."
+
 ]
 
 export function AboutSection() {
