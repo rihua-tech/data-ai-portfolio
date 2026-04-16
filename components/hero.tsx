@@ -68,7 +68,7 @@ export function Hero() {
 
   return (
   
-      <section className="relative flex items-center justify-center px-6 pt-10 pb-12 sm:pt-12 sm:pb-14 xl:pt-8 xl:pb-8">
+      <section className="relative flex items-center justify-center px-6 pt-10 pb-12 sm:pt-12 sm:pb-14 xl:pt-10 xl:pb-10">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
