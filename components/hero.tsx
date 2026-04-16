@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Github, FileText, Mail, Linkedin, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const RESUME_URL = "/Rihua_Van_Steenburgh_Data_Engeneer_Resume.pdf"
+const RESUME_URL = "/resume.pdf"
 const LINKEDIN_URL = "https://www.linkedin.com/in/rihua/"
 const EMAIL_ADDRESS = "rihuavan@gmail.com"
 const EMAIL_SUBJECT = "Data Engineer Opportunity"
@@ -67,7 +67,7 @@ export function Hero() {
         : "Copy email"
 
   return (
-    <section className="relative flex items-center justify-center px-6 pt-12 pb-14 sm:pt-14 sm:pb-16 xl:min-h-[62vh] xl:pt-12 xl:pb-12">
+    <section className="relative flex items-center justify-center px-6 pt-10 pb-12 sm:pt-14 sm:pb-16 xl:min-h-[60vh] xl:pt-12 xl:pb-12">
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.03]"
         style={{
