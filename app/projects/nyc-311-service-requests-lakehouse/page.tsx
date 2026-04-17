@@ -259,32 +259,34 @@ const milestones = [
       "First real Azure Databricks + ADLS notebook execution for setup, bronze, silver, gold, and validation.",
     supportingLinks: [
       { label: "View screenshots", href: `${repoUrl}/tree/main/docs/screenshots/milestone-9` },
-      { label: "Notebook exports", href: `${repoUrl}/tree/main/databricks/notebooks` },
+      { label: "Pipeline runbook", href: runbookUrl },
+      { label: "Architecture data flow", href: dataFlowUrl },
     ],
     proofImages: [
       {
-        title: "Setup proof",
+        label: "DATABRICKS SETUP",
+        title: "Secrets and widgets",
         path: "docs/screenshots/milestone-9/m9_databricks/setup proof/m9-secrets-and-widgets-success.png",
+        caption: "Secrets and widgets were configured successfully.",
       },
       {
-        title: "Bronze proof",
+        label: "BRONZE INGEST",
+        title: "Bronze ingest success",
         path: "docs/screenshots/milestone-9/m9_databricks/bronze proof/m9-bronze-ingest-success.png",
+        caption: "Raw payloads were written to the bronze Delta layer.",
       },
       {
-        title: "Silver / Gold proof",
+        label: "GOLD OUTPUTS",
+        title: "Dimensions and marts",
         path: "docs/screenshots/milestone-9/m9-gold-dimensions-facts-marts.png",
+        caption: "Dimensions, fact table, and marts were built in the gold layer.",
       },
       {
-        title: "Validation proof",
+        label: "VALIDATION",
+        title: "Gold validation pass",
         path: "docs/screenshots/milestone-9/m9_databricks/validation proof/m9-validation-gold-pass.png",
+        caption: "Downstream gold outputs passed validation.",
       },
-    ],
-    items: [
-      { title: "Setup proof", detail: "Secret lookup, catalog access, and ADLS smoke-test evidence." },
-      { title: "Bronze proof", detail: "Bronze ingest execution and ADLS-backed Delta write confirmation." },
-      { title: "Silver proof", detail: "Standardized silver transformations and quality-oriented outputs." },
-      { title: "Gold proof", detail: "Dimensions, fact table, and marts built in Databricks." },
-      { title: "Validation proof", detail: "Validation notebook evidence closing out the notebook chain." },
     ],
   },
   {
@@ -295,30 +297,34 @@ const milestones = [
       "A real Jobs & Pipelines workflow successfully ran end to end using the same notebook chain proven in Milestone 9.",
     supportingLinks: [
       { label: "View screenshots", href: `${repoUrl}/tree/main/docs/screenshots/milestone-10` },
-      { label: "workflow-job.json", href: workflowUrl },
+      { label: "Pipeline runbook", href: runbookUrl },
+      { label: "Architecture data flow", href: dataFlowUrl },
     ],
     proofImages: [
       {
-        title: "DAG / dependency view",
+        label: "WORKFLOW DAG",
+        title: "Task dependency view",
         path: "docs/screenshots/milestone-10/m10-task-dependency-view.png",
+        caption: "Task ordering is visible in the Databricks workflow.",
       },
       {
-        title: "Successful workflow run",
+        label: "WORKFLOW RUN",
+        title: "Successful job run",
         path: "docs/screenshots/milestone-10/m10-successful-job-run.png",
+        caption: "The Databricks job completed successfully end to end.",
       },
       {
+        label: "JOB PARAMETERS",
         title: "Workflow parameters",
         path: "docs/screenshots/milestone-10/m10-job-parameters.png",
+        caption: "Runtime parameters were passed into the workflow.",
       },
       {
-        title: "Gold / validation DAG",
+        label: "TASK CHAIN",
+        title: "Gold and validation DAG",
         path: "docs/screenshots/milestone-10/m10-workflow-dag-part2-gold-validation.png",
+        caption: "Gold and validation tasks are wired into the same job.",
       },
-    ],
-    items: [
-      { title: "DAG/task dependency proof", detail: "Task ordering and workflow dependency visibility in Jobs & Pipelines." },
-      { title: "Successful workflow run", detail: "End-to-end success signal for the notebook task chain." },
-      { title: "Workflow parameters proof", detail: "Parameter capture showing the job is configured for repeatable execution." },
     ],
   },
   {
@@ -334,27 +340,29 @@ const milestones = [
     ],
     proofImages: [
       {
-        title: "ADF pipeline run proof",
+        label: "ADF PIPELINE",
+        title: "ADF pipeline run",
         path: "docs/screenshots/milestone-11/m11_adf_run_success.png",
+        caption: "REST extraction completed successfully in Azure Data Factory.",
       },
       {
+        label: "ADLS STORAGE",
         title: "Raw JSON landed in ADLS",
         path: "docs/screenshots/milestone-11/m11_adls_raw_landing.png",
+        caption: "Raw payload landed in ADLS storage.",
       },
       {
-        title: "Databricks bronze handoff proof",
+        label: "DATABRICKS HANDOFF",
+        title: "Bronze handoff",
         path: "docs/screenshots/milestone-11/m11_adf_to_databricks_handoff.png",
+        caption: "ADF passed runtime context to Databricks for bronze ingestion.",
       },
       {
-        title: "Final validation proof",
+        label: "VALIDATION",
+        title: "Final validation",
         path: "docs/screenshots/milestone-11/m11_validation_passed.png",
+        caption: "ADLS-backed Delta outputs passed validation.",
       },
-    ],
-    items: [
-      { title: "ADF pipeline run proof", detail: "Pipeline execution evidence for the real REST-to-ADLS landing path." },
-      { title: "Raw JSON landed in ADLS", detail: "Bounded raw payload landing evidence in cloud storage." },
-      { title: "Databricks bronze handoff proof", detail: "Notebook handoff parameters and bronze ingest evidence." },
-      { title: "Final validation proof", detail: "Manual or path-based validation against ADLS-backed Delta outputs." },
     ],
   },
 ] as const
@@ -422,10 +430,6 @@ function encodeGithubPath(path: string) {
     .split("/")
     .map((segment) => encodeURIComponent(segment))
     .join("/")
-}
-
-function getGithubBlobUrl(path: string) {
-  return `${repoUrl}/blob/main/${encodeGithubPath(path)}`
 }
 
 function getGithubRawUrl(path: string) {
@@ -545,24 +549,27 @@ function TechnicalCard({
 }
 
 function ProofThumbnail({
+  label,
   title,
   path,
+  caption,
 }: {
+  label: string
   title: string
   path: string
+  caption?: string
 }) {
-  const blobUrl = getGithubBlobUrl(path)
   const rawUrl = getGithubRawUrl(path)
 
   return (
     <a
-      href={blobUrl}
+      href={rawUrl}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${title} screenshot`}
       className="group block"
     >
-      <Surface className="h-full overflow-hidden p-0">
+      <Surface className="h-full overflow-hidden p-0 transition-all duration-300 group-hover:border-primary/35 group-hover:bg-card">
         <div className="relative aspect-[16/10] overflow-hidden bg-secondary">
           <Image
             src={rawUrl}
@@ -572,16 +579,19 @@ function ProofThumbnail({
             sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 25vw"
             className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/68 via-transparent to-transparent" />
           <div className="absolute right-3 bottom-3 rounded-full border border-white/10 bg-background/85 p-1.5 text-primary">
             <ExternalLink className="size-3.5" />
           </div>
         </div>
-        <div className="p-4">
+        <div className="flex h-[8.75rem] flex-col p-4">
           <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
-            Screenshot proof
+            {label}
           </p>
           <h4 className="mt-2 text-sm font-semibold text-foreground">{title}</h4>
+          {caption ? (
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{caption}</p>
+          ) : null}
         </div>
       </Surface>
     </a>
@@ -897,15 +907,15 @@ export default function NYC311CaseStudyPage() {
           id="execution-proof"
           eyebrow="Execution Evidence"
           title="Execution Proof"
-          description="The original proof screenshots live in the project repo milestone folders. This portfolio page links them directly and summarizes what each milestone proves."
+          description="These screenshots are sourced from the project's milestone evidence folders and demonstrate real cloud pipeline execution."
         >
           <Tabs defaultValue="milestone-11" className="w-full">
-            <TabsList className="mb-6 h-auto flex-wrap justify-start gap-2 bg-transparent p-0">
+            <TabsList className="mb-6 inline-flex h-auto flex-wrap justify-start gap-2 rounded-2xl border border-border/80 bg-card/60 p-1">
               {milestones.map((milestone) => (
                 <TabsTrigger
                   key={milestone.value}
                   value={milestone.value}
-                  className="rounded-full border border-border bg-card px-4 py-2 data-[state=active]:border-primary/30 data-[state=active]:bg-primary/10"
+                  className="rounded-xl border border-transparent px-4 py-2.5 text-sm text-muted-foreground transition-colors data-[state=active]:border-primary/25 data-[state=active]:bg-primary/10 data-[state=active]:text-foreground"
                 >
                   {milestone.label}
                 </TabsTrigger>
@@ -914,22 +924,33 @@ export default function NYC311CaseStudyPage() {
 
             {milestones.map((milestone) => (
               <TabsContent key={milestone.value} value={milestone.value} className="space-y-6">
-                <Surface>
-                  <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+                <Surface className="bg-gradient-to-br from-card to-card/90">
+                  <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
                     <div className="max-w-3xl">
-                      <p className="font-mono text-xs tracking-[0.24em] text-primary uppercase">
-                        {milestone.label}
-                      </p>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <p className="font-mono text-xs tracking-[0.24em] text-primary uppercase">
+                          {milestone.label}
+                        </p>
+                        <span className="inline-flex items-center rounded-full border border-primary/15 bg-primary/10 px-2.5 py-1 font-mono text-[11px] text-primary">
+                          {milestone.proofImages.length} proof assets
+                        </span>
+                      </div>
                       <h3 className="mt-3 text-2xl font-semibold text-foreground">
                         {milestone.title}
                       </h3>
-                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                         {milestone.summary}
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid gap-2 sm:grid-cols-2 lg:max-w-md lg:grid-cols-1 xl:grid-cols-2 xl:justify-end">
                       {milestone.supportingLinks.map((link) => (
-                        <Button key={link.href} asChild size="sm" variant="outline">
+                        <Button
+                          key={link.href}
+                          asChild
+                          size="sm"
+                          variant="outline"
+                          className="h-auto min-h-9 w-full justify-start whitespace-normal px-3 py-2 text-left"
+                        >
                           <a
                             href={link.href}
                             target="_blank"
@@ -945,25 +966,31 @@ export default function NYC311CaseStudyPage() {
                   </div>
                 </Surface>
 
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                  {milestone.proofImages.map((image) => (
-                    <ProofThumbnail key={image.path} title={image.title} path={image.path} />
-                  ))}
-                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  These proof assets show ingestion, storage landing, Databricks handoff, and
+                  final validation across the current cloud path.
+                </p>
 
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-                  {milestone.items.map((item) => (
-                    <Surface key={item.title} className="h-full">
-                      <p className="font-mono text-[11px] tracking-[0.22em] text-primary uppercase">
-                        Repo evidence
-                      </p>
-                      <h4 className="mt-3 text-base font-semibold text-foreground">{item.title}</h4>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                        {item.detail}
-                      </p>
-                    </Surface>
-                  ))}
-                </div>
+                {milestone.proofImages.length > 0 ? (
+                  <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                    {milestone.proofImages.map((image) => (
+                      <ProofThumbnail
+                        key={image.path}
+                        label={image.label}
+                        title={image.title}
+                        path={image.path}
+                        caption={image.caption}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <Surface className="border-dashed">
+                    <p className="font-mono text-xs tracking-[0.22em] text-primary uppercase">
+                      Proof assets
+                    </p>
+                    <p className="mt-3 text-sm text-muted-foreground">Proof assets coming soon.</p>
+                  </Surface>
+                )}
               </TabsContent>
             ))}
           </Tabs>
