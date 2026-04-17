@@ -1,6 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -12,6 +14,7 @@ const navLinks = [
 ]
 
 export function Navbar() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -21,33 +24,35 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const resolveHref = (href: string) => (pathname === "/" ? href : `/${href}`)
+
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          ? "border-b border-border bg-background/80 backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:py-6">
-        <a href="#" className="flex flex-col gap-0.5 leading-tight">
+        <Link href="/" className="flex flex-col gap-0.5 leading-tight">
           <span className="text-base font-semibold tracking-normal text-foreground md:text-lg">
             Rihua Van Steenburgh
           </span>
           <span className="text-xs font-semibold tracking-[0.2em] text-primary/95 uppercase">
             Data Engineer
           </span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <Link
+                href={resolveHref(link.href)}
                 className="text-[15px] font-medium text-foreground/80 transition-colors hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -68,13 +73,13 @@ export function Navbar() {
           <ul className="flex flex-col gap-1 px-6 pb-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <Link
+                  href={resolveHref(link.href)}
                   onClick={() => setMobileOpen(false)}
                   className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

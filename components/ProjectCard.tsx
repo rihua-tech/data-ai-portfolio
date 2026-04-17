@@ -1,5 +1,15 @@
+import Link from "next/link"
 import Image from "next/image"
-import { Blocks, BookOpen, Database, ExternalLink, Github } from "lucide-react"
+import {
+  Blocks,
+  BookOpen,
+  Database,
+  ExternalLink,
+  FileText,
+  Github,
+  type LucideIcon,
+  ShieldCheck,
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tag } from "@/components/Tag"
 import type { PortfolioProject } from "@/data/projects"
@@ -11,83 +21,98 @@ interface ProjectCardProps {
   className?: string
 }
 
-function RepoButton({ repoUrl }: { repoUrl: string }) {
-  if (repoUrl === "#") {
+interface ProjectActionButtonProps {
+  href?: string
+  label: string
+  icon: LucideIcon
+  ariaLabel: string
+}
+
+function isExternalUrl(href: string) {
+  return href.startsWith("http://") || href.startsWith("https://")
+}
+
+function ProjectActionButton({ href, label, icon: Icon, ariaLabel }: ProjectActionButtonProps) {
+  if (!href) {
+    return null
+  }
+
+  if (href === "#") {
     return (
       <Button size="sm" variant="outline" disabled>
-        <Github className="size-4" />
-        Repo
+        <Icon className="size-4" />
+        {label}
+      </Button>
+    )
+  }
+
+  if (isExternalUrl(href)) {
+    return (
+      <Button asChild size="sm" variant="outline">
+        <a href={href} target="_blank" rel="noopener noreferrer" aria-label={ariaLabel}>
+          <Icon className="size-4" />
+          {label}
+        </a>
       </Button>
     )
   }
 
   return (
     <Button asChild size="sm" variant="outline">
-      <a href={repoUrl} target="_blank" rel="noopener noreferrer">
-        <Github className="size-4" />
-        Repo
-      </a>
-    </Button>
-  )
-}
-
-function LiveButton({ liveUrl, label = "Live" }: { liveUrl?: string; label?: string }) {
-  if (!liveUrl) {
-    return null
-  }
-
-  return (
-    <Button asChild size="sm" variant="outline">
-      <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-        <ExternalLink className="size-4" />
+      <Link href={href} aria-label={ariaLabel}>
+        <Icon className="size-4" />
         {label}
-      </a>
+      </Link>
     </Button>
   )
 }
 
-function DataButton({ dataUrl }: { dataUrl?: string }) {
-  if (!dataUrl) {
-    return null
-  }
-
+function ProjectActions({ project }: { project: PortfolioProject }) {
   return (
-    <Button asChild size="sm" variant="outline">
-      <a href={dataUrl} target="_blank" rel="noopener noreferrer">
-        <Database className="size-4" />
-        Data
-      </a>
-    </Button>
-  )
-}
-
-function ArchitectureButton({ architectureUrl }: { architectureUrl?: string }) {
-  if (!architectureUrl) {
-    return null
-  }
-
-  return (
-    <Button asChild size="sm" variant="outline">
-      <a href={architectureUrl} target="_blank" rel="noopener noreferrer">
-        <Blocks className="size-4" />
-        Architecture
-      </a>
-    </Button>
-  )
-}
-
-function DocsButton({ docsUrl }: { docsUrl?: string }) {
-  if (!docsUrl) {
-    return null
-  }
-
-  return (
-    <Button asChild size="sm" variant="outline">
-      <a href={docsUrl} target="_blank" rel="noopener noreferrer">
-        <BookOpen className="size-4" />
-        Docs
-      </a>
-    </Button>
+    <>
+      <ProjectActionButton
+        href={project.caseStudyUrl}
+        label="Case Study"
+        icon={FileText}
+        ariaLabel={`Open the ${project.title} case study`}
+      />
+      <ProjectActionButton
+        href={project.repoUrl}
+        label="GitHub Repo"
+        icon={Github}
+        ariaLabel={`Open the ${project.title} GitHub repository`}
+      />
+      <ProjectActionButton
+        href={project.dataUrl}
+        label="Data"
+        icon={Database}
+        ariaLabel={`Open the ${project.title} data repository`}
+      />
+      <ProjectActionButton
+        href={project.architectureUrl}
+        label="Architecture"
+        icon={Blocks}
+        ariaLabel={`View the ${project.title} architecture`}
+      />
+      <ProjectActionButton
+        href={project.executionProofUrl}
+        label="Execution Proof"
+        icon={ShieldCheck}
+        ariaLabel={`View the ${project.title} execution proof`}
+      />
+      <ProjectActionButton
+        href={project.docsUrl}
+        label="Docs"
+        icon={BookOpen}
+        ariaLabel={`Open the ${project.title} documentation`}
+      />
+      <ProjectActionButton
+        href={project.liveUrl}
+        label={project.liveLabel ?? "Live"}
+        icon={ExternalLink}
+        ariaLabel={`Open the live experience for ${project.title}`}
+      />
+    </>
   )
 }
 
@@ -147,12 +172,8 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
               </div>
             )}
 
-            <div className="flex flex-wrap items-center gap-3">
-              <RepoButton repoUrl={project.repoUrl} />
-              <DataButton dataUrl={project.dataUrl} />
-              <ArchitectureButton architectureUrl={project.architectureUrl} />
-              <DocsButton docsUrl={project.docsUrl} />
-              <LiveButton liveUrl={project.liveUrl} label={project.liveLabel} />
+            <div className="flex flex-wrap items-center gap-2.5">
+              <ProjectActions project={project} />
             </div>
           </div>
         </div>
@@ -198,11 +219,7 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
         )}
 
         <div className="flex flex-wrap items-center gap-2.5">
-          <RepoButton repoUrl={project.repoUrl} />
-          <DataButton dataUrl={project.dataUrl} />
-          <ArchitectureButton architectureUrl={project.architectureUrl} />
-          <DocsButton docsUrl={project.docsUrl} />
-          <LiveButton liveUrl={project.liveUrl} label={project.liveLabel} />
+          <ProjectActions project={project} />
         </div>
       </div>
     </article>

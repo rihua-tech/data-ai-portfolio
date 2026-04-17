@@ -8,9 +8,11 @@ export interface PortfolioProject {
   title: string
   subtitle: string
   image: string
+  caseStudyUrl?: string
   repoUrl: string
   dataUrl?: string
   architectureUrl?: string
+  executionProofUrl?: string
   docsUrl?: string
   liveUrl?: string
   stack: string[]
@@ -25,10 +27,11 @@ export const projects: PortfolioProject[] = [
     subtitle:
       "Azure-first medallion lakehouse for NYC 311 operational analytics, transforming raw API data into analytics-ready bronze, silver, and gold datasets.",
     image: "/projects/nyc-311-lakehouse.jpg",
+    caseStudyUrl: "/projects/nyc-311-service-requests-lakehouse",
     repoUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse",
-    architectureUrl:
-      "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/blob/main/docs/architecture/medallion-design.md",
-    docsUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/blob/main/README.md",
+    architectureUrl: "/projects/nyc-311-service-requests-lakehouse#architecture",
+    executionProofUrl: "/projects/nyc-311-service-requests-lakehouse#execution-proof",
+    docsUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/tree/main/docs",
     stack: [
       "Azure Data Factory",
       "ADLS Gen2",
@@ -41,7 +44,7 @@ export const projects: PortfolioProject[] = [
       "GitHub Actions",
     ],
     highlights: [
-      "Azure Data Factory → ADLS Gen2 → Databricks pipeline with proven raw landing and medallion processing",
+      "Azure Data Factory -> ADLS Gen2 -> Databricks pipeline with proven raw landing and medallion processing",
       "Reusable data quality checks, dimensional models, and reporting marts",
       "Architecture notes, runbooks, SQL assets, notebook exports, and cloud execution proof",
     ],
@@ -81,7 +84,7 @@ export const projects: PortfolioProject[] = [
   {
     category: "DA",
     topLabel: "AI REPORTING SAAS",
-    title: "Sumryze – AI-Powered SEO Reporting Dashboard",
+    title: "Sumryze - AI-Powered SEO Reporting Dashboard",
     subtitle:
       "SaaS-style dashboard for automated SEO reporting, AI-generated summaries, analytics visualizations, and client-ready insights.",
     image: "/projects/sumryze-seo-reporting-dashboard.jpg",
