@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Github, FileText, Mail, Linkedin, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const RESUME_URL = "/Rihua_Van_Steenburgh_Data_Engeneer_Resume.pdf"
+const RESUME_URL = "/Rihua_Van_Steenburgh_Data_Engineer_Resume.pdf"
 const LINKEDIN_URL = "https://www.linkedin.com/in/rihua/"
 const EMAIL_ADDRESS = "rihuavan@gmail.com"
 const EMAIL_SUBJECT = "Data Engineer Opportunity"
