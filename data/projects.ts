@@ -1,4 +1,12 @@
 export type ProjectCategory = "DE" | "DA" | "DS"
+export type ProjectActionKey =
+  | "caseStudy"
+  | "repo"
+  | "data"
+  | "architecture"
+  | "executionProof"
+  | "docs"
+  | "live"
 
 export interface PortfolioProject {
   category: ProjectCategory
@@ -17,6 +25,7 @@ export interface PortfolioProject {
   liveUrl?: string
   stack: string[]
   highlights: string[]
+  cardActions?: ProjectActionKey[]
 }
 
 export const projects: PortfolioProject[] = [
@@ -51,19 +60,23 @@ export const projects: PortfolioProject[] = [
   },
   {
     category: "DE",
-    title: "Cloud Flight Fare Pipeline",
     topLabel: "AWS DATA ENGINEERING",
-    subtitle: "AWS-focused end-to-end ELT pipeline producing analytics-ready flight fare marts.",
-    image: "/projects/flight-fare-pipeline.jpg",
+    title: "Cloud Flight Fare Pipeline",
+    subtitle:
+      "End-to-end flight fare pipeline with a fast local demo stack (Docker + Postgres) and a production-style AWS path (S3 + Redshift), orchestrated with Airflow and modeled with dbt.",
+    image: "/projects/cloud-flight-fare-pipeline.jpg",
+    caseStudyUrl: "/projects/cloud-flight-fare-pipeline",
     repoUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline",
-    architectureUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline#architecture",
-    docsUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline/blob/main/docs/README.md",
-    stack: ["Python", "SQL", "Airflow", "dbt", "Postgres", "Redshift", "GitHub Actions"],
+    architectureUrl: "/projects/cloud-flight-fare-pipeline#architecture",
+    executionProofUrl: "/projects/cloud-flight-fare-pipeline#execution-proof",
+    docsUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline/tree/main/docs",
+    stack: ["Python", "Airflow", "dbt", "Docker", "AWS S3", "Redshift", "GitHub Actions"],
     highlights: [
-      "End-to-end pipeline: ingest -> raw storage -> dbt marts -> analytics outputs",
-      "CI via GitHub Actions + minimal tests + docs",
-      "Example SQL queries + screenshots for analytics handoff",
+      "Local demo path with Docker + Postgres for fast validation",
+      "Production-style AWS architecture using S3, Redshift, Airflow, and dbt",
+      "Analytics-ready marts, proof queries, CI checks, and reviewer-ready docs",
     ],
+    cardActions: ["caseStudy", "repo", "architecture"],
   },
   {
     category: "DE",

@@ -12,7 +12,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tag } from "@/components/Tag"
-import type { PortfolioProject } from "@/data/projects"
+import type { PortfolioProject, ProjectActionKey } from "@/data/projects"
 import { cn } from "@/lib/utils"
 
 interface ProjectCardProps {
@@ -68,50 +68,79 @@ function ProjectActionButton({ href, label, icon: Icon, ariaLabel }: ProjectActi
 }
 
 function ProjectActions({ project }: { project: PortfolioProject }) {
+  const actions: Record<
+    ProjectActionKey,
+    { href?: string; label: string; icon: LucideIcon; ariaLabel: string }
+  > = {
+    caseStudy: {
+      href: project.caseStudyUrl,
+      label: "Case Study",
+      icon: FileText,
+      ariaLabel: `Open the ${project.title} case study`,
+    },
+    repo: {
+      href: project.repoUrl,
+      label: "GitHub Repo",
+      icon: Github,
+      ariaLabel: `Open the ${project.title} GitHub repository`,
+    },
+    data: {
+      href: project.dataUrl,
+      label: "Data",
+      icon: Database,
+      ariaLabel: `Open the ${project.title} data repository`,
+    },
+    architecture: {
+      href: project.architectureUrl,
+      label: "Architecture",
+      icon: Blocks,
+      ariaLabel: `View the ${project.title} architecture`,
+    },
+    executionProof: {
+      href: project.executionProofUrl,
+      label: "Execution Proof",
+      icon: ShieldCheck,
+      ariaLabel: `View the ${project.title} execution proof`,
+    },
+    docs: {
+      href: project.docsUrl,
+      label: "Docs",
+      icon: BookOpen,
+      ariaLabel: `Open the ${project.title} documentation`,
+    },
+    live: {
+      href: project.liveUrl,
+      label: project.liveLabel ?? "Live",
+      icon: ExternalLink,
+      ariaLabel: `Open the live experience for ${project.title}`,
+    },
+  }
+
+  const actionOrder: ProjectActionKey[] = project.cardActions ?? [
+    "caseStudy",
+    "repo",
+    "data",
+    "architecture",
+    "executionProof",
+    "docs",
+    "live",
+  ]
+
   return (
     <>
-      <ProjectActionButton
-        href={project.caseStudyUrl}
-        label="Case Study"
-        icon={FileText}
-        ariaLabel={`Open the ${project.title} case study`}
-      />
-      <ProjectActionButton
-        href={project.repoUrl}
-        label="GitHub Repo"
-        icon={Github}
-        ariaLabel={`Open the ${project.title} GitHub repository`}
-      />
-      <ProjectActionButton
-        href={project.dataUrl}
-        label="Data"
-        icon={Database}
-        ariaLabel={`Open the ${project.title} data repository`}
-      />
-      <ProjectActionButton
-        href={project.architectureUrl}
-        label="Architecture"
-        icon={Blocks}
-        ariaLabel={`View the ${project.title} architecture`}
-      />
-      <ProjectActionButton
-        href={project.executionProofUrl}
-        label="Execution Proof"
-        icon={ShieldCheck}
-        ariaLabel={`View the ${project.title} execution proof`}
-      />
-      <ProjectActionButton
-        href={project.docsUrl}
-        label="Docs"
-        icon={BookOpen}
-        ariaLabel={`Open the ${project.title} documentation`}
-      />
-      <ProjectActionButton
-        href={project.liveUrl}
-        label={project.liveLabel ?? "Live"}
-        icon={ExternalLink}
-        ariaLabel={`Open the live experience for ${project.title}`}
-      />
+      {actionOrder.map((actionKey) => {
+        const action = actions[actionKey]
+
+        return (
+          <ProjectActionButton
+            key={actionKey}
+            href={action.href}
+            label={action.label}
+            icon={action.icon}
+            ariaLabel={action.ariaLabel}
+          />
+        )
+      })}
     </>
   )
 }
@@ -199,26 +228,26 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
         <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="flex-1">
+      <div className="flex flex-1 flex-col p-5">
+        <div className="space-y-3">
           {project.topLabel && (
             <p className="mb-2 text-xs font-medium tracking-wider text-primary uppercase">
               {project.topLabel}
             </p>
           )}
           <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
-          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
         </div>
 
         {project.stack.length > 0 && (
-          <div className="flex flex-wrap gap-1.5">
+          <div className="mt-3.5 flex flex-wrap gap-1.5">
             {project.stack.map((tech) => (
               <Tag key={tech}>{tech}</Tag>
             ))}
           </div>
         )}
 
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="mt-4 flex flex-wrap items-center gap-2">
           <ProjectActions project={project} />
         </div>
       </div>
