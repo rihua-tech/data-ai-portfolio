@@ -37,7 +37,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:py-6">
         <Link href="/" className="flex flex-col gap-0.5 leading-tight">
           <span className="text-base font-semibold tracking-normal text-foreground md:text-lg">
-            Rihua Van Steenburgh
+            Rihua V.
           </span>
           <span className="text-xs font-semibold tracking-[0.2em] text-primary/95 uppercase">
             Data Engineer

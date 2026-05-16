@@ -25,41 +25,45 @@ const repoUrl = "https://github.com/rihua-tech/cloud-flight-fare-pipeline"
 const docsUrl = `${repoUrl}/tree/main/docs`
 const localDemoGuideUrl = `${repoUrl}#quickstart-local-demo-in-10-minutes`
 const redshiftRunbookUrl = `${repoUrl}/blob/main/docs/week4_redshift_runbook.md`
-const airflowDagUrl = `${repoUrl}/blob/main/airflow/dags/flight_fare_pipeline_dag.py`
 const ciUrl = `${repoUrl}/blob/main/.github/workflows/ci.yml`
-const verifyMartsUrl = `${repoUrl}/blob/main/sql/redshift/verify_marts.sql`
 const martDocsUrl = `${repoUrl}/blob/main/docs/how_to_use_marts.md`
 const exampleQueriesUrl = `${repoUrl}/blob/main/README.md#example-queries--outputs`
 const dashboardArtifactUrl = `${repoUrl}/blob/main/docs/images/dashboard_screenshot.png`
-const architectureDiagramUrl = `${repoUrl}/blob/main/docs/images/architecture_diagram.png`
-const week3ProofUrl = `${repoUrl}/tree/main/docs/screenshots/week3`
-const week5ProofUrl = `${repoUrl}/tree/main/docs/screenshots/week5`
-const s3BronzeProofUrl = `${repoUrl}/blob/main/docs/screenshots/week3/s3-console.png`
+const eventBridgeProofUrl =
+  `${repoUrl}/blob/main/docs/screenshots/week9/06-eventbridge-scheduler-enabled-target.png`
+const fargateTaskProofUrl =
+  `${repoUrl}/blob/main/docs/screenshots/week9/04-manual-fargate-task-exit-code-0.png`
+const cloudWatchProofUrl =
+  `${repoUrl}/blob/main/docs/screenshots/week9/07-cloudwatch-scheduled-run-week9-success.png`
+const redshiftDbtProofUrl =
+  `${repoUrl}/blob/main/docs/screenshots/week8/07-dbt-build-redshift-success.png`
+const s3BronzeProofUrl =
+  `${repoUrl}/blob/main/docs/screenshots/week7/02-s3-bronze-prefix-view.png`
 const airflowGraphProofUrl = `${repoUrl}/blob/main/docs/screenshots/week5/week5_graph_view.png`
-const airflowTaskLogProofUrl =
-  `${repoUrl}/blob/main/docs/screenshots/week5/week5_task_log_dbt_build_success.png`
 const routeTrendsSqlUrl = `${repoUrl}/blob/main/sql/analysis/route_price_trends.sql`
 const leadTimeSqlUrl = `${repoUrl}/blob/main/sql/analysis/lead_time_buckets.sql`
 const architectureDiagramSrc =
-  "/projects/cloud-flight-fare-pipeline-proof/architecture-diagram.png"
+  "/projects/cloud-flight-fare-pipeline-proof/cloud-flight-fare-pipeline-full-repository-architecture-dark.png"
+const currentAwsPathDiagramSrc =
+  "/projects/cloud-flight-fare-pipeline-proof/cloud-flight-fare-pipeline-current-proven-aws-path-dark.png"
 
 const stack = [
-  "Python",
-  "Airflow",
+  "AWS",
+  "ECS/Fargate",
+  "EventBridge",
+  "S3",
+  "Redshift",
   "dbt",
   "Docker",
-  "Postgres",
-  "AWS S3",
-  "Redshift",
-  "GitHub Actions",
+  "CloudWatch",
 ]
 
 const proofAtGlance = [
-  { label: "Local demo", value: "Docker + Postgres" },
-  { label: "AWS path", value: "S3 + Redshift runbook" },
-  { label: "Orchestration", value: "Airflow DAG + logs" },
+  { label: "Local validation", value: "Docker + Postgres" },
+  { label: "Proven AWS path", value: "Scheduler → ECS/Fargate → S3 → Redshift" },
+  { label: "Orchestration", value: "EventBridge + CloudWatch" },
   { label: "Modeling", value: "dbt marts + tests" },
-  { label: "Reviewer proof", value: "Screenshots, SQL, CI" },
+  { label: "Reviewer proof", value: "Screenshots, logs, SQL, CI" },
 ]
 
 const fastLocalCommands = [
@@ -76,11 +80,7 @@ const fastLocalCommands = [
   {
     step: "03",
     title: "Build dbt models",
-    commandLines: [
-      "dbt build",
-      "--project-dir dbt/flight_fares",
-      "--profiles-dir dbt",
-    ],
+    commandLines: ["dbt build --project-dir dbt/flight_fares --profiles-dir dbt"],
   },
   {
     step: "04",
@@ -91,51 +91,59 @@ const fastLocalCommands = [
 
 const architectureCards = [
   {
-    title: "Proven local execution path",
+    title: "Local validation path",
     icon: Database,
     items: [
       {
         key: "local-boot",
-        content: "Boot the local Docker + Postgres demo stack",
+        content: "Start Docker + Postgres locally",
       },
       {
         key: "local-load",
-        content: "Load sample fare snapshots into warehouse-ready raw tables",
+        content: "Load sample fare snapshots",
       },
       {
         key: "local-dbt",
-        content: "Run dbt staging, marts, tests, and docs against Postgres",
+        content: "Build dbt staging, marts, and tests",
       },
       {
         key: "local-proof",
-        content: "Execute proof queries that validate analytics-ready outputs",
+        content: "Run proof queries against analytics outputs",
       },
     ],
-    linkLabel: "Local demo guide",
+    linkLabel: "Local validation guide",
     linkHref: localDemoGuideUrl,
   },
   {
-    title: "Documented AWS target path",
+    title: "Proven AWS execution path",
     icon: Blocks,
     items: [
       {
+        key: "aws-scheduler",
+        content: "EventBridge triggers the batch run",
+      },
+      {
+        key: "aws-fargate",
+        content: "ECS/Fargate runs the container job",
+      },
+      {
         key: "aws-bronze",
-        content: "Ingest daily fare snapshots to S3 bronze storage",
+        content: "Flight data lands in S3 Bronze",
       },
       {
         key: "aws-redshift",
-        content: "Load warehouse tables into Redshift with runbook-backed SQL helpers",
+        content: "Redshift Serverless receives loaded tables",
       },
       {
-        key: "aws-orchestrate",
-        content: "Orchestrate the warehouse path with Airflow and dbt",
+        key: "aws-dbt",
+        content: "dbt builds marts and runs tests",
       },
       {
-        key: "aws-validate",
-        content: "Use validation SQL to confirm mart row counts and readiness",
+        key: "aws-cloudwatch",
+        content: "CloudWatch captures execution evidence",
       },
     ],
-    linkLabel: "AWS / Redshift runbook",
+    linkLabel: "AWS proof runbook",
     linkHref: redshiftRunbookUrl,
   },
   {
@@ -154,15 +162,15 @@ const architectureCards = [
       },
       {
         key: "analytics-docs",
-        content: "Docs explain how analysts should query route, pricing, and timing patterns",
+        content: "Docs explain route, pricing, and timing analysis",
       },
       {
         key: "analytics-sql",
-        content: "Example SQL covers route trends, monthly movement, and lead-time analysis",
+        content: "SQL examples cover trends, movement, and lead-time review",
       },
       {
         key: "analytics-ci",
-        content: "CI validates linting, tests, demo loading, and dbt build steps",
+        content: "CI validates linting, tests, loading, and dbt build steps",
       },
     ],
     linkLabel: "Mart usage docs",
@@ -173,26 +181,19 @@ const architectureCards = [
 const analyticsCards = [
   {
     title: "Route fare trends",
-    description: (
-      <>
-        Route-level SQL shows how <InlineCode>marts.fact_fares</InlineCode> and{" "}
-        <InlineCode>marts.dim_route</InlineCode> support pricing trends by route.
-      </>
-    ),
+    description: "Route-level SQL shows pricing trends by origin and destination.",
     linkLabel: "Route trend SQL",
     linkHref: routeTrendsSqlUrl,
   },
   {
     title: "Monthly fare movement",
-    description:
-      "README rollups make the time-series handoff clear without implying a live reporting layer.",
+    description: "Example queries summarize fare movement over time.",
     linkLabel: "Example queries",
     linkHref: exampleQueriesUrl,
   },
   {
     title: "Lead-time analysis",
-    description:
-      "Lead-time queries show how the marts support booking-window and pricing review.",
+    description: "Lead-time SQL supports booking-window and pricing review.",
     linkLabel: "Lead-time SQL",
     linkHref: leadTimeSqlUrl,
   },
@@ -200,47 +201,63 @@ const analyticsCards = [
 
 const proofGallery = [
   {
-    label: "S3 bronze",
+    label: "AWS scheduler proof",
+    title: "EventBridge Scheduler target",
+    description:
+      "Scheduler configuration showing the AWS batch trigger path for the Fargate job.",
+    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/aws-eventbridge-scheduler-proof.png",
+    imageAlt: "EventBridge Scheduler target configuration for the Cloud Flight Fare Pipeline Fargate job",
+    href: eventBridgeProofUrl,
+  },
+  {
+    label: "ECS/Fargate proof",
+    title: "Manual Fargate task exit code 0",
+    description: "Containerized batch run completed successfully in ECS/Fargate.",
+    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/aws-fargate-task-exit-code-0.png",
+    imageAlt: "ECS Fargate task run showing exit code 0 for the Cloud Flight Fare Pipeline",
+    href: fargateTaskProofUrl,
+  },
+  {
+    label: "CloudWatch proof",
+    title: "WEEK9_BATCH_SUCCESS log",
+    description: "CloudWatch log evidence showing the scheduled AWS run completed successfully.",
+    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/aws-cloudwatch-week9-success.png",
+    imageAlt: "CloudWatch log showing WEEK9_BATCH_SUCCESS for the scheduled AWS run",
+    href: cloudWatchProofUrl,
+  },
+  {
+    label: "Redshift + dbt proof",
+    title: "Redshift/dbt build success",
+    description: "Warehouse proof showing Redshift loading and dbt build validation.",
+    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/aws-redshift-dbt-build-proof.png",
+    imageAlt: "dbt build success output for Redshift validation in the Cloud Flight Fare Pipeline",
+    href: redshiftDbtProofUrl,
+  },
+  {
+    label: "AWS S3 proof",
     title: "Bronze ingestion landed in S3",
-    description: "Week 3 proof showing dated fare snapshots stored under the bronze bucket path.",
-    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/s3-console.png",
+    description: "S3 storage proof showing dated fare snapshots under the Bronze path.",
+    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/aws-s3-bronze-proof.png",
     imageAlt: "Amazon S3 console showing bronze flight fare snapshots",
     href: s3BronzeProofUrl,
   },
   {
-    label: "Airflow graph",
-    title: "Runnable local DAG graph",
-    description:
-      "Week 5 Airflow graph view showing the local load, dbt build, and proof-query chain.",
+    label: "Local DAG proof",
+    title: "Runnable validation DAG graph",
+    description: "Local Airflow graph showing the load, dbt build, and proof-query chain.",
     imageSrc: "/projects/cloud-flight-fare-pipeline-proof/week5-graph-view.png",
-    imageAlt: "Airflow graph view for the local flight fare pipeline DAG",
+    imageAlt: "Airflow graph view for the local flight fare pipeline validation DAG",
     href: airflowGraphProofUrl,
-  },
-  {
-    label: "Task log",
-    title: "dbt build execution log",
-    description:
-      "Saved Airflow task-log evidence for a successful dbt build and model tests.",
-    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/week5-task-log-dbt-build-success.png",
-    imageAlt: "Airflow task log showing successful dbt build output",
-    href: airflowTaskLogProofUrl,
-  },
-  {
-    label: "Preview artifact",
-    title: "Dashboard preview artifact",
-    description:
-      "Static repo artifact for downstream analytics handoff. It is not presented here as a live hosted BI app.",
-    imageSrc: "/projects/cloud-flight-fare-pipeline-proof/dashboard-screenshot.png",
-    imageAlt: "Dashboard preview artifact included in the project documentation",
-    href: dashboardArtifactUrl,
   },
 ]
 
 const supportingProofLinks = [
-  { label: "Week 3 screenshots", href: week3ProofUrl },
-  { label: "Week 5 screenshots", href: week5ProofUrl },
-  { label: "Airflow DAG code", href: airflowDagUrl },
-  { label: "Verify marts SQL", href: verifyMartsUrl },
+  { label: "EventBridge Proof", href: eventBridgeProofUrl },
+  { label: "ECS/Fargate Proof", href: fargateTaskProofUrl },
+  { label: "CloudWatch Logs", href: cloudWatchProofUrl },
+  { label: "Redshift/dbt Proof", href: redshiftDbtProofUrl },
+  { label: "S3 Bronze Proof", href: s3BronzeProofUrl },
+  { label: "AWS Proof Runbook", href: redshiftRunbookUrl },
   { label: "GitHub Actions CI", href: ciUrl },
 ]
 
@@ -287,14 +304,14 @@ function ActionButton({ href, label, icon: Icon }: ActionButtonProps) {
 export const metadata: Metadata = {
   title: "Cloud Flight Fare Pipeline | Rihua Van Steenburgh",
   description:
-    "Recruiter-friendly case study for an end-to-end flight fare pipeline with a fast local demo path, a documented S3/Redshift target architecture, Airflow orchestration, dbt marts, and proof-oriented documentation.",
+    "Recruiter-friendly case study for a real AWS cloud proof project using EventBridge Scheduler, ECS/Fargate, S3, Redshift Serverless, dbt, and CloudWatch Logs.",
   alternates: {
     canonical: caseStudyUrl,
   },
   openGraph: {
     title: "Cloud Flight Fare Pipeline",
     description:
-      "End-to-end flight fare pipeline case study with local demo proof, a documented AWS target path, analytics-ready marts, and reviewer-facing execution evidence.",
+      "Real AWS cloud data engineering proof project with a proven AWS batch execution path from flight API ingestion to analytics-ready marts.",
     url: caseStudyUrl,
     images: [
       {
@@ -307,7 +324,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cloud Flight Fare Pipeline",
     description:
-      "End-to-end flight fare pipeline case study with local demo proof, S3/Redshift architecture notes, Airflow, dbt, and analytics-ready outputs.",
+      "Real AWS cloud proof project using EventBridge, ECS/Fargate, S3, Redshift Serverless, dbt, and CloudWatch Logs.",
     images: ["/projects/cloud-flight-fare-pipeline.jpg"],
   },
 }
@@ -389,20 +406,22 @@ export default function CloudFlightFarePipelinePage() {
           <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
               <p className="text-xs font-medium tracking-wider text-primary uppercase">
-                AWS Data Engineering
+                REAL AWS CLOUD PROOF
               </p>
               <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
                 Cloud Flight Fare Pipeline
               </h1>
               <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                End-to-end flight fare pipeline with a fast local demo path and a documented
-                production-style AWS architecture, orchestrated with Airflow and modeled with dbt.
+                Real AWS cloud data engineering proof project using EventBridge Scheduler,
+                ECS/Fargate, S3, Redshift Serverless, dbt, and CloudWatch Logs to run a scheduled
+                batch pipeline from flight API ingestion to analytics-ready marts.
               </p>
 
               <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-foreground">Honest scope:</span> local demo
-                execution is proven in the repo today, while the AWS path is documented as a
-                production-style architecture with runbooks, warehouse SQL, and validation assets.
+                <span className="font-semibold text-foreground">Validated cloud scope:</span>{" "}
+                proven AWS batch execution with EventBridge Scheduler, ECS/Fargate, S3 Bronze
+                landing, Redshift Serverless loading, dbt marts/tests, CloudWatch success logs,
+                proof screenshots, and runbooks.
               </div>
 
               <div className="mt-6 flex flex-wrap gap-2">
@@ -448,15 +467,55 @@ export default function CloudFlightFarePipelinePage() {
           </div>
         </section>
 
+        <section
+          id="architecture"
+          className="mx-auto max-w-6xl scroll-mt-24 px-6 pb-8 md:pb-10"
+        >
+          <div className="max-w-3xl">
+            <p className="text-xs font-medium tracking-wider text-primary uppercase">
+              AWS Proof Diagram
+            </p>
+            <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
+              Current Proven AWS Path
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Real AWS execution path showing how EventBridge Scheduler triggers an ECS/Fargate
+              batch container to ingest flight data, land raw data in S3 Bronze, load Redshift
+              Serverless, build dbt staging/marts/tests, and capture execution proof in CloudWatch
+              Logs.
+            </p>
+          </div>
+
+          <a
+            href={currentAwsPathDiagramSrc}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group mt-6 block focus-visible:outline-none"
+            aria-label="View the current proven AWS path diagram full size"
+          >
+            <Image
+              src={currentAwsPathDiagramSrc}
+              alt="Current proven AWS path diagram for the Cloud Flight Fare Pipeline"
+              width={1672}
+              height={941}
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
+              className="h-auto w-full rounded-xl border border-border object-contain shadow-[0_18px_42px_rgba(0,0,0,0.2)] transition-transform duration-300 group-hover:scale-[1.005]"
+            />
+          </a>
+        </section>
+
         <section className="mx-auto max-w-6xl px-6 pb-8">
           <div className="overflow-hidden rounded-xl border border-border bg-card/60 backdrop-blur-sm">
             <div className="border-b border-border/80 bg-[linear-gradient(135deg,rgba(34,211,238,0.12),rgba(13,148,136,0.02))] px-5 py-4 md:px-6">
               <p className="text-xs font-medium tracking-wider text-primary uppercase">
-                Fast local validation path
+                LOCAL VALIDATION PATH
               </p>
-              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                The fastest review path is local: start Postgres, load the sample fares, build the
-                marts with dbt, then run the proof queries that show downstream readiness.
+              <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
+                Reproducible local review path
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Run the project locally with Docker, Postgres, dbt, and proof queries before
+                reviewing the AWS proof path.
               </p>
             </div>
 
@@ -470,9 +529,9 @@ export default function CloudFlightFarePipelinePage() {
                     Step {item.step}
                   </p>
                   <p className="mt-2 text-sm font-medium text-foreground">{item.title}</p>
-                  <pre className="mt-3 flex-1 overflow-hidden rounded-lg border border-white/8 bg-black/20 px-4 py-3.5 font-mono text-[13px] leading-6 whitespace-pre-wrap break-words text-foreground">
+                  <pre className="mt-3 flex-1 overflow-x-auto rounded-lg border border-white/8 bg-black/20 px-4 py-3.5 font-mono text-xs leading-6 whitespace-pre text-foreground">
                     {item.commandLines.map((line, index) => (
-                      <span key={line} className="block">
+                      <span key={line} className="block min-w-max">
                         {index === 0 ? line : `  ${line}`}
                       </span>
                     ))}
@@ -484,20 +543,20 @@ export default function CloudFlightFarePipelinePage() {
         </section>
 
         <section
-          id="architecture"
+          id="execution-paths"
           className="mx-auto max-w-6xl scroll-mt-24 px-6 py-10 md:py-14"
         >
           <div className="max-w-3xl">
             <p className="text-xs font-medium tracking-wider text-primary uppercase">
-              Architecture
+              Execution paths
             </p>
             <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
               Two clear paths, one analytics-ready outcome
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              The repo is strongest when reviewed as a proven local demo path plus a documented
-              production-style AWS target. Both routes converge on dbt-modeled marts and SQL
-              outputs that are ready for analytics review.
+              The project is easiest to review through two paths: a reproducible local validation
+              path and a proven AWS execution path. Both produce dbt-modeled marts and
+              analytics-ready SQL outputs.
             </p>
           </div>
 
@@ -508,7 +567,11 @@ export default function CloudFlightFarePipelinePage() {
               return (
                 <article
                   key={card.title}
-                  className="rounded-xl border border-border bg-card/60 p-5 backdrop-blur-sm"
+                  className={`rounded-xl border p-5 backdrop-blur-sm ${
+                    card.title === "Proven AWS execution path"
+                      ? "border-primary/30 bg-primary/5"
+                      : "border-border bg-card/60"
+                  }`}
                 >
                   <div className="flex items-center gap-3">
                     <div className="rounded-lg border border-primary/20 bg-primary/10 p-2 text-primary">
@@ -537,14 +600,17 @@ export default function CloudFlightFarePipelinePage() {
             })}
           </div>
 
-          <article className="mt-6 overflow-hidden rounded-2xl border border-border bg-card/60 p-5 backdrop-blur-sm md:p-6">
+          <div className="mt-12">
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="max-w-3xl">
                 <p className="text-xs font-medium tracking-wider text-primary uppercase">
-                  Architecture Diagram
+                  TECHNICAL ARCHITECTURE
                 </p>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                  Repo architecture overview showing ingestion, bronze/raw landing, silver/cleaned
+                <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
+                  Full Repository Architecture
+                </h2>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  Detailed repository architecture showing ingestion, raw/bronze landing, cleaned
                   processing, dbt modeling, validation, and analytics outputs.
                 </p>
               </div>
@@ -570,18 +636,18 @@ export default function CloudFlightFarePipelinePage() {
             >
               <Image
                 src={architectureDiagramSrc}
-                alt="Cloud Flight Fare Pipeline architecture overview diagram from the project repo"
-                width={1536}
-                height={1024}
+                alt="Cloud Flight Fare Pipeline full repository architecture diagram showing source, ingestion, bronze raw, silver cleaned, dbt modeling, validation, and analytics output stages."
+                width={1672}
+                height={941}
                 sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
-                className="h-auto w-full rounded-xl object-contain shadow-[0_18px_42px_rgba(0,0,0,0.18)] transition-transform duration-300 group-hover:scale-[1.01]"
+                className="h-auto w-full rounded-xl border border-border object-contain shadow-[0_18px_42px_rgba(0,0,0,0.2)] transition-transform duration-300 group-hover:scale-[1.005]"
               />
             </a>
-          </article>
+          </div>
         </section>
 
         <section className="mx-auto max-w-6xl px-6 py-10 md:py-14">
-          <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.75fr)] lg:items-start">
             <div>
               <p className="text-xs font-medium tracking-wider text-primary uppercase">
                 Analytics-ready outputs
@@ -590,18 +656,22 @@ export default function CloudFlightFarePipelinePage() {
                 Downstream analysis is visible, not implied
               </h2>
               <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-                This case study does not stop at ingestion and modeling. The repo documents the
-                marts, the analyst query patterns, and the downstream output handoff so reviewers
-                can see what gets delivered after the pipeline runs.
+                The project goes beyond ingestion and modeling by documenting marts, SQL query
+                patterns, and downstream handoff artifacts reviewers can inspect after the pipeline
+                runs.
               </p>
 
-              <div className="mt-6 grid gap-4 md:grid-cols-3">
+              <p className="mt-6 text-xs font-medium tracking-wider text-primary uppercase">
+                SQL output examples
+              </p>
+
+              <div className="mt-3 grid gap-4 md:grid-cols-3">
                 {analyticsCards.map((card) => (
                   <article
                     key={card.title}
-                    className="rounded-xl border border-border bg-card/60 p-5 backdrop-blur-sm"
+                    className="flex h-full flex-col rounded-xl border border-border bg-card/60 p-4 backdrop-blur-sm"
                   >
-                    <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
+                    <h3 className="text-base font-semibold text-foreground">{card.title}</h3>
                     <div className="mt-3 text-sm leading-relaxed text-muted-foreground">
                       {card.description}
                     </div>
@@ -619,13 +689,13 @@ export default function CloudFlightFarePipelinePage() {
               </div>
             </div>
 
-            <article className="overflow-hidden rounded-xl border border-border bg-card/60 backdrop-blur-sm">
-              <div className="relative aspect-[16/10] overflow-hidden bg-black">
+            <article className="overflow-hidden rounded-xl border border-border bg-card/60 backdrop-blur-sm lg:max-w-md lg:justify-self-end lg:self-start">
+              <div className="relative aspect-[2/1] overflow-hidden bg-black">
                 <Image
                   src="/projects/cloud-flight-fare-pipeline-proof/dashboard-screenshot.png"
-                  alt="Dashboard preview artifact from the Cloud Flight Fare Pipeline repo"
+                  alt="Downstream preview artifact from the Cloud Flight Fare Pipeline repo"
                   fill
-                  sizes="(max-width: 1023px) 100vw, 36vw"
+                  sizes="(max-width: 1023px) 100vw, 28vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/88 via-background/8 to-transparent" />
@@ -634,20 +704,20 @@ export default function CloudFlightFarePipelinePage() {
                 </div>
               </div>
 
-              <div className="p-5">
+              <div className="p-4">
                 <div className="flex items-center gap-3">
                   <div className="rounded-lg border border-primary/20 bg-primary/10 p-2 text-primary">
                     <LayoutDashboard className="size-5" />
                   </div>
                   <h3 className="text-lg font-semibold text-foreground">
-                    Dashboard preview artifact
+                    Downstream preview artifact
                   </h3>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  The repo includes a static downstream artifact for reviewer handoff. It is shown
-                  here as documentation evidence, not as a claim of a live hosted BI application.
+                  Static downstream handoff artifact for reviewer inspection, not a live hosted BI
+                  app.
                 </p>
-                <div className="mt-5">
+                <div className="mt-4">
                   <ActionButton
                     href={dashboardArtifactUrl}
                     label="Open preview artifact"
@@ -671,13 +741,13 @@ export default function CloudFlightFarePipelinePage() {
               Real proof assets shown directly on the page
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Reviewer evidence is surfaced here instead of being hidden behind link lists. The
-              screenshots below come from the project repo and cover storage proof, orchestration
-              proof, execution logs, and downstream artifact handoff.
+              Reviewer evidence is surfaced here instead of hidden behind link lists. These proof
+              assets show the AWS scheduler, ECS/Fargate execution, CloudWatch success logs,
+              Redshift/dbt validation, S3 Bronze landing, and local validation support.
             </p>
           </div>
 
-          <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {proofGallery.map((item) => (
               <ProofThumbnailCard key={item.title} {...item} />
             ))}
@@ -694,19 +764,19 @@ export default function CloudFlightFarePipelinePage() {
           <div className="rounded-xl border border-border bg-card/60 p-6 backdrop-blur-sm">
             <h2 className="text-2xl font-bold text-foreground">Reviewer path</h2>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Start with the local demo path, then review the AWS/Redshift runbook, followed by
-              the proof assets and docs for the documented target. That keeps the proven local
-              scope and cloud target easy to separate.
+              Start with the Current Proven AWS Path diagram, then review the AWS proof assets,
+              local validation path, and downstream outputs. This page separates cloud proof, local
+              validation, and reviewer handoff without overclaiming a live production service.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2.5">
-              <ActionButton href={localDemoGuideUrl} label="Local Demo Guide" icon={BookOpen} />
+              <ActionButton href="#architecture" label="Current AWS Path" icon={Blocks} />
               <ActionButton
                 href={redshiftRunbookUrl}
-                label="AWS / Redshift Runbook"
+                label="AWS Proof Runbook"
                 icon={Blocks}
               />
-              <ActionButton href={week5ProofUrl} label="Proof Screenshots" icon={ShieldCheck} />
+              <ActionButton href="#execution-proof" label="Proof Screenshots" icon={ShieldCheck} />
               <ActionButton href={repoUrl} label="GitHub Repo" icon={Github} />
             </div>
           </div>

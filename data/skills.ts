@@ -1,8 +1,8 @@
 export type SkillCategory =
   | "Orchestration & Workflow"
-  | "Storage, Lakehouse & Warehousing"
+  | "Cloud Execution & Containers"
+  | "Storage, Lakehouse & Warehouse"
   | "Transformation & Modeling"
-  | "Data Processing & Platforms"
   | "Data Quality & CI"
   | "Analytics Enablement"
 
@@ -14,26 +14,26 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     category: "Orchestration & Workflow",
-    skills: ["Apache Airflow", "Azure Data Factory", "GitHub Actions", "Docker"],
+    skills: ["Apache Airflow", "Azure Data Factory", "EventBridge Scheduler", "GitHub Actions"],
   },
   {
-    category: "Storage, Lakehouse & Warehousing",
-    skills: ["ADLS Gen2", "Delta Lake", "Amazon Redshift", "PostgreSQL", "S3"],
+    category: "Cloud Execution & Containers",
+    skills: ["Docker", "ECS/Fargate", "ECR", "CloudWatch Logs"],
+  },
+  {
+    category: "Storage, Lakehouse & Warehouse",
+    skills: ["ADLS Gen2", "Delta Lake", "Databricks", "Amazon S3", "Redshift Serverless", "PostgreSQL"],
   },
   {
     category: "Transformation & Modeling",
-    skills: ["dbt", "SQL", "Dimensional Modeling", "Star Schema", "PySpark"],
-  },
-  {
-    category: "Data Processing & Platforms",
-    skills: ["Python", "Pandas", "Databricks", "Batch Pipelines"],
+    skills: ["Python", "SQL", "PySpark", "dbt", "Dimensional Modeling"],
   },
   {
     category: "Data Quality & CI",
-    skills: ["dbt Tests", "GitHub Actions", "pytest", "Great Expectations"],
+    skills: ["dbt Tests", "pytest", "Data Validation", "Validation SQL", "GitHub Actions"],
   },
   {
     category: "Analytics Enablement",
-    skills: ["Power BI", "KPI Design", "BI Handoff", "Documentation"],
+    skills: ["Power BI", "SQL Marts", "KPI Design", "BI Handoff", "Documentation"],
   },
 ]

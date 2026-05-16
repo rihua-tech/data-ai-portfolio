@@ -13,9 +13,9 @@ import { skillGroups, type SkillCategory } from "@/data/skills"
 
 const iconByCategory: Record<SkillCategory, LucideIcon> = {
   "Orchestration & Workflow": Workflow,
-  "Storage, Lakehouse & Warehousing": Database,
+  "Cloud Execution & Containers": Cpu,
+  "Storage, Lakehouse & Warehouse": Database,
   "Transformation & Modeling": Layers,
-  "Data Processing & Platforms": Cpu,
   "Data Quality & CI": ShieldCheck,
   "Analytics Enablement": BarChart3,
 }
