@@ -3,6 +3,7 @@ import Image from "next/image"
 import {
   Blocks,
   BookOpen,
+  Clock,
   Database,
   ExternalLink,
   FileText,
@@ -114,6 +115,12 @@ function ProjectActions({ project }: { project: PortfolioProject }) {
       icon: ExternalLink,
       ariaLabel: `Open the live experience for ${project.title}`,
     },
+    comingSoon: {
+      href: "#",
+      label: "Coming Soon",
+      icon: Clock,
+      ariaLabel: `${project.title} is coming soon`,
+    },
   }
 
   const actionOrder: ProjectActionKey[] = project.cardActions ?? [
@@ -145,6 +152,60 @@ function ProjectActions({ project }: { project: PortfolioProject }) {
   )
 }
 
+function ProjectStatusBadge({ status }: { status?: string }) {
+  if (!status) {
+    return null
+  }
+
+  return (
+    <span className="inline-flex w-fit items-center rounded-full border border-primary/35 bg-primary/10 px-2 py-0.5 text-[0.65rem] font-medium tracking-wider text-primary uppercase">
+      {status}
+    </span>
+  )
+}
+
+function ProjectVisual({
+  project,
+  featured = false,
+}: {
+  project: PortfolioProject
+  featured?: boolean
+}) {
+  if (project.image) {
+    return (
+      <Image
+        src={project.image}
+        alt={`${project.title} project thumbnail`}
+        fill
+        className={cn(
+          "object-cover transition-transform duration-500",
+          featured
+            ? "object-center group-hover:scale-[1.02] min-[1100px]:object-contain"
+            : "group-hover:scale-105",
+        )}
+        sizes={
+          featured ? "(max-width: 1099px) 100vw, 56vw" : "(max-width: 768px) 100vw, 33vw"
+        }
+      />
+    )
+  }
+
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_20%_20%,rgba(34,211,238,0.18),transparent_32%),linear-gradient(135deg,var(--card),var(--secondary))]">
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:32px_32px] opacity-60" />
+      <div className="absolute left-1/2 top-1/2 grid size-32 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-primary/25 bg-background/45 shadow-[0_0_60px_rgba(34,211,238,0.16)]">
+        <Database className="size-12 text-primary" />
+      </div>
+      <div className="absolute left-8 top-8 grid size-12 place-items-center rounded-lg border border-border/80 bg-card/70 text-primary">
+        <FileText className="size-5" />
+      </div>
+      <div className="absolute bottom-8 right-8 grid size-12 place-items-center rounded-lg border border-border/80 bg-card/70 text-primary">
+        <Blocks className="size-5" />
+      </div>
+    </div>
+  )
+}
+
 export function ProjectCard({ project, featured = false, className }: ProjectCardProps) {
   if (featured) {
     return (
@@ -158,13 +219,7 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
           <div className="min-[1100px]:self-center">
             <div className="min-[1100px]:p-3">
               <div className="relative aspect-video overflow-hidden bg-black min-[1100px]:aspect-[3/2]">
-                <Image
-                  src={project.image}
-                  alt={`${project.title} project thumbnail`}
-                  fill
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.02] min-[1100px]:object-contain"
-                  sizes="(max-width: 1099px) 100vw, 56vw"
-                />
+                <ProjectVisual project={project} featured />
                 <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
               </div>
             </div>
@@ -172,9 +227,12 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
 
           <div className="flex flex-col justify-center gap-4 p-5 sm:p-6 min-[1100px]:gap-5 min-[1100px]:p-7 xl:p-8">
             <div>
-              <p className="mb-2 text-xs font-medium tracking-wider text-primary uppercase">
-                {project.featuredLabel ?? "Data Engineering"}
-              </p>
+              <div className="mb-2 flex flex-wrap items-center gap-2">
+                <p className="text-xs font-medium tracking-wider text-primary uppercase">
+                  {project.featuredLabel ?? project.topLabel ?? "Data Engineering"}
+                </p>
+                <ProjectStatusBadge status={project.status} />
+              </div>
               <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">{project.subtitle}</p>
             </div>
@@ -218,26 +276,36 @@ export function ProjectCard({ project, featured = false, className }: ProjectCar
       )}
     >
       <div className="relative aspect-video overflow-hidden bg-secondary">
-        <Image
-          src={project.image}
-          alt={`${project.title} project thumbnail`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
+        <ProjectVisual project={project} />
         <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="space-y-3">
-          {project.topLabel && (
-            <p className="mb-2 text-xs font-medium tracking-wider text-primary uppercase">
-              {project.topLabel}
-            </p>
+          {(project.topLabel || project.status) && (
+            <div className="flex flex-wrap items-center gap-2">
+              {project.topLabel && (
+                <p className="text-xs font-medium tracking-wider text-primary uppercase">
+                  {project.topLabel}
+                </p>
+              )}
+              <ProjectStatusBadge status={project.status} />
+            </div>
           )}
           <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
         </div>
+
+        {project.highlights.length > 0 && project.showHighlights && (
+          <ul className="mt-3.5 flex flex-col gap-2">
+            {project.highlights.map((highlight) => (
+              <li key={highlight} className="flex items-start gap-2 text-sm text-muted-foreground">
+                <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-primary" />
+                {highlight}
+              </li>
+            ))}
+          </ul>
+        )}
 
         {project.stack.length > 0 && (
           <div className="mt-3.5 flex flex-wrap gap-1.5">

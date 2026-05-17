@@ -1,4 +1,4 @@
-export type ProjectCategory = "DE" | "DA" | "DS"
+export type ProjectCategory = "DE" | "AIDE" | "DA" | "DS"
 export type ProjectActionKey =
   | "caseStudy"
   | "repo"
@@ -7,17 +7,19 @@ export type ProjectActionKey =
   | "executionProof"
   | "docs"
   | "live"
+  | "comingSoon"
 
 export interface PortfolioProject {
   category: ProjectCategory
   featuredLabel?: string
   topLabel?: string
   liveLabel?: string
+  status?: string
   title: string
   subtitle: string
-  image: string
+  image?: string
   caseStudyUrl?: string
-  repoUrl: string
+  repoUrl?: string
   dataUrl?: string
   architectureUrl?: string
   executionProofUrl?: string
@@ -25,6 +27,7 @@ export interface PortfolioProject {
   liveUrl?: string
   stack: string[]
   highlights: string[]
+  showHighlights?: boolean
   cardActions?: ProjectActionKey[]
 }
 
@@ -93,6 +96,35 @@ export const projects: PortfolioProject[] = [
       "Generates immutable daily CSV snapshots",
       "Includes tests, CI, and automated scheduling",
     ],
+  },
+  {
+    category: "AIDE",
+    topLabel: "AI DATA ENGINEERING / HYBRID RAG",
+    status: "In Progress",
+    title: "CivicLens RAG — NYC 311 Operations Copilot",
+    subtitle:
+      "AI data engineering project that extends the NYC 311 Lakehouse with a cited RAG assistant for service request documentation, data definitions, pipeline runbooks, and operational analytics questions.",
+    stack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "pgvector",
+      "OpenAI API",
+      "Embeddings",
+      "Hybrid RAG",
+      "Vector Search",
+      "SQL",
+      "Docker",
+      "GitHub Actions",
+    ],
+    highlights: [
+      "Ingests NYC 311 documentation, data dictionary notes, and project runbooks",
+      "Chunks, embeds, and stores searchable vectors with metadata",
+      "Retrieves relevant context and generates cited LLM answers",
+      "Designed as a hybrid RAG layer on top of trusted data engineering assets",
+    ],
+    showHighlights: true,
+    cardActions: ["comingSoon"],
   },
   {
     category: "DA",
