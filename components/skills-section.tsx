@@ -1,5 +1,6 @@
 import {
   BarChart3,
+  BrainCircuit,
   Cpu,
   Database,
   Layers,
@@ -18,6 +19,7 @@ const iconByCategory: Record<SkillCategory, LucideIcon> = {
   "Transformation & Modeling": Layers,
   "Data Quality & CI": ShieldCheck,
   "Analytics Enablement": BarChart3,
+  "AI / RAG Engineering": BrainCircuit,
 }
 
 export function SkillsSection() {

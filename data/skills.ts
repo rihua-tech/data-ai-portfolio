@@ -5,6 +5,7 @@ export type SkillCategory =
   | "Transformation & Modeling"
   | "Data Quality & CI"
   | "Analytics Enablement"
+  | "AI / RAG Engineering"
 
 export interface SkillGroup {
   category: SkillCategory
@@ -35,5 +36,9 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Analytics Enablement",
     skills: ["Power BI", "SQL Marts", "KPI Design", "BI Handoff", "Documentation"],
+  },
+  {
+    category: "AI / RAG Engineering",
+    skills: ["RAG", "Vector Search", "Embeddings", "pgvector", "Cited Answers", "Streamlit", "AI Evaluation"],
   },
 ]
