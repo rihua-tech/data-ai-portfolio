@@ -111,7 +111,7 @@ export const projects: PortfolioProject[] = [
     imageAlt:
       "CivicLens RAG architecture showing curated NYC 311 docs, local embeddings, PostgreSQL/pgvector retrieval, cited answers, sample analytics, and Streamlit UI.",
     repoUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311",
-    caseStudyUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#readme",
+    caseStudyUrl: "/projects/civiclens-rag-nyc311",
     architectureUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#hybrid-rag-architecture",
     screenshotsUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#screenshots",
     stack: [
@@ -122,6 +122,7 @@ export const projects: PortfolioProject[] = [
       "Docker",
       "RAG",
       "GitHub Actions",
+      "pytest",
     ],
     highlights: [
       "Ingests curated NYC 311 docs and runbooks, chunks source text, and stores local embeddings in PostgreSQL/pgvector.",
