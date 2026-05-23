@@ -6,6 +6,7 @@ export type ProjectActionKey =
   | "architecture"
   | "executionProof"
   | "docs"
+  | "screenshots"
   | "live"
   | "comingSoon"
 
@@ -18,12 +19,14 @@ export interface PortfolioProject {
   title: string
   subtitle: string
   image?: string
+  imageAlt?: string
   caseStudyUrl?: string
   repoUrl?: string
   dataUrl?: string
   architectureUrl?: string
   executionProofUrl?: string
   docsUrl?: string
+  screenshotsUrl?: string
   liveUrl?: string
   stack: string[]
   highlights: string[]
@@ -100,31 +103,32 @@ export const projects: PortfolioProject[] = [
   {
     category: "AIDE",
     topLabel: "AI DATA ENGINEERING / HYBRID RAG",
-    status: "In Progress",
+    status: "COMPLETED LOCAL PROTOTYPE",
     title: "CivicLens RAG — NYC 311 Operations Copilot",
     subtitle:
-      "AI data engineering project that extends the NYC 311 Lakehouse with a cited RAG assistant for service request documentation, data definitions, pipeline runbooks, and operational analytics questions.",
+      "Local Hybrid RAG prototype for grounded NYC 311 documentation Q&A with citations, PostgreSQL/pgvector retrieval, sample analytics, and a Streamlit UI.",
+    image: "/projects/civiclens-rag-nyc311.jpg",
+    imageAlt:
+      "CivicLens RAG architecture showing curated NYC 311 docs, local embeddings, PostgreSQL/pgvector retrieval, cited answers, sample analytics, and Streamlit UI.",
+    repoUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311",
+    caseStudyUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#readme",
+    architectureUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#hybrid-rag-architecture",
+    screenshotsUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#screenshots",
     stack: [
       "Python",
-      "FastAPI",
       "PostgreSQL",
       "pgvector",
-      "OpenAI API",
-      "Embeddings",
-      "Hybrid RAG",
-      "Vector Search",
-      "SQL",
+      "Streamlit",
       "Docker",
+      "RAG",
       "GitHub Actions",
     ],
     highlights: [
-      "Ingests NYC 311 documentation, data dictionary notes, and project runbooks",
-      "Chunks, embeds, and stores searchable vectors with metadata",
-      "Retrieves relevant context and generates cited LLM answers",
-      "Designed as a hybrid RAG layer on top of trusted data engineering assets",
+      "Ingests curated NYC 311 docs and runbooks, chunks source text, and stores local embeddings in PostgreSQL/pgvector.",
+      "Retrieves cited context for grounded answers and routes sample analytics questions to predefined CSV summaries.",
     ],
     showHighlights: true,
-    cardActions: ["comingSoon"],
+    cardActions: ["repo", "caseStudy", "architecture", "screenshots"],
   },
   {
     category: "DA",

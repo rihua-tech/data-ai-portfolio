@@ -41,10 +41,6 @@ export function ProjectsSection() {
           <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
             AI Data Engineering
           </h3>
-          <p className="mb-6 max-w-3xl text-sm leading-relaxed text-muted-foreground md:text-base">
-            Projects connecting cloud data engineering foundations with RAG, vector search, and
-            LLM-powered analytics assistants.
-          </p>
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6">
             {aiDataEngineeringProjects.map((project) => (

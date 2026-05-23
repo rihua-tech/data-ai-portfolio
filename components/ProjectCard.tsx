@@ -109,6 +109,12 @@ function ProjectActions({ project }: { project: PortfolioProject }) {
       icon: BookOpen,
       ariaLabel: `Open the ${project.title} documentation`,
     },
+    screenshots: {
+      href: project.screenshotsUrl,
+      label: "Screenshots",
+      icon: ExternalLink,
+      ariaLabel: `View the ${project.title} screenshots`,
+    },
     live: {
       href: project.liveUrl,
       label: project.liveLabel ?? "Live",
@@ -175,7 +181,7 @@ function ProjectVisual({
     return (
       <Image
         src={project.image}
-        alt={`${project.title} project thumbnail`}
+        alt={project.imageAlt ?? `${project.title} project thumbnail`}
         fill
         className={cn(
           "object-cover transition-transform duration-500",
@@ -206,7 +212,11 @@ function ProjectVisual({
   )
 }
 
-export function ProjectCard({ project, featured = false, className }: ProjectCardProps) {
+export function ProjectCard({
+  project,
+  featured = false,
+  className,
+}: ProjectCardProps) {
   if (featured) {
     return (
       <article
