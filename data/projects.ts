@@ -138,9 +138,9 @@ export const projects: PortfolioProject[] = [
     title: "Financial Complaint Auto-Routing with NLP",
     subtitle:
       "NLP classification project for routing consumer financial complaints into product categories using classical ML baselines and a planned DistilBERT transformer upgrade, with model evaluation, error analysis, and business-focused routing logic.",
-    image: "/projects/financial-complaint-nlp-pipeline.svg",
+    image: "/projects/financial-complaint-nlp-workflow.png",
     imageAlt:
-      "Dark themed NLP classification pipeline diagram showing complaint text, preprocessing, TF-IDF baseline, DistilBERT upgrade, and category routing.",
+      "Financial complaint NLP workflow diagram showing complaint text preprocessing, TF-IDF baseline, DistilBERT transformer upgrade, evaluation, and routing.",
     repoUrl: "#",
     caseStudyUrl: "#",
     architectureUrl: "#",
