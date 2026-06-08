@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 export function ProjectsSection() {
   const deProjects = projects.filter((project) => project.category === "DE")
   const aiDataEngineeringProjects = projects.filter((project) => project.category === "AIDE")
+  const mlAiDataScienceProjects = projects.filter((project) => project.category === "MLAI")
   const daProjects = projects.filter((project) => project.category === "DA")
   const dsProjects = projects.filter((project) => project.category === "DS")
   const [featuredProject, ...supportingDeProjects] = deProjects
@@ -44,6 +45,20 @@ export function ProjectsSection() {
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6">
             {aiDataEngineeringProjects.map((project) => (
+              <ProjectCard key={project.title} project={project} featured />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {mlAiDataScienceProjects.length > 0 && (
+        <div className="mb-16 md:mb-24">
+          <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
+            Machine Learning & AI Data Science
+          </h3>
+          <div className="mb-6 h-px bg-border" />
+          <div className="grid gap-6">
+            {mlAiDataScienceProjects.map((project) => (
               <ProjectCard key={project.title} project={project} featured />
             ))}
           </div>

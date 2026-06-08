@@ -35,12 +35,12 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:py-6">
-        <Link href="/" className="flex flex-col gap-0.5 leading-tight">
-          <span className="text-base font-semibold tracking-normal text-foreground md:text-lg">
+        <Link href="/" className="flex flex-col gap-1 leading-none no-underline">
+          <span className="text-[1.05rem] font-bold tracking-tight text-foreground md:text-[1.15rem]">
             Rihua V.
           </span>
-          <span className="text-xs font-semibold tracking-[0.2em] text-primary/95 uppercase">
-            Data Engineer
+          <span className="font-mono text-[0.65rem] font-semibold tracking-[0.24em] text-primary uppercase md:text-xs">
+            Data + AI Engineer
           </span>
         </Link>
 

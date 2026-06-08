@@ -1,4 +1,4 @@
-export type ProjectCategory = "DE" | "AIDE" | "DA" | "DS"
+export type ProjectCategory = "DE" | "AIDE" | "MLAI" | "DA" | "DS"
 export type ProjectActionKey =
   | "caseStudy"
   | "repo"
@@ -130,6 +130,39 @@ export const projects: PortfolioProject[] = [
     ],
     showHighlights: true,
     cardActions: ["repo", "caseStudy", "architecture", "screenshots"],
+  },
+  {
+    category: "MLAI",
+    topLabel: "AI DATA SCIENCE / NLP CLASSIFICATION / ML PIPELINE",
+    status: "VERSION 2 PLANNED",
+    title: "Financial Complaint Auto-Routing with NLP",
+    subtitle:
+      "NLP classification project for routing consumer financial complaints into product categories using classical ML baselines and a planned DistilBERT transformer upgrade, with model evaluation, error analysis, and business-focused routing logic.",
+    image: "/projects/financial-complaint-nlp-pipeline.svg",
+    imageAlt:
+      "Dark themed NLP classification pipeline diagram showing complaint text, preprocessing, TF-IDF baseline, DistilBERT upgrade, and category routing.",
+    repoUrl: "#",
+    caseStudyUrl: "#",
+    architectureUrl: "#",
+    stack: [
+      "Python",
+      "pandas",
+      "scikit-learn",
+      "NLP",
+      "TF-IDF",
+      "PyTorch",
+      "Transformers",
+      "DistilBERT",
+      "Model Evaluation",
+      "Classification",
+    ],
+    highlights: [
+      "Ingests and cleans consumer financial complaint text data for supervised NLP classification.",
+      "Compares TF-IDF baseline models with a planned DistilBERT transformer upgrade using macro F1, weighted F1, precision, recall, and confusion matrix.",
+      "Designs a complaint-routing workflow where high-confidence predictions can be auto-routed and low-confidence cases are flagged for human review.",
+    ],
+    showHighlights: true,
+    cardActions: ["repo", "caseStudy", "architecture"],
   },
   {
     category: "DA",
