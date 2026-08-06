@@ -54,7 +54,7 @@ export function ProjectsSection() {
       {mlAiDataScienceProjects.length > 0 && (
         <div className="mb-16 md:mb-24">
           <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            Machine Learning & AI Data Science
+            ML / AI DATA SCIENCE
           </h3>
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6">

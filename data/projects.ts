@@ -20,7 +20,10 @@ export interface PortfolioProject {
   subtitle: string
   image?: string
   imageAlt?: string
+  imageFit?: "cover" | "contain"
+  imageAspect?: "4:3"
   caseStudyUrl?: string
+  reportUrl?: string
   repoUrl?: string
   dataUrl?: string
   architectureUrl?: string
@@ -133,33 +136,38 @@ export const projects: PortfolioProject[] = [
   },
   {
     category: "MLAI",
-    topLabel: "AI DATA SCIENCE / NLP CLASSIFICATION / ML PIPELINE",
-    status: "VERSION 2 PLANNED",
+    topLabel: "NLP CLASSIFICATION / SELECTIVE ROUTING",
+    status: "COMPLETED V1–V2 STUDY",
     title: "Financial Complaint Auto-Routing with NLP",
     subtitle:
-      "NLP classification project for routing consumer financial complaints into product categories using classical ML baselines and a planned DistilBERT transformer upgrade, with model evaluation, error analysis, and business-focused routing logic.",
-    image: "/projects/financial-complaint-nlp-workflow.png",
+      "Leakage-safe eight-class CFPB complaint-routing study comparing a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger, using development-selected routing policies and retrospective 2025 evaluation.",
+    image: "/projects/financial-complaint-nlp-routing-architecture-v2.jpg",
     imageAlt:
-      "Financial complaint NLP workflow diagram showing complaint text preprocessing, TF-IDF baseline, DistilBERT transformer upgrade, evaluation, and routing.",
-    repoUrl: "#",
-    caseStudyUrl: "#",
-    architectureUrl: "#",
+      "Leakage-safe financial complaint-routing architecture showing parallel TF-IDF and DistilBERT model paths, shared 2024 evaluation, model-specific routing, auto-route recommendations, and human review.",
+    imageFit: "contain",
+    imageAspect: "4:3",
+    repoUrl:
+      "https://github.com/rihua-tech/financial-complaint-auto-routing-nlp",
+    caseStudyUrl: "/projects/financial-complaint-auto-routing-nlp",
+    reportUrl:
+      "https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/Financial_Complaint_Auto_Routing_NLP_Project_Report.pdf",
+    architectureUrl:
+      "https://github.com/rihua-tech/financial-complaint-auto-routing-nlp#architecture-overview",
     stack: [
       "Python",
-      "pandas",
       "scikit-learn",
-      "NLP",
       "TF-IDF",
+      "Linear SVM",
       "PyTorch",
       "Transformers",
       "DistilBERT",
-      "Model Evaluation",
-      "Classification",
+      "Human-in-the-Loop",
+      "GitHub Actions",
     ],
     highlights: [
-      "Ingests and cleans consumer financial complaint text data for supervised NLP classification.",
-      "Compares TF-IDF baseline models with a planned DistilBERT transformer upgrade using macro F1, weighted F1, precision, recall, and confusion matrix.",
-      "Designs a complaint-routing workflow where high-confidence predictions can be auto-routed and low-confidence cases are flagged for human review.",
+      "Corrected duplicate-text leakage and created group-aware 2024 development and final-test partitions with zero normalized-text overlap.",
+      "Compared the locked TF-IDF + Linear SVM benchmark with the frozen DistilBERT challenger; Macro F1 on the shared 2024 benchmark improved from 0.7671 to 0.7949.",
+      "Executed a precommitted retrospective comparison on a 30,156-row leakage-resistant 2025 cohort; Version 1 remains the temporal benchmark, while Version 2 remains the frozen challenger.",
     ],
     showHighlights: true,
     cardActions: ["repo", "caseStudy", "architecture"],

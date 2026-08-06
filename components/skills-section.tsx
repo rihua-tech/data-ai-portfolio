@@ -19,6 +19,7 @@ const iconByCategory: Record<SkillCategory, LucideIcon> = {
   "Transformation & Modeling": Layers,
   "Data Quality & CI": ShieldCheck,
   "Analytics Enablement": BarChart3,
+  "Machine Learning & NLP": BrainCircuit,
   "AI / RAG Engineering": BrainCircuit,
 }
 

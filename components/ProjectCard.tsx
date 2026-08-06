@@ -184,10 +184,14 @@ function ProjectVisual({
         alt={project.imageAlt ?? `${project.title} project thumbnail`}
         fill
         className={cn(
-          "object-cover transition-transform duration-500",
-          featured
-            ? "object-center group-hover:scale-[1.02] min-[1100px]:object-contain"
-            : "group-hover:scale-105",
+          project.imageFit === "contain"
+            ? "object-contain object-center transition-transform duration-500 group-hover:scale-[1.015]"
+            : cn(
+                "object-cover transition-transform duration-500",
+                featured
+                  ? "object-center group-hover:scale-[1.02] min-[1100px]:object-contain"
+                  : "group-hover:scale-105",
+              ),
         )}
         sizes={
           featured ? "(max-width: 1099px) 100vw, 56vw" : "(max-width: 768px) 100vw, 33vw"
@@ -225,12 +229,34 @@ export function ProjectCard({
           className,
         )}
       >
-        <div className="grid gap-0 min-[1100px]:grid-cols-[56%_44%] min-[1100px]:items-center">
+        <div
+          className={cn(
+            "grid gap-0 min-[1100px]:grid-cols-[56%_44%]",
+            project.imageAspect === "4:3"
+              ? "min-[1100px]:items-start"
+              : "min-[1100px]:items-center",
+          )}
+        >
           <div className="min-[1100px]:self-center">
-            <div className="min-[1100px]:p-3">
-              <div className="relative aspect-video overflow-hidden bg-black min-[1100px]:aspect-[3/2]">
-                <ProjectVisual project={project} featured />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+            <div className={cn(project.imageAspect !== "4:3" && "min-[1100px]:p-3")}>
+              <div
+                className={cn(
+                  "relative w-full overflow-hidden",
+                  project.imageAspect === "4:3"
+                    ? "aspect-[4/3] p-2 md:p-2"
+                    : "aspect-video bg-black min-[1100px]:aspect-[3/2]",
+                )}
+              >
+                {project.imageAspect === "4:3" ? (
+                  <div className="relative size-full overflow-hidden">
+                    <ProjectVisual project={project} featured />
+                  </div>
+                ) : (
+                  <>
+                    <ProjectVisual project={project} featured />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+                  </>
+                )}
               </div>
             </div>
           </div>
