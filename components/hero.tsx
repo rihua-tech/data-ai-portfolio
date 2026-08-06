@@ -81,7 +81,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-5xl text-center">
         <div className="mb-5 flex justify-center">
           <p className="inline-flex items-center rounded-full border border-border bg-background/70 px-4 py-1.5 font-mono text-xs font-medium tracking-[0.28em] text-primary uppercase shadow-sm backdrop-blur-sm">
-            Data + AI Engineering Portfolio
+            Data Engineering • Applied ML • Analytics
           </p>
         </div>
 
