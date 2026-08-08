@@ -1,9 +1,10 @@
-# Data Engineer Portfolio
 
-[![CI](https://github.com/rihua-tech/data-engineer-portfolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rihua-tech/data-engineer-portfolio/actions/workflows/ci.yml?query=branch%3Amain)
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://rihua-dev.vercel.app/)
+# Data & AI Engineering Portfolio
 
-Recruiter-facing portfolio site for data engineering roles, built with Next.js, TypeScript, and Tailwind CSS. The site showcases cloud data engineering projects, AI/RAG-enabled data applications, analytics-ready datasets, proof-based case studies, and reviewer-friendly documentation.
+[![CI](https://github.com/rihua-tech/data-ai-portfolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rihua-tech/data-ai-portfolio/actions/workflows/ci.yml?query=branch%3Amain)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://rihua.dev/)
+
+Recruiter-facing portfolio for data engineering, applied AI/ML, and analytics roles, built with Next.js, TypeScript, and Tailwind CSS. The site showcases cloud data platforms, AI/RAG-enabled applications, analytics-ready datasets, proof-based case studies, and reviewer-friendly documentation.
 
 ## Live site
 
