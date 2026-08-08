@@ -36,10 +36,10 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:py-6">
         <Link href="/" className="flex flex-col gap-1 leading-none no-underline">
-          <span className="text-[1.05rem] font-bold tracking-tight text-foreground md:text-[1.15rem]">
+          <span className="text-[1.2rem] font-bold tracking-tight text-foreground md:text-[1.35rem]">
             Rihua V.
           </span>
-          <span className="font-mono text-[0.65rem] font-semibold tracking-[0.24em] text-primary uppercase md:text-xs">
+          <span className="font-mono text-[0.8rem] font-semibold tracking-[0.20em] text-primary uppercase md:text-xs">
             Data & AI Engineer
           </span>
         </Link>
