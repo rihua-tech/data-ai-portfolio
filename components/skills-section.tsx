@@ -3,6 +3,7 @@ import {
   BrainCircuit,
   Cpu,
   Database,
+  FlaskConical,
   Layers,
   ShieldCheck,
   Workflow,
@@ -18,7 +19,8 @@ const iconByCategory: Record<SkillCategory, LucideIcon> = {
   "Storage, Lakehouse & Warehouse": Database,
   "Transformation & Modeling": Layers,
   "Data Quality & CI": ShieldCheck,
-  "Analytics Enablement": BarChart3,
+  "Analytics & BI": BarChart3,
+  "Data Science & Experimentation": FlaskConical,
   "Machine Learning & NLP": BrainCircuit,
   "AI / RAG Engineering": BrainCircuit,
 }

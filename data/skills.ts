@@ -4,7 +4,8 @@ export type SkillCategory =
   | "Storage, Lakehouse & Warehouse"
   | "Transformation & Modeling"
   | "Data Quality & CI"
-  | "Analytics Enablement"
+  | "Analytics & BI"
+  | "Data Science & Experimentation"
   | "Machine Learning & NLP"
   | "AI / RAG Engineering"
 
@@ -35,8 +36,20 @@ export const skillGroups: SkillGroup[] = [
     skills: ["dbt Tests", "pytest", "Data Validation", "Validation SQL", "GitHub Actions"],
   },
   {
-    category: "Analytics Enablement",
+    category: "Analytics & BI",
     skills: ["Power BI", "SQL Marts", "KPI Design", "BI Handoff", "Documentation"],
+  },
+  {
+    category: "Data Science & Experimentation",
+    skills: [
+      "EDA",
+      "Feature Engineering",
+      "Time-Based Validation",
+      "Classification",
+      "Forecasting",
+      "Backtesting",
+      "Model Comparison",
+    ],
   },
   {
     category: "Machine Learning & NLP",

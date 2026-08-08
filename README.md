@@ -8,7 +8,7 @@ Recruiter-facing portfolio for data engineering, applied AI/ML, and analytics ro
 
 ## Live site
 
-- Portfolio: https://rihua-dev.vercel.app/
+- Portfolio: https://rihua.dev/
 
 ## What this portfolio shows
 

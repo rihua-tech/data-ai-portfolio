@@ -3,62 +3,57 @@
 import { projects } from "@/data/projects"
 import { ProjectCard } from "@/components/ProjectCard"
 import { Section } from "@/components/Section"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export function ProjectsSection() {
-  const deProjects = projects.filter((project) => project.category === "DE")
-  const aiDataEngineeringProjects = projects.filter((project) => project.category === "AIDE")
-  const mlAiDataScienceProjects = projects.filter((project) => project.category === "MLAI")
-  const daProjects = projects.filter((project) => project.category === "DA")
-  const dsProjects = projects.filter((project) => project.category === "DS")
-  const [featuredProject, ...supportingDeProjects] = deProjects
+  const featuredProjects = projects.filter((project) => project.homepageFeatured)
+  const dataEngineeringProjects = projects.filter(
+    (project) => project.category === "DE" && !project.homepageFeatured,
+  )
+  const appliedAiProjects = projects.filter(
+    (project) =>
+      (project.category === "AIDE" || project.category === "MLAI") &&
+      !project.homepageFeatured,
+  )
+  const supportingProjects = projects.filter(
+    (project) => project.category === "DA" || project.category === "DS",
+  )
 
   return (
     <Section id="projects" title="Projects" showHeader={false}>
-      {featuredProject && (
-        <div className="mb-16 md:mb-24">
+      {featuredProjects.length > 0 && (
+        <div className="mb-16 md:mb-20">
           <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            Featured Project
+            Featured Projects
           </h3>
           <div className="mb-6 h-px bg-border" />
-          <ProjectCard project={featuredProject} featured />
-        </div>
-      )}
-
-      <div className="mb-16 md:mb-24">
-        <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-          Data Engineering
-        </h3>
-        <div className="mb-6 h-px bg-border" />
-        <div className="grid gap-6 md:grid-cols-2">
-          {supportingDeProjects.map((project, index) => (
-            <ProjectCard key={`${project.title}-${index}`} project={project} />
-          ))}
-        </div>
-      </div>
-
-      {aiDataEngineeringProjects.length > 0 && (
-        <div className="mb-16 md:mb-24">
-          <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            AI Data Engineering
-          </h3>
-          <div className="mb-6 h-px bg-border" />
-          <div className="grid gap-6">
-            {aiDataEngineeringProjects.map((project) => (
-              <ProjectCard key={project.title} project={project} featured />
+          <div className="grid gap-6 lg:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.title} project={project} featuredCompact />
             ))}
           </div>
         </div>
       )}
 
-      {mlAiDataScienceProjects.length > 0 && (
-        <div className="mb-16 md:mb-24">
+      <div className="mb-16 md:mb-20">
+        <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
+          Data Engineering
+        </h3>
+        <div className="mb-6 h-px bg-border" />
+        <div className="grid gap-6 md:grid-cols-2">
+          {dataEngineeringProjects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
+      </div>
+
+      {appliedAiProjects.length > 0 && (
+        <div className="mb-16 md:mb-20">
           <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            ML / AI DATA SCIENCE
+            Applied AI &amp; Machine Learning
           </h3>
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6">
-            {mlAiDataScienceProjects.map((project) => (
+            {appliedAiProjects.map((project) => (
               <ProjectCard key={project.title} project={project} featured />
             ))}
           </div>
@@ -70,26 +65,11 @@ export function ProjectsSection() {
           Supporting Work
         </h3>
         <div className="mb-6 h-px bg-border" />
-        <Tabs defaultValue="DA" className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="DA">Data Analytics</TabsTrigger>
-            <TabsTrigger value="DS">Data Science</TabsTrigger>
-          </TabsList>
-          <TabsContent value="DA">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {daProjects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </TabsContent>
-          <TabsContent value="DS">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {dsProjects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {supportingProjects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
       </div>
     </Section>
   )

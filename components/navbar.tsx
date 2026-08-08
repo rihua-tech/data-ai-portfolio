@@ -34,38 +34,40 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 md:py-6">
-        <Link href="/" className="flex flex-col gap-1 leading-none no-underline">
-          <span className="text-[1.2rem] font-bold tracking-tight text-foreground md:text-[1.35rem]">
-            Rihua V.
-          </span>
-          <span className="font-mono text-[0.8rem] font-semibold tracking-[0.20em] text-primary uppercase md:text-xs">
-            Data & AI Engineer
-          </span>
-        </Link>
+      <nav className="px-6">
+        <div className="mx-auto flex max-w-6xl items-center justify-between py-5 md:py-6">
+          <Link href="/" className="flex flex-col gap-1 leading-none no-underline">
+            <span className="text-[1.2rem] font-bold tracking-tight text-foreground md:text-[1.35rem]">
+              Rihua V.
+            </span>
+            <span className="font-mono text-[0.8rem] font-semibold tracking-[0.20em] text-primary uppercase md:text-xs">
+              Data & AI Engineer
+            </span>
+          </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={resolveHref(link.href)}
-                className="text-[15px] font-medium text-foreground/80 transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <ul className="hidden items-center gap-8 md:flex">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={resolveHref(link.href)}
+                  className="text-[15px] font-medium text-foreground/80 transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-        >
-          {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-        </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          >
+            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </Button>
+        </div>
       </nav>
 
       {mobileOpen && (

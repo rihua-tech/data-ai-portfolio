@@ -6,6 +6,7 @@ import {
   Clock,
   Database,
   ExternalLink,
+  FileCode2,
   FileText,
   Github,
   type LucideIcon,
@@ -19,6 +20,7 @@ import { cn } from "@/lib/utils"
 interface ProjectCardProps {
   project: PortfolioProject
   featured?: boolean
+  featuredCompact?: boolean
   className?: string
 }
 
@@ -99,7 +101,7 @@ function ProjectActions({ project }: { project: PortfolioProject }) {
     },
     executionProof: {
       href: project.executionProofUrl,
-      label: "Execution Proof",
+      label: "Proof",
       icon: ShieldCheck,
       ariaLabel: `View the ${project.title} execution proof`,
     },
@@ -114,6 +116,18 @@ function ProjectActions({ project }: { project: PortfolioProject }) {
       label: "Screenshots",
       icon: ExternalLink,
       ariaLabel: `View the ${project.title} screenshots`,
+    },
+    mlPipeline: {
+      href: project.mlPipelineUrl,
+      label: "ML Pipeline",
+      icon: FileCode2,
+      ariaLabel: `Open the ${project.title} ML pipeline source`,
+    },
+    sqlAnalysis: {
+      href: project.sqlAnalysisUrl,
+      label: "SQL Analysis",
+      icon: Database,
+      ariaLabel: `Open the ${project.title} SQL analysis source`,
     },
     live: {
       href: project.liveUrl,
@@ -173,9 +187,11 @@ function ProjectStatusBadge({ status }: { status?: string }) {
 function ProjectVisual({
   project,
   featured = false,
+  featuredCompact = false,
 }: {
   project: PortfolioProject
   featured?: boolean
+  featuredCompact?: boolean
 }) {
   if (project.image) {
     return (
@@ -194,7 +210,11 @@ function ProjectVisual({
               ),
         )}
         sizes={
-          featured ? "(max-width: 1099px) 100vw, 56vw" : "(max-width: 768px) 100vw, 33vw"
+          featured
+            ? "(max-width: 1099px) 100vw, 56vw"
+            : featuredCompact
+              ? "(max-width: 1023px) 100vw, 50vw"
+              : "(max-width: 768px) 100vw, 33vw"
         }
       />
     )
@@ -219,8 +239,14 @@ function ProjectVisual({
 export function ProjectCard({
   project,
   featured = false,
+  featuredCompact = false,
   className,
 }: ProjectCardProps) {
+  const homepageHighlights = project.highlights.slice(
+    0,
+    project.homepageHighlightLimit ?? project.highlights.length,
+  )
+
   if (featured) {
     return (
       <article
@@ -273,9 +299,9 @@ export function ProjectCard({
               <p className="mt-2 leading-relaxed text-muted-foreground">{project.subtitle}</p>
             </div>
 
-            {project.highlights.length > 0 && (
+            {homepageHighlights.length > 0 && (
               <ul className="flex flex-col gap-2">
-                {project.highlights.map((highlight) => (
+                {homepageHighlights.map((highlight) => (
                   <li
                     key={highlight}
                     className="flex items-start gap-2 text-sm text-muted-foreground"
@@ -308,33 +334,41 @@ export function ProjectCard({
     <article
       className={cn(
         "group flex flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/30",
+        featuredCompact && "h-full",
         className,
       )}
     >
       <div className="relative aspect-video overflow-hidden bg-secondary">
-        <ProjectVisual project={project} />
+        <ProjectVisual project={project} featuredCompact={featuredCompact} />
         <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
       </div>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="space-y-3">
-          {(project.topLabel || project.status) && (
+          {(project.featuredLabel || project.topLabel || project.status) && (
             <div className="flex flex-wrap items-center gap-2">
-              {project.topLabel && (
+              {(project.featuredLabel || project.topLabel) && (
                 <p className="text-xs font-medium tracking-wider text-primary uppercase">
-                  {project.topLabel}
+                  {project.featuredLabel ?? project.topLabel}
                 </p>
               )}
               <ProjectStatusBadge status={project.status} />
             </div>
           )}
-          <h3 className="text-lg font-semibold text-foreground">{project.title}</h3>
+          <h3
+            className={cn(
+              "font-semibold text-foreground",
+              featuredCompact ? "text-xl" : "text-lg",
+            )}
+          >
+            {project.title}
+          </h3>
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
         </div>
 
-        {project.highlights.length > 0 && project.showHighlights && (
+        {homepageHighlights.length > 0 && project.showHighlights && !featuredCompact && (
           <ul className="mt-3.5 flex flex-col gap-2">
-            {project.highlights.map((highlight) => (
+            {homepageHighlights.map((highlight) => (
               <li key={highlight} className="flex items-start gap-2 text-sm text-muted-foreground">
                 <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-primary" />
                 {highlight}
@@ -351,7 +385,12 @@ export function ProjectCard({
           </div>
         )}
 
-        <div className="mt-4 flex flex-wrap items-center gap-2">
+        <div
+          className={cn(
+            "flex flex-wrap items-center gap-2",
+            featuredCompact ? "mt-auto pt-4" : "mt-4",
+          )}
+        >
           <ProjectActions project={project} />
         </div>
       </div>

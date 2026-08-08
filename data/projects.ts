@@ -7,11 +7,14 @@ export type ProjectActionKey =
   | "executionProof"
   | "docs"
   | "screenshots"
+  | "mlPipeline"
+  | "sqlAnalysis"
   | "live"
   | "comingSoon"
 
 export interface PortfolioProject {
   category: ProjectCategory
+  homepageFeatured?: boolean
   featuredLabel?: string
   topLabel?: string
   liveLabel?: string
@@ -30,9 +33,12 @@ export interface PortfolioProject {
   executionProofUrl?: string
   docsUrl?: string
   screenshotsUrl?: string
+  mlPipelineUrl?: string
+  sqlAnalysisUrl?: string
   liveUrl?: string
   stack: string[]
   highlights: string[]
+  homepageHighlightLimit?: number
   showHighlights?: boolean
   cardActions?: ProjectActionKey[]
 }
@@ -40,6 +46,7 @@ export interface PortfolioProject {
 export const projects: PortfolioProject[] = [
   {
     category: "DE",
+    homepageFeatured: true,
     featuredLabel: "AZURE DATA ENGINEERING",
     title: "NYC 311 Service Requests Lakehouse",
     subtitle:
@@ -66,6 +73,7 @@ export const projects: PortfolioProject[] = [
       "Reusable data quality checks, dimensional models, and reporting marts",
       "Architecture notes, runbooks, SQL assets, notebook exports, and cloud execution proof",
     ],
+    cardActions: ["caseStudy", "repo", "architecture", "executionProof"],
   },
   {
     category: "DE",
@@ -105,6 +113,7 @@ export const projects: PortfolioProject[] = [
   },
   {
     category: "AIDE",
+    homepageFeatured: true,
     topLabel: "AI DATA ENGINEERING / HYBRID RAG",
     status: "COMPLETED LOCAL PROTOTYPE",
     title: "CivicLens RAG — NYC 311 Operations Copilot",
@@ -132,7 +141,7 @@ export const projects: PortfolioProject[] = [
       "Retrieves cited context for grounded answers and routes sample analytics questions to predefined CSV summaries.",
     ],
     showHighlights: true,
-    cardActions: ["repo", "caseStudy", "architecture", "screenshots"],
+    cardActions: ["caseStudy", "repo", "architecture", "screenshots"],
   },
   {
     category: "MLAI",
@@ -169,6 +178,7 @@ export const projects: PortfolioProject[] = [
       "Compared the locked TF-IDF + Linear SVM benchmark with the frozen DistilBERT challenger; Macro F1 on the shared 2024 benchmark improved from 0.7671 to 0.7949.",
       "Executed a precommitted retrospective comparison on a 30,156-row leakage-resistant 2025 cohort; Version 1 remains the temporal benchmark, while Version 2 remains the frozen challenger.",
     ],
+    homepageHighlightLimit: 2,
     showHighlights: true,
     cardActions: ["repo", "caseStudy", "architecture"],
   },
@@ -194,19 +204,27 @@ export const projects: PortfolioProject[] = [
     topLabel: "DATA ANALYTICS",
     title: "Floral Daily SKU Analysis",
     subtitle:
-      "Sales and inventory analysis project focused on daily SKU movement, reporting, and business decision support.",
+      "Daily SKU sales, margin, promotion, holiday, and waste analysis using Python, SQL, and Power BI to support inventory and business decisions.",
     image: "/projects/floral-sku-analysis.jpg",
     repoUrl: "https://github.com/rihua-tech/floral_daily_sku_analysis",
-    stack: ["SQL", "Analytics", "Reporting"],
+    sqlAnalysisUrl:
+      "https://github.com/rihua-tech/floral_daily_sku_analysis/blob/main/05_Floral_%20Department_%20Analytics.sql",
+    stack: ["Python", "SQL", "Power BI", "Inventory Analytics", "Trend Analysis"],
     highlights: ["SKU trends", "Daily insights", "Inventory and sales analytics"],
+    cardActions: ["repo", "sqlAnalysis"],
   },
   {
     category: "DS",
+    topLabel: "DATA SCIENCE",
     title: "Flight Price Analytics",
-    subtitle: "Exploratory analysis and modeling path for flight price behavior.",
+    subtitle:
+      "Time-based Buy/Wait classification and fare forecasting using route-level price snapshots, feature engineering, and backtesting.",
     image: "/projects/flight-price-analytics.png",
     repoUrl: "https://github.com/rihua-tech/flight-price-analytics",
-    stack: ["Python", "EDA", "ML"],
+    mlPipelineUrl:
+      "https://github.com/rihua-tech/flight-price-analytics/blob/main/09_flight_buy_wait_ml.py",
+    stack: ["Python", "scikit-learn", "Forecasting", "Time-Based Split", "Power BI"],
     highlights: ["Exploratory modeling", "Feature insights", "Prediction angle"],
+    cardActions: ["repo", "mlPipeline"],
   },
 ]
