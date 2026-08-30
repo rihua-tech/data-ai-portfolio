@@ -164,8 +164,10 @@ export const projects: PortfolioProject[] = [
     caseStudyUrl: "/projects/civiclens-rag-nyc311",
     liveUrl: "https://civiclens-rag-nyc311.vercel.app",
     liveLabel: "Live Demo",
-    architectureUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#architecture",
-    screenshotsUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#screenshots",
+    architectureUrl:
+      "https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/architecture.md",
+    screenshotsUrl:
+      "https://github.com/rihua-tech/civiclens-rag-nyc311/tree/main/docs/screenshots",
     stack: [
       "Python",
       "Hybrid Retrieval",
