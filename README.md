@@ -13,24 +13,21 @@ Portfolio focused on applied data science, NLP, model evaluation, hybrid RAG, re
 
 ### Financial Complaint Auto-Routing with NLP
 
-Leakage-safe, eight-class CFPB complaint-classification and selective-routing study. The project compares a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger and routes cases to either an Auto-Route recommendation or Human Review using model-specific score and margin policies.
+Offline, leakage-safe eight-class CFPB complaint-classification study comparing a TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger and model-specific Auto-Route / Human Review policies.
 
-- An audit found that 3,876 of 9,840 original test rows (39.39%) shared normalized complaint text with training. The corrected group-aware 2024 split reduced development/final-test normalized-text overlap to zero.
-- On the shared 2024 benchmark, Macro F1 increased from 0.7671 for V1 to 0.7949 for V2. V2 also increased coverage, while V1 retained slightly better routed accuracy and misroute rate.
-- Both frozen models were compared retrospectively on a 30,156-row leakage-resistant 2025 cohort. V2 again improved aggregate classification and coverage but did not establish a sufficient routing-risk advantage for promotion.
-- V1 remains the temporally validated benchmark; V2 remains the frozen challenger pending evidence from a new untouched period. This is an offline decision-support study, not a deployed complaint-routing service.
+- Identified substantial evaluation leakage: 3,876 of 9,840 original test rows (39.39%) overlapped training; rebuilt the 2024 split with group-aware validation and zero normalized-text overlap.
+- On the corrected shared benchmark, DistilBERT improved Macro F1 from 0.7671 to 0.7949 and increased coverage, while the Linear SVM retained slightly better routed accuracy and misroute rate.
+- Retrospective evaluation on 30,156 leakage-resistant 2025 rows reproduced the same trade-off; V1 remains the temporally validated benchmark while V2 remains a frozen challenger pending a new untouched period.
 
 **Evidence:** [Case Study](https://rihua.dev/projects/financial-complaint-auto-routing-nlp) · [Repository](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp) · [Full Project Report](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/Financial_Complaint_Auto_Routing_NLP_Project_Report.pdf) · [Shared 2024 Evaluation](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/reports/v1_v2_2024_comparison.md) · [2025 Retrospective Evaluation](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/reports/v2_2025_retrospective_results.md)
 
 ### CivicLens RAG — NYC 311 Operations Copilot
 
-Hosted, non-production hybrid RAG portfolio application for grounded NYC 311 documentation Q&A and bounded approved analytics. It separates the recruiter-facing product UI from retrieval, generation, citation validation, and analytics orchestration.
+Hosted non-production hybrid RAG application for grounded NYC 311 documentation Q&A, combining retrieval experimentation, citation validation, explicit abstention handling, and bounded analytics.
 
-- Semantic retrieval and PostgreSQL full-text search are fused with deterministic Reciprocal Rank Fusion over a manifest-controlled corpus. PostgreSQL remains authoritative for text and provenance; pgvector provides dense retrieval.
-- Grounded generation receives allowlisted evidence, while CivicLens validates stable citations and provides explicit abstention handling for unsupported or uncited answers.
-- The approved local evaluation uses a 24-question fixture with 14 retrieval-eligible questions. Hybrid retrieval reached 83.9% Recall@5 and 92.9% expected-source retrieval; reranking improved MRR but slightly reduced Recall@5.
-- Hosted path: browser → Vercel Next.js → Render FastAPI → CivicLens orchestration → Neon PostgreSQL + pgvector. Streamlit remains a separate engineering, validation, and debugging client.
-- Analytics is limited to four typed, allowlisted, read-only tools over checked-in sample CSV outputs—not unrestricted text-to-SQL or autonomous tool execution.
+- Built hybrid retrieval using semantic search, PostgreSQL full-text search, and deterministic Reciprocal Rank Fusion over a curated NYC 311 corpus, with grounded answers and validated citations.
+- On the approved 24-question local evaluation, hybrid retrieval achieved 83.9% Recall@5 and 92.9% expected-source retrieval across 14 retrieval-eligible questions; reranking improved MRR but slightly reduced Recall@5.
+- Delivered a hosted Next.js → FastAPI → PostgreSQL/pgvector application with four allowlisted read-only analytics tools and explicit non-production boundaries.
 
 **Evidence:** [Live Demo](https://civiclens-rag-nyc311.vercel.app) · [Case Study](https://rihua.dev/projects/civiclens-rag-nyc311) · [Repository](https://github.com/rihua-tech/civiclens-rag-nyc311) · [Architecture](https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/architecture.md) · [Evaluation Report](https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/evaluation-report.md)
 
@@ -66,44 +63,22 @@ Proven AWS batch path using EventBridge Scheduler, ECS/Fargate, S3 Bronze storag
 
 ## Portfolio Website Stack
 
-- Next.js 16.1.6 with the App Router
-- React and React DOM 19.2.4
-- TypeScript 5.7.3
-- Tailwind CSS 4.2.1
-- Vercel Analytics 1.6.1
+- Next.js / React / TypeScript
+- Tailwind CSS
+- Vercel deployment and analytics
 
-## Local Development
+## Development
 
 ```bash
 npm ci
 npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Quality Checks
-
-```bash
 npm run lint
 npx tsc --noEmit
 npm run build
 ```
 
+Open [http://localhost:3000](http://localhost:3000).
+
 ## Deployment
 
-The portfolio website is deployed on Vercel using the committed `package-lock.json`. Portfolio deployment is separate from the CivicLens application architecture described above.
-
-## Repository Structure
-
-- `app/` — App Router pages, case studies, metadata, and metadata routes
-- `components/` — Homepage sections and reusable UI components
-- `data/` — Project and skills content rendered by the portfolio
-- `public/` — Resume, profile, and project image assets
-- `styles/` — Global stylesheet entrypoint
-
-## Notes for Reviewers
-
-- The portfolio is positioned for Data Scientist, Applied AI, NLP/model-evaluation, and RAG/retrieval-evaluation roles.
-- Claims clearly separate measured experiment evidence, retrospective comparisons, hosted portfolio demonstrations, and production claims.
-- Project case studies and source repositories contain the deeper architecture, evaluation, limitations, and execution proof.
-- Azure and AWS projects remain supporting evidence of cloud data-platform and analytics-engineering capability.
+The portfolio is deployed on Vercel; individual project deployments, including CivicLens, use their own documented application architectures.
