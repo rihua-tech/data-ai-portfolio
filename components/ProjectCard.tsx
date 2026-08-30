@@ -347,7 +347,9 @@ export function ProjectCard({
         )}
       >
         <ProjectVisual project={project} featuredCompact={featuredCompact} />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+        {!featuredCompact && (
+          <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
+        )}
       </div>
 
       <div className="flex flex-1 flex-col p-5">
