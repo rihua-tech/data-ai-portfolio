@@ -6,13 +6,8 @@ import { Section } from "@/components/Section"
 
 export function ProjectsSection() {
   const featuredProjects = projects.filter((project) => project.homepageFeatured)
-  const dataEngineeringProjects = projects.filter(
+  const dataFoundationProjects = projects.filter(
     (project) => project.category === "DE" && !project.homepageFeatured,
-  )
-  const appliedAiProjects = projects.filter(
-    (project) =>
-      (project.category === "AIDE" || project.category === "MLAI") &&
-      !project.homepageFeatured,
   )
   const supportingProjects = projects.filter(
     (project) => project.category === "DA" || project.category === "DS",
@@ -23,7 +18,7 @@ export function ProjectsSection() {
       {featuredProjects.length > 0 && (
         <div className="mb-16 md:mb-20">
           <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            Featured Projects
+            Featured Applied AI &amp; Data Science
           </h3>
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6 lg:grid-cols-2">
@@ -36,33 +31,19 @@ export function ProjectsSection() {
 
       <div className="mb-16 md:mb-20">
         <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-          Data Engineering
+          Data &amp; Cloud Foundations
         </h3>
         <div className="mb-6 h-px bg-border" />
         <div className="grid gap-6 md:grid-cols-2">
-          {dataEngineeringProjects.map((project) => (
+          {dataFoundationProjects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
         </div>
       </div>
 
-      {appliedAiProjects.length > 0 && (
-        <div className="mb-16 md:mb-20">
-          <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            Applied AI &amp; Machine Learning
-          </h3>
-          <div className="mb-6 h-px bg-border" />
-          <div className="grid gap-6">
-            {appliedAiProjects.map((project) => (
-              <ProjectCard key={project.title} project={project} featured />
-            ))}
-          </div>
-        </div>
-      )}
-
       <div>
         <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-          Supporting Work
+          Supporting Analytics &amp; Applications
         </h3>
         <div className="mb-6 h-px bg-border" />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

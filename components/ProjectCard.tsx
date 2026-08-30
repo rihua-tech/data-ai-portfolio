@@ -200,14 +200,16 @@ function ProjectVisual({
         alt={project.imageAlt ?? `${project.title} project thumbnail`}
         fill
         className={cn(
-          project.imageFit === "contain"
-            ? "object-contain object-center transition-transform duration-500 group-hover:scale-[1.015]"
-            : cn(
-                "object-cover transition-transform duration-500",
-                featured
-                  ? "object-center group-hover:scale-[1.02] min-[1100px]:object-contain"
-                  : "group-hover:scale-105",
-              ),
+          featuredCompact
+            ? "object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            : project.imageFit === "contain"
+              ? "object-contain object-center transition-transform duration-500 group-hover:scale-[1.015]"
+              : cn(
+                  "object-cover transition-transform duration-500",
+                  featured
+                    ? "object-center group-hover:scale-[1.02] min-[1100px]:object-contain"
+                    : "group-hover:scale-105",
+                ),
         )}
         sizes={
           featured
@@ -338,7 +340,12 @@ export function ProjectCard({
         className,
       )}
     >
-      <div className="relative aspect-video overflow-hidden bg-secondary">
+      <div
+        className={cn(
+          "relative overflow-hidden bg-secondary",
+          featuredCompact ? "aspect-[3/2]" : "aspect-video",
+        )}
+      >
         <ProjectVisual project={project} featuredCompact={featuredCompact} />
         <div className="absolute inset-0 bg-gradient-to-t from-card/40 to-transparent" />
       </div>
@@ -366,7 +373,7 @@ export function ProjectCard({
           <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
         </div>
 
-        {homepageHighlights.length > 0 && project.showHighlights && !featuredCompact && (
+        {homepageHighlights.length > 0 && project.showHighlights && (
           <ul className="mt-3.5 flex flex-col gap-2">
             {homepageHighlights.map((highlight) => (
               <li key={highlight} className="flex items-start gap-2 text-sm text-muted-foreground">

@@ -46,7 +46,7 @@ export interface PortfolioProject {
 export const projects: PortfolioProject[] = [
   {
     category: "DE",
-    homepageFeatured: true,
+    homepageFeatured: false,
     featuredLabel: "AZURE DATA ENGINEERING",
     title: "NYC 311 Service Requests Lakehouse",
     subtitle:
@@ -112,47 +112,16 @@ export const projects: PortfolioProject[] = [
     ],
   },
   {
-    category: "AIDE",
-    homepageFeatured: true,
-    topLabel: "AI DATA ENGINEERING / HYBRID RAG",
-    status: "COMPLETED LOCAL PROTOTYPE",
-    title: "CivicLens RAG — NYC 311 Operations Copilot",
-    subtitle:
-      "Local Hybrid RAG prototype for grounded NYC 311 documentation Q&A with citations, PostgreSQL/pgvector retrieval, sample analytics, and a Streamlit UI.",
-    image: "/projects/civiclens-rag-nyc311.jpg",
-    imageAlt:
-      "CivicLens RAG architecture showing curated NYC 311 docs, local embeddings, PostgreSQL/pgvector retrieval, cited answers, sample analytics, and Streamlit UI.",
-    repoUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311",
-    caseStudyUrl: "/projects/civiclens-rag-nyc311",
-    architectureUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#hybrid-rag-architecture",
-    screenshotsUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#screenshots",
-    stack: [
-      "Python",
-      "PostgreSQL",
-      "pgvector",
-      "Streamlit",
-      "Docker",
-      "RAG",
-      "GitHub Actions",
-      "pytest",
-    ],
-    highlights: [
-      "Ingests curated NYC 311 docs and runbooks, chunks source text, and stores local embeddings in PostgreSQL/pgvector.",
-      "Retrieves cited context for grounded answers and routes sample analytics questions to predefined CSV summaries.",
-    ],
-    showHighlights: true,
-    cardActions: ["caseStudy", "repo", "architecture", "screenshots"],
-  },
-  {
     category: "MLAI",
-    topLabel: "NLP CLASSIFICATION / SELECTIVE ROUTING",
+    homepageFeatured: true,
+    topLabel: "NLP CLASSIFICATION / MODEL EVALUATION",
     status: "COMPLETED V1–V2 STUDY",
     title: "Financial Complaint Auto-Routing with NLP",
     subtitle:
-      "Leakage-safe eight-class CFPB complaint-routing study comparing a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger, using development-selected routing policies and retrospective 2025 evaluation.",
-    image: "/projects/financial-complaint-nlp-routing-architecture-v2.jpg",
+      "Leakage-safe eight-class CFPB text-classification study comparing a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger and human-in-the-loop routing.",
+    image: "/projects/financial-complaint-nlp-routing-architecture-v3.jpg",
     imageAlt:
-      "Leakage-safe financial complaint-routing architecture showing parallel TF-IDF and DistilBERT model paths, shared 2024 evaluation, model-specific routing, auto-route recommendations, and human review.",
+      "Financial Complaint Auto-Routing NLP workflow showing leakage-safe preparation, TF-IDF and DistilBERT evaluation, selective routing, and retrospective validation.",
     imageFit: "contain",
     imageAspect: "4:3",
     repoUrl:
@@ -168,19 +137,79 @@ export const projects: PortfolioProject[] = [
       "TF-IDF",
       "Linear SVM",
       "PyTorch",
-      "Transformers",
       "DistilBERT",
-      "Human-in-the-Loop",
-      "GitHub Actions",
+      "Model Evaluation",
     ],
     highlights: [
-      "Corrected duplicate-text leakage and created group-aware 2024 development and final-test partitions with zero normalized-text overlap.",
-      "Compared the locked TF-IDF + Linear SVM benchmark with the frozen DistilBERT challenger; Macro F1 on the shared 2024 benchmark improved from 0.7671 to 0.7949.",
-      "Executed a precommitted retrospective comparison on a 30,156-row leakage-resistant 2025 cohort; Version 1 remains the temporal benchmark, while Version 2 remains the frozen challenger.",
+      "Removed duplicate-text leakage and used group-aware 2024 development/test splits with zero normalized-text overlap.",
+      "On the shared 2024 benchmark, the frozen DistilBERT challenger increased Macro F1 from 0.7671 to 0.7949; both frozen models were later compared on a 30,156-row retrospective 2025 cohort.",
     ],
     homepageHighlightLimit: 2,
     showHighlights: true,
     cardActions: ["repo", "caseStudy", "architecture"],
+  },
+  {
+    category: "AIDE",
+    homepageFeatured: true,
+    topLabel: "APPLIED AI / RAG EVALUATION",
+    status: "HOSTED PORTFOLIO DEMO",
+    title: "CivicLens RAG — NYC 311 Operations Copilot",
+    subtitle:
+      "Hosted hybrid RAG application for grounded NYC 311 documentation Q&A with semantic + full-text retrieval, validated citations, safe abstention, and bounded analytics.",
+    image: "/projects/civiclens-rag-nyc311-hosted-v2.jpg",
+    imageAlt:
+      "CivicLens hybrid RAG workflow showing NYC 311 document ingestion, pgvector retrieval, cited answers, Next.js UI, analytics routing, and local evaluation.",
+    imageFit: "contain",
+    repoUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311",
+    caseStudyUrl: "/projects/civiclens-rag-nyc311",
+    liveUrl: "https://civiclens-rag-nyc311.vercel.app",
+    liveLabel: "Live Demo",
+    architectureUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#architecture",
+    screenshotsUrl: "https://github.com/rihua-tech/civiclens-rag-nyc311#screenshots",
+    stack: [
+      "Python",
+      "Hybrid Retrieval",
+      "RRF",
+      "PostgreSQL",
+      "pgvector",
+      "FastAPI",
+      "RAG Evaluation",
+    ],
+    highlights: [
+      "Combined semantic search and PostgreSQL full-text retrieval with deterministic Reciprocal Rank Fusion (RRF) over curated NYC 311 knowledge.",
+      "In the approved real-local evaluation, hybrid retrieval reached 83.9% Recall@5 and 92.9% expected-source retrieval across 14 retrieval-eligible questions.",
+    ],
+    homepageHighlightLimit: 2,
+    showHighlights: true,
+    cardActions: ["live", "caseStudy", "repo", "architecture"],
+  },
+  {
+    category: "DS",
+    topLabel: "DATA SCIENCE",
+    title: "Flight Price Analytics",
+    subtitle:
+      "Time-based Buy/Wait classification and fare forecasting using route-level price snapshots, feature engineering, and backtesting.",
+    image: "/projects/flight-price-analytics.png",
+    repoUrl: "https://github.com/rihua-tech/flight-price-analytics",
+    mlPipelineUrl:
+      "https://github.com/rihua-tech/flight-price-analytics/blob/main/09_flight_buy_wait_ml.py",
+    stack: ["Python", "scikit-learn", "Forecasting", "Time-Based Split", "Power BI"],
+    highlights: ["Exploratory modeling", "Feature insights", "Prediction angle"],
+    cardActions: ["repo", "mlPipeline"],
+  },
+  {
+    category: "DA",
+    topLabel: "DATA ANALYTICS",
+    title: "Floral Daily SKU Analysis",
+    subtitle:
+      "Daily SKU sales, margin, promotion, holiday, and waste analysis using Python, SQL, and Power BI to support inventory and business decisions.",
+    image: "/projects/floral-sku-analysis.jpg",
+    repoUrl: "https://github.com/rihua-tech/floral_daily_sku_analysis",
+    sqlAnalysisUrl:
+      "https://github.com/rihua-tech/floral_daily_sku_analysis/blob/main/05_Floral_%20Department_%20Analytics.sql",
+    stack: ["Python", "SQL", "Power BI", "Inventory Analytics", "Trend Analysis"],
+    highlights: ["SKU trends", "Daily insights", "Inventory and sales analytics"],
+    cardActions: ["repo", "sqlAnalysis"],
   },
   {
     category: "DA",
@@ -198,33 +227,5 @@ export const projects: PortfolioProject[] = [
       "Analytics visualizations for performance summaries",
       "AI-generated insights for reporting output",
     ],
-  },
-  {
-    category: "DA",
-    topLabel: "DATA ANALYTICS",
-    title: "Floral Daily SKU Analysis",
-    subtitle:
-      "Daily SKU sales, margin, promotion, holiday, and waste analysis using Python, SQL, and Power BI to support inventory and business decisions.",
-    image: "/projects/floral-sku-analysis.jpg",
-    repoUrl: "https://github.com/rihua-tech/floral_daily_sku_analysis",
-    sqlAnalysisUrl:
-      "https://github.com/rihua-tech/floral_daily_sku_analysis/blob/main/05_Floral_%20Department_%20Analytics.sql",
-    stack: ["Python", "SQL", "Power BI", "Inventory Analytics", "Trend Analysis"],
-    highlights: ["SKU trends", "Daily insights", "Inventory and sales analytics"],
-    cardActions: ["repo", "sqlAnalysis"],
-  },
-  {
-    category: "DS",
-    topLabel: "DATA SCIENCE",
-    title: "Flight Price Analytics",
-    subtitle:
-      "Time-based Buy/Wait classification and fare forecasting using route-level price snapshots, feature engineering, and backtesting.",
-    image: "/projects/flight-price-analytics.png",
-    repoUrl: "https://github.com/rihua-tech/flight-price-analytics",
-    mlPipelineUrl:
-      "https://github.com/rihua-tech/flight-price-analytics/blob/main/09_flight_buy_wait_ml.py",
-    stack: ["Python", "scikit-learn", "Forecasting", "Time-Based Split", "Power BI"],
-    highlights: ["Exploratory modeling", "Feature insights", "Prediction angle"],
-    cardActions: ["repo", "mlPipeline"],
   },
 ]

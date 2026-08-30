@@ -1,13 +1,10 @@
 export type SkillCategory =
-  | "Orchestration & Workflow"
-  | "Cloud Execution & Containers"
-  | "Storage, Lakehouse & Warehouse"
-  | "Transformation & Modeling"
-  | "Data Quality & CI"
-  | "Analytics & BI"
-  | "Data Science & Experimentation"
+  | "Programming & Analysis"
   | "Machine Learning & NLP"
-  | "AI / RAG Engineering"
+  | "Model Evaluation & Experimentation"
+  | "AI / RAG"
+  | "Data & Analytics"
+  | "Engineering & Cloud"
 
 export interface SkillGroup {
   category: SkillCategory
@@ -16,40 +13,8 @@ export interface SkillGroup {
 
 export const skillGroups: SkillGroup[] = [
   {
-    category: "Orchestration & Workflow",
-    skills: ["Apache Airflow", "Azure Data Factory", "EventBridge Scheduler", "GitHub Actions"],
-  },
-  {
-    category: "Cloud Execution & Containers",
-    skills: ["Docker", "ECS/Fargate", "ECR", "CloudWatch Logs"],
-  },
-  {
-    category: "Storage, Lakehouse & Warehouse",
-    skills: ["ADLS Gen2", "Delta Lake", "Databricks", "Amazon S3", "Redshift Serverless", "PostgreSQL"],
-  },
-  {
-    category: "Transformation & Modeling",
-    skills: ["Python", "SQL", "PySpark", "dbt", "Dimensional Modeling"],
-  },
-  {
-    category: "Data Quality & CI",
-    skills: ["dbt Tests", "pytest", "Data Validation", "Validation SQL", "GitHub Actions"],
-  },
-  {
-    category: "Analytics & BI",
-    skills: ["Power BI", "SQL Marts", "KPI Design", "BI Handoff", "Documentation"],
-  },
-  {
-    category: "Data Science & Experimentation",
-    skills: [
-      "EDA",
-      "Feature Engineering",
-      "Time-Based Validation",
-      "Classification",
-      "Forecasting",
-      "Backtesting",
-      "Model Comparison",
-    ],
+    category: "Programming & Analysis",
+    skills: ["Python", "SQL", "pandas", "Statistical Analysis"],
   },
   {
     category: "Machine Learning & NLP",
@@ -61,11 +26,40 @@ export const skillGroups: SkillGroup[] = [
       "Transformers",
       "DistilBERT",
       "Text Classification",
-      "Model Evaluation",
     ],
   },
   {
-    category: "AI / RAG Engineering",
-    skills: ["RAG", "Vector Search", "Embeddings", "pgvector", "Cited Answers", "Streamlit", "AI Evaluation"],
+    category: "Model Evaluation & Experimentation",
+    skills: [
+      "Macro F1",
+      "Accuracy",
+      "Coverage",
+      "Model Comparison",
+      "Error Analysis",
+      "Leakage Prevention",
+      "Group-Aware Validation",
+      "Time-Based Validation",
+      "Backtesting",
+    ],
+  },
+  {
+    category: "AI / RAG",
+    skills: [
+      "Embeddings",
+      "Vector Search",
+      "Hybrid Retrieval",
+      "RRF",
+      "PostgreSQL/pgvector",
+      "Retrieval Evaluation",
+      "Grounded Generation",
+    ],
+  },
+  {
+    category: "Data & Analytics",
+    skills: ["PostgreSQL", "PySpark", "Delta Lake", "dbt", "Databricks", "Power BI"],
+  },
+  {
+    category: "Engineering & Cloud",
+    skills: ["FastAPI", "Docker", "GitHub Actions", "Azure", "AWS", "Apache Airflow"],
   },
 ]

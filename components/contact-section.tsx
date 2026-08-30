@@ -3,7 +3,7 @@ import { Section } from "@/components/Section"
 import { Button } from "@/components/ui/button"
 
 const EMAIL_ADDRESS = "rihuavan@gmail.com"
-const EMAIL_SUBJECT = "Data Engineer Opportunity"
+const EMAIL_SUBJECT = "Data Scientist Opportunity"
 const EMAIL_HREF = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`
 const LINKEDIN_URL = "https://www.linkedin.com/in/rihua/"
 
@@ -12,7 +12,8 @@ export function ContactSection() {
     <Section id="contact" title="Contact">
       <div className="mx-auto max-w-xl text-center">
         <p className="mb-8 text-pretty text-muted-foreground">
-          Interested in collaborating on data engineering work or portfolio projects? Reach out and I will follow up.
+          Interested in collaborating on data science, applied AI, or portfolio projects? Reach out
+          and I will follow up.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">
           <Button asChild variant="outline" size="lg">

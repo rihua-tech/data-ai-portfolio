@@ -1,11 +1,11 @@
 const FALLBACK_SITE_URL = "http://localhost:3000"
 
 export const siteConfig = {
-  name: "Data Engineer Portfolio",
-  title: "Rihua Van Steenburgh | Data Engineer",
+  name: "Data Scientist Portfolio",
+  title: "Rihua Van Steenburgh | Data Scientist",
   description:
-    "Data Engineer building reliable pipelines, cloud data workflows, and analytics-ready datasets. Portfolio showcasing end-to-end data engineering projects.",
-  ogImage: "/projects/flight-fare-pipeline.jpg",
+    "Data Scientist focused on applied AI, NLP, model evaluation, and RAG systems, with projects spanning machine learning, retrieval evaluation, analytics, and cloud data platforms.",
+  ogImage: "/projects/financial-complaint-nlp-routing-architecture-v2.jpg",
 } as const
 
 export function getSiteUrl() {

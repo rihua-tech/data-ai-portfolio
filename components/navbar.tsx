@@ -41,7 +41,7 @@ export function Navbar() {
               Rihua V.
             </span>
             <span className="font-mono text-[0.8rem] font-semibold tracking-[0.20em] text-primary uppercase md:text-xs">
-              Data & AI Engineer
+              Data Scientist • Applied AI
             </span>
           </Link>
 

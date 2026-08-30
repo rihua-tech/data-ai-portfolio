@@ -5,10 +5,10 @@ import Image from "next/image"
 import { Github, FileText, Mail, Linkedin, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-const RESUME_URL = "/Rihua_Van_Steenburgh_Data_Engineer_Resume.pdf"
+const RESUME_URL = "/Rihua_Van_Steenburgh_Data_Scientist_Resume.pdf"
 const LINKEDIN_URL = "https://www.linkedin.com/in/rihua/"
 const EMAIL_ADDRESS = "rihuavan@gmail.com"
-const EMAIL_SUBJECT = "Data Engineer Opportunity"
+const EMAIL_SUBJECT = "Data Scientist Opportunity"
 const EMAIL_HREF = `mailto:${EMAIL_ADDRESS}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`
 
 function copyWithExecCommand(text: string) {
@@ -83,17 +83,17 @@ export function Hero() {
         <div className="min-w-0">
         <div className="mb-5 flex justify-center lg:justify-start">
           <p className="inline-flex items-center rounded-full border border-border bg-background/70 px-4 py-1.5 font-mono text-xs font-medium tracking-[0.28em] text-primary uppercase shadow-sm backdrop-blur-sm">
-            Data Engineering • Applied AI • Analytics
+            Applied AI • NLP • Model Evaluation
           </p>
         </div>
 
         <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-foreground md:text-[2.75rem] xl:text-[3rem]">
-          Data &amp; AI Engineer building reliable{" "}
-          <span className="lg:block">data platforms and AI-ready systems</span>
+          Data Scientist building and evaluating{" "}
+          <span className="lg:block">practical AI systems</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
-          Building cloud data pipelines, analytics-ready datasets, and applied
-          ML/RAG solutions with Python, SQL, AWS, Azure, and Databricks.
+          Building and evaluating NLP classifiers and RAG retrieval systems with Python, 
+          scikit-learn, PyTorch, Transformers, and rigorous evaluation.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
@@ -162,7 +162,7 @@ export function Hero() {
           <div className="absolute inset-2 rounded-full bg-primary/10 blur-2xl" aria-hidden="true" />
           <Image
             src="/profile/rihua-headshot.jpg"
-            alt="Rihua V. - Data & AI Engineer"
+            alt="Rihua V. - Data Scientist focused on Applied AI"
             width={720}
             height={880}
             sizes="(min-width: 1024px) 200px, 160px"

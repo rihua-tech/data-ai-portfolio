@@ -2,10 +2,8 @@ import {
   BarChart3,
   BrainCircuit,
   Cpu,
-  Database,
   FlaskConical,
   Layers,
-  ShieldCheck,
   Workflow,
   type LucideIcon,
 } from "lucide-react"
@@ -14,15 +12,12 @@ import { Tag } from "@/components/Tag"
 import { skillGroups, type SkillCategory } from "@/data/skills"
 
 const iconByCategory: Record<SkillCategory, LucideIcon> = {
-  "Orchestration & Workflow": Workflow,
-  "Cloud Execution & Containers": Cpu,
-  "Storage, Lakehouse & Warehouse": Database,
-  "Transformation & Modeling": Layers,
-  "Data Quality & CI": ShieldCheck,
-  "Analytics & BI": BarChart3,
-  "Data Science & Experimentation": FlaskConical,
+  "Programming & Analysis": Layers,
   "Machine Learning & NLP": BrainCircuit,
-  "AI / RAG Engineering": BrainCircuit,
+  "Model Evaluation & Experimentation": FlaskConical,
+  "AI / RAG": Workflow,
+  "Data & Analytics": BarChart3,
+  "Engineering & Cloud": Cpu,
 }
 
 export function SkillsSection() {
