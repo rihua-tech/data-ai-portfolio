@@ -1,84 +1,87 @@
-
-# Data & AI Engineering Portfolio
+# Data Science & Applied AI Portfolio
 
 [![CI](https://github.com/rihua-tech/data-ai-portfolio/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rihua-tech/data-ai-portfolio/actions/workflows/ci.yml?query=branch%3Amain)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://rihua.dev/)
 
-Recruiter-facing portfolio for data engineering, applied AI/ML, and analytics roles, built with Next.js, TypeScript, and Tailwind CSS. The site showcases cloud data platforms, AI/RAG-enabled applications, analytics-ready datasets, proof-based case studies, and reviewer-friendly documentation.
+Portfolio focused on applied data science, NLP, model evaluation, hybrid RAG, retrieval experimentation, and practical AI systems, with cloud data engineering and analytics projects as supporting technical foundations.
 
-## Live site
+## Live Portfolio
 
-- Portfolio: https://rihua.dev/
+**[rihua.dev](https://rihua.dev/)**
 
-## What this portfolio shows
+## Featured Applied AI & Data Science Projects
 
-- Azure lakehouse project with ADF, ADLS Gen2, Databricks, PySpark, Delta Lake, and Power BI
-- AWS batch data pipeline with ECS/Fargate, S3, Redshift Serverless, dbt, and CloudWatch proof
-- AI Data Engineering / Hybrid RAG project with PostgreSQL/pgvector, Streamlit, cited answers, and evaluation checks
-- Recruiter-friendly case study pages with architecture, proof, screenshots, and documentation links
-- Skills and tools grouped by orchestration, cloud execution, storage, modeling, AI/RAG, quality checks, and analytics enablement
+### Financial Complaint Auto-Routing with NLP
 
-## Featured projects
+Leakage-safe, eight-class CFPB complaint-classification and selective-routing study. The project compares a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger and routes cases to either an Auto-Route recommendation or Human Review using model-specific score and margin policies.
+
+- An audit found that 3,876 of 9,840 original test rows (39.39%) shared normalized complaint text with training. The corrected group-aware 2024 split reduced development/final-test normalized-text overlap to zero.
+- On the shared 2024 benchmark, Macro F1 increased from 0.7671 for V1 to 0.7949 for V2. V2 also increased coverage, while V1 retained slightly better routed accuracy and misroute rate.
+- Both frozen models were compared retrospectively on a 30,156-row leakage-resistant 2025 cohort. V2 again improved aggregate classification and coverage but did not establish a sufficient routing-risk advantage for promotion.
+- V1 remains the temporally validated benchmark; V2 remains the frozen challenger pending evidence from a new untouched period. This is an offline decision-support study, not a deployed complaint-routing service.
+
+**Evidence:** [Case Study](https://rihua.dev/projects/financial-complaint-auto-routing-nlp) · [Repository](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp) · [Full Project Report](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/Financial_Complaint_Auto_Routing_NLP_Project_Report.pdf) · [Shared 2024 Evaluation](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/reports/v1_v2_2024_comparison.md) · [2025 Retrospective Evaluation](https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/reports/v2_2025_retrospective_results.md)
+
+### CivicLens RAG — NYC 311 Operations Copilot
+
+Hosted, non-production hybrid RAG portfolio application for grounded NYC 311 documentation Q&A and bounded approved analytics. It separates the recruiter-facing product UI from retrieval, generation, citation validation, and analytics orchestration.
+
+- Semantic retrieval and PostgreSQL full-text search are fused with deterministic Reciprocal Rank Fusion over a manifest-controlled corpus. PostgreSQL remains authoritative for text and provenance; pgvector provides dense retrieval.
+- Grounded generation receives allowlisted evidence, while CivicLens validates stable citations and provides explicit abstention handling for unsupported or uncited answers.
+- The approved local evaluation uses a 24-question fixture with 14 retrieval-eligible questions. Hybrid retrieval reached 83.9% Recall@5 and 92.9% expected-source retrieval; reranking improved MRR but slightly reduced Recall@5.
+- Hosted path: browser → Vercel Next.js → Render FastAPI → CivicLens orchestration → Neon PostgreSQL + pgvector. Streamlit remains a separate engineering, validation, and debugging client.
+- Analytics is limited to four typed, allowlisted, read-only tools over checked-in sample CSV outputs—not unrestricted text-to-SQL or autonomous tool execution.
+
+**Evidence:** [Live Demo](https://civiclens-rag-nyc311.vercel.app) · [Case Study](https://rihua.dev/projects/civiclens-rag-nyc311) · [Repository](https://github.com/rihua-tech/civiclens-rag-nyc311) · [Architecture](https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/architecture.md) · [Evaluation Report](https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/evaluation-report.md)
+
+## Data & Cloud Foundations
 
 ### NYC 311 Service Requests Lakehouse
 
-Azure-first medallion lakehouse for NYC 311 operational analytics. The project demonstrates API ingestion, ADLS Gen2 storage, Databricks/PySpark processing, Delta Lake bronze/silver/gold layers, data quality checks, dimensional models, reporting marts, and Power BI-ready outputs.
+Azure-first medallion lakehouse using Azure Data Factory, ADLS Gen2, Databricks, PySpark, and Delta Lake to produce bronze, silver, and gold datasets. The repository includes reusable data-quality checks, dimensional models, reporting marts, cloud execution evidence, and Power BI-ready outputs.
 
-Links:
-- Case Study: [/projects/nyc-311-service-requests-lakehouse](https://rihua-dev.vercel.app/projects/nyc-311-service-requests-lakehouse)
-- Repository: https://github.com/rihua-tech/nyc-311-service-requests-lakehouse
+**Links:** [Case Study](https://rihua.dev/projects/nyc-311-service-requests-lakehouse) · [Repository](https://github.com/rihua-tech/nyc-311-service-requests-lakehouse)
 
 ### Cloud Flight Fare Pipeline
 
-AWS cloud proof project with EventBridge Scheduler, ECS/Fargate, S3 Bronze landing, Redshift Serverless loading, dbt staging/marts/tests, CloudWatch logs, architecture diagrams, runbooks, and cost/secret safety notes.
+Proven AWS batch path using EventBridge Scheduler, ECS/Fargate, S3 Bronze storage, Redshift Serverless, dbt staging/marts/tests, CloudWatch logs, and a Docker batch runner. The project includes successful cloud-execution proof, runbooks, and cost/secret safety notes.
 
-Links:
-- Case Study: [/projects/cloud-flight-fare-pipeline](https://rihua-dev.vercel.app/projects/cloud-flight-fare-pipeline)
-- Repository: https://github.com/rihua-tech/cloud-flight-fare-pipeline
+**Links:** [Case Study](https://rihua.dev/projects/cloud-flight-fare-pipeline) · [Repository](https://github.com/rihua-tech/cloud-flight-fare-pipeline)
 
-### CivicLens RAG - NYC 311 Operations Copilot
+## Supporting Analytics Projects
 
-Local AI Data Engineering / Hybrid RAG prototype for grounded NYC 311 documentation Q&A with citations, PostgreSQL/pgvector retrieval, sample analytics, Streamlit UI, GitHub Actions CI, pytest coverage, and an 18-question evaluation set.
+- **[Flight Price Analytics](https://github.com/rihua-tech/flight-price-analytics):** Time-based Buy/Wait classification and fare forecasting with feature engineering and backtesting.
+- **[Floral Daily SKU Analysis](https://github.com/rihua-tech/floral_daily_sku_analysis):** Daily sales, margin, promotion, holiday, and waste analysis using Python, SQL, and Power BI.
+- **[Travelpayouts Flight Collector](https://github.com/rihua-tech/travelpayouts-flight-collector):** Python API ingestion that publishes dated flight-fare CSV snapshots with tests and automated scheduling.
+- **[Sumryze — AI-Powered SEO Reporting Dashboard](https://github.com/rihua-tech/sumryze-saas-website):** SaaS-style SEO reporting dashboard with analytics visualizations and AI-generated summaries.
 
-Links:
-- Case Study: [/projects/civiclens-rag-nyc311](https://rihua-dev.vercel.app/projects/civiclens-rag-nyc311)
-- Repository: https://github.com/rihua-tech/civiclens-rag-nyc311
+## Skills & Methods
 
-## Supporting projects
+- **Programming & Analysis:** Python, SQL, pandas, Statistical Analysis
+- **Machine Learning & NLP:** scikit-learn, TF-IDF, Linear SVM, PyTorch, Transformers, DistilBERT, Text Classification
+- **Model Evaluation & Experimentation:** Macro F1, Accuracy, Coverage, Model Comparison, Error Analysis, Leakage Prevention, Group-Aware Validation, Time-Based Validation, Backtesting
+- **AI / RAG:** Embeddings, Vector Search, Hybrid Retrieval, RRF, PostgreSQL/pgvector, Retrieval Evaluation, Grounded Generation
+- **Data & Analytics:** PostgreSQL, PySpark, Delta Lake, dbt, Databricks, Power BI
+- **Engineering & Cloud:** FastAPI, Docker, GitHub Actions, Azure, AWS, Apache Airflow
 
-- Travelpayouts Flight Collector: Python API ingestion project that collects flight fare data and publishes dated CSV snapshots for analysis.
-- Sumryze AI-powered SEO Reporting Dashboard: Dashboard project for SEO reporting workflows, analytics visualizations, and client-ready summaries.
-- Floral Daily SKU Analysis: Sales and inventory analysis focused on daily SKU movement and reporting support.
-- Flight Price Analytics: Exploratory analysis and modeling path for flight price behavior.
+## Portfolio Website Stack
 
-## Skills represented
+- Next.js 16.1.6 with the App Router
+- React and React DOM 19.2.4
+- TypeScript 5.7.3
+- Tailwind CSS 4.2.1
+- Vercel Analytics 1.6.1
 
-- Orchestration & Workflow: Apache Airflow, Azure Data Factory, EventBridge Scheduler, GitHub Actions
-- Cloud Execution & Containers: Docker, ECS/Fargate, ECR, CloudWatch Logs
-- Storage, Lakehouse & Warehouse: ADLS Gen2, Delta Lake, Databricks, Amazon S3, Redshift Serverless, PostgreSQL
-- Transformation & Modeling: Python, SQL, PySpark, dbt, dimensional modeling
-- AI / RAG Engineering: RAG, vector search, embeddings, pgvector, cited answers, Streamlit, AI evaluation
-- Data Quality & CI: dbt tests, pytest, data validation, validation SQL, GitHub Actions
-- Analytics Enablement: Power BI, SQL marts, KPI design, BI handoff, documentation
-
-## Website stack
-
-- Next.js 16 App Router
-- React 19
-- TypeScript 5.7
-- Tailwind CSS 4
-- Vercel Analytics
-
-## Local development
+## Local Development
 
 ```bash
 npm ci
 npm run dev
 ```
 
-The app runs locally at `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Quality checks
+## Quality Checks
 
 ```bash
 npm run lint
@@ -88,21 +91,19 @@ npm run build
 
 ## Deployment
 
-This repository is configured for Vercel deployment with `npm` and `package-lock.json`.
+The portfolio website is deployed on Vercel using the committed `package-lock.json`. Portfolio deployment is separate from the CivicLens application architecture described above.
 
-No app-specific environment variables are required for a base deployment. Metadata, `robots`, and `sitemap` use `NEXT_PUBLIC_SITE_URL` when it is set, otherwise they fall back to Vercel system URLs in production and `http://localhost:3000` locally.
+## Repository Structure
 
-## Repository structure
+- `app/` — App Router pages, case studies, metadata, and metadata routes
+- `components/` — Homepage sections and reusable UI components
+- `data/` — Project and skills content rendered by the portfolio
+- `public/` — Resume, profile, and project image assets
+- `styles/` — Global stylesheet entrypoint
 
-- `app/`: App Router entrypoints, project case studies, global metadata, and metadata routes
-- `components/`: UI sections and reusable components
-- `data/`: portfolio project and skills content
-- `public/`: icons, resume, and project images
-- `styles/`: global stylesheet entrypoint
+## Notes for Reviewers
 
-## Notes for reviewers
-
-- This portfolio is intentionally focused on recruiter-facing data engineering work.
-- Project links point to supporting repositories, case studies, architecture diagrams, screenshots, and proof documentation.
-- CivicLens RAG is a completed local prototype, not a deployed production AI system.
-- The codebase is validated with linting, TypeScript checks, and a production build.
+- The portfolio is positioned for Data Scientist, Applied AI, NLP/model-evaluation, and RAG/retrieval-evaluation roles.
+- Claims clearly separate measured experiment evidence, retrospective comparisons, hosted portfolio demonstrations, and production claims.
+- Project case studies and source repositories contain the deeper architecture, evaluation, limitations, and execution proof.
+- Azure and AWS projects remain supporting evidence of cloud data-platform and analytics-engineering capability.
