@@ -165,7 +165,7 @@ export const projects: PortfolioProject[] = [
     liveUrl: "https://civiclens-rag-nyc311.vercel.app",
     liveLabel: "Live Demo",
     architectureUrl:
-      "https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/architecture.md",
+      "https://github.com/rihua-tech/civiclens-rag-nyc311/blob/main/docs/assets/civiclens-rag-architecture-overview.jpg",
     screenshotsUrl:
       "https://github.com/rihua-tech/civiclens-rag-nyc311/tree/main/docs/screenshots",
     stack: [
