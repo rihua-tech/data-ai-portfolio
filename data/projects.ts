@@ -130,7 +130,7 @@ export const projects: PortfolioProject[] = [
     reportUrl:
       "https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/Financial_Complaint_Auto_Routing_NLP_Project_Report.pdf",
     architectureUrl:
-      "https://github.com/rihua-tech/financial-complaint-auto-routing-nlp#architecture-overview",
+      "https://github.com/rihua-tech/financial-complaint-auto-routing-nlp/blob/main/assets/architecture-overview.png",
     stack: [
       "Python",
       "scikit-learn",
