@@ -14,7 +14,7 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     category: "Programming & Analysis",
-    skills: ["Python", "SQL", "pandas", "Statistical Analysis"],
+    skills: ["Python", "SQL", "pandas", "NumPy", "Statistical Analysis", "Exploratory Data Analysis"],
   },
   {
     category: "Machine Learning & NLP",
@@ -32,7 +32,6 @@ export const skillGroups: SkillGroup[] = [
     category: "Model Evaluation & Experimentation",
     skills: [
       "Macro F1",
-      "Accuracy",
       "Coverage",
       "Model Comparison",
       "Error Analysis",
@@ -52,14 +51,15 @@ export const skillGroups: SkillGroup[] = [
       "PostgreSQL/pgvector",
       "Retrieval Evaluation",
       "Grounded Generation",
+      "Safe Abstention",
     ],
   },
   {
     category: "Data & Analytics",
-    skills: ["PostgreSQL", "PySpark", "Delta Lake", "dbt", "Databricks", "Power BI"],
+    skills: ["PostgreSQL", "PySpark", "Delta Lake", "dbt", "Databricks", "Power BI", "Dimensional Modeling"],
   },
   {
     category: "Engineering & Cloud",
-    skills: ["FastAPI", "Docker", "GitHub Actions", "Azure", "AWS", "Apache Airflow"],
+    skills: ["FastAPI", "Docker", "GitHub Actions", "Azure", "AWS", "Apache Airflow", "Cloud Data Pipelines"],
   },
 ]
