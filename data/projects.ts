@@ -54,7 +54,7 @@ export const projects: PortfolioProject[] = [
     image: "/projects/nyc-311-lakehouse.jpg",
     caseStudyUrl: "/projects/nyc-311-service-requests-lakehouse",
     repoUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse",
-    architectureUrl: "/projects/nyc-311-service-requests-lakehouse#architecture",
+    architectureUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/blob/main/docs/architecture/nyc311-lakehouse-architecture.png",
     executionProofUrl: "/projects/nyc-311-service-requests-lakehouse#execution-proof",
     docsUrl: "https://github.com/rihua-tech/nyc-311-service-requests-lakehouse/tree/main/docs",
     stack: [
@@ -84,7 +84,7 @@ export const projects: PortfolioProject[] = [
     image: "/projects/cloud-flight-fare-pipeline.jpg",
     caseStudyUrl: "/projects/cloud-flight-fare-pipeline",
     repoUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline",
-    architectureUrl: "/projects/cloud-flight-fare-pipeline#architecture",
+    architectureUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline/blob/main/docs/images/current-proven-aws-path.png",
     executionProofUrl: "/projects/cloud-flight-fare-pipeline#execution-proof",
     docsUrl: "https://github.com/rihua-tech/cloud-flight-fare-pipeline/tree/main/docs",
     stack: ["AWS", "ECS/Fargate", "EventBridge", "S3", "Redshift", "dbt", "Docker", "CloudWatch"],
