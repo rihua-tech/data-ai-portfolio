@@ -11,7 +11,7 @@ export function ContactSection() {
   return (
     <Section id="contact" title="Contact">
       <div className="mx-auto max-w-xl text-center">
-        <p className="mb-8 text-pretty text-muted-foreground">
+        <p className="mb-8 text-pretty text-body-foreground">
           Interested in collaborating on data science, applied AI, or portfolio projects? Reach out
           and I will follow up.
         </p>

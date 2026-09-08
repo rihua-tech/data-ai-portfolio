@@ -13,7 +13,7 @@ export function AboutSection() {
         {aboutParagraphs.map((paragraph) => (
           <p
             key={paragraph}
-            className="text-pretty text-base leading-8 text-muted-foreground md:text-lg"
+            className="text-pretty text-base leading-8 text-body-foreground md:text-lg"
           >
             {paragraph}
           </p>

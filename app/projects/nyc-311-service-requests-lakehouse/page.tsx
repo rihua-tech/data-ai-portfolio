@@ -397,7 +397,7 @@ function SectionShell({
             {title}
           </h2>
           {description && (
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">{description}</p>
+            <p className="mt-4 text-base leading-relaxed text-body-foreground">{description}</p>
           )}
         </div>
         {children}
@@ -497,7 +497,7 @@ function FlowCard({
             <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-xs font-semibold text-primary">
               {index + 1}
             </div>
-            <div className="flex-1 rounded-xl border border-border bg-background/50 px-4 py-3 text-sm leading-relaxed text-muted-foreground">
+            <div className="flex-1 rounded-xl border border-border bg-background/50 px-4 py-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               {step}
             </div>
           </div>
@@ -526,7 +526,9 @@ function TechnicalCard({
         </div>
         <div className="min-w-0">
           <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+          <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
+            {description}
+          </p>
         </div>
       </div>
       <div className="mt-5 flex flex-wrap gap-2">
@@ -631,7 +633,7 @@ export default function NYC311CaseStudyPage() {
                 <h1 className="mt-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                   NYC 311 Service Requests Lakehouse
                 </h1>
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-body-foreground">
                   Azure-first medallion lakehouse for NYC 311 operational analytics. Proven
                   cloud path from raw API landing to ADLS-backed bronze, silver, and gold
                   datasets in Databricks.
@@ -685,7 +687,7 @@ export default function NYC311CaseStudyPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent" />
                   </div>
                 </Surface>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   Evidence includes cloud execution screenshots, workflow proof, and ADLS-backed
                   validation. Reporting definitions and dashboard mockup assets are documented as
                   future reporting support.
@@ -724,7 +726,7 @@ export default function NYC311CaseStudyPage() {
           <div className="grid gap-6 lg:grid-cols-2">
             <Surface>
               <h3 className="text-xl font-semibold text-foreground">Business Problem</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 NYC 311 service request data can support operational analytics for city-service
                 demand, agency workload, complaint trends, resolution time, and backlog
                 monitoring. The lakehouse pattern makes it easier to move from raw API extraction
@@ -737,7 +739,10 @@ export default function NYC311CaseStudyPage() {
               <h3 className="text-xl font-semibold text-foreground">Key Questions Answered</h3>
               <ul className="mt-4 space-y-3">
                 {keyQuestions.map((question) => (
-                  <li key={question} className="flex items-start gap-3 text-sm text-muted-foreground">
+                  <li
+                    key={question}
+                    className="flex items-start gap-3 text-[15px] leading-relaxed text-body-foreground sm:text-base"
+                  >
                     <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
                     <span>{question}</span>
                   </li>
@@ -767,7 +772,7 @@ export default function NYC311CaseStudyPage() {
               <ShieldCheck className="mt-0.5 size-5 shrink-0 text-primary" />
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Honest Status</h3>
-                <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
+                <ul className="mt-4 space-y-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   <li className="flex items-start gap-3">
                     <span className="mt-1 block size-1.5 shrink-0 rounded-full bg-primary" />
                     Current proven cloud path: ADF raw landing + Databricks handoff +
@@ -831,7 +836,9 @@ export default function NYC311CaseStudyPage() {
                     {index + 1}
                   </div>
                   <Surface className="flex-1">
-                    <p className="text-sm leading-relaxed text-muted-foreground">{step}</p>
+                    <p className="text-[15px] leading-relaxed text-body-foreground sm:text-base">
+                      {step}
+                    </p>
                   </Surface>
                 </li>
               ))}
@@ -859,12 +866,15 @@ export default function NYC311CaseStudyPage() {
                   {layer.title}
                 </p>
                 <h3 className="mt-3 text-2xl font-semibold text-foreground">{layer.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   {layer.summary}
                 </p>
                 <ul className="mt-5 space-y-3">
                   {layer.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <li
+                      key={item}
+                      className="flex items-start gap-3 text-[15px] leading-relaxed text-body-foreground sm:text-base"
+                    >
                       <span className="mt-1 block size-1.5 shrink-0 rounded-full bg-primary" />
                       <span>{item}</span>
                     </li>
@@ -891,13 +901,13 @@ export default function NYC311CaseStudyPage() {
                 <Tag className="mt-3 w-fit border border-primary/15 bg-primary/10 px-2.5 py-1 font-mono text-[11px] text-primary">
                   {output.martName}
                 </Tag>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   {output.description}
                 </p>
               </Surface>
             ))}
           </div>
-          <p className="mt-5 text-sm text-muted-foreground">
+          <p className="mt-5 text-[15px] leading-relaxed text-body-foreground sm:text-base">
             Reporting definitions and dashboard mockup assets are included in the repo to show how
             these Gold marts support downstream BI analysis.
           </p>
@@ -938,7 +948,7 @@ export default function NYC311CaseStudyPage() {
                       <h3 className="mt-3 text-2xl font-semibold text-foreground">
                         {milestone.title}
                       </h3>
-                      <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-body-foreground sm:text-base">
                         {milestone.summary}
                       </p>
                     </div>
@@ -966,7 +976,7 @@ export default function NYC311CaseStudyPage() {
                   </div>
                 </Surface>
 
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   These proof assets show ingestion, storage landing, Databricks handoff, and
                   final validation across the current cloud path.
                 </p>
@@ -1019,7 +1029,7 @@ export default function NYC311CaseStudyPage() {
             {decisionCards.map((card) => (
               <Surface key={card.title} className="h-full">
                 <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   {card.description}
                 </p>
               </Surface>
@@ -1037,7 +1047,7 @@ export default function NYC311CaseStudyPage() {
               {takeawayItems.map((item) => (
                 <div key={item.title} className="rounded-2xl border border-white/8 bg-black/10 p-5">
                   <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                     {item.description}
                   </p>
                 </div>
@@ -1061,7 +1071,7 @@ export default function NYC311CaseStudyPage() {
           <Surface className="bg-gradient-to-br from-card to-card/70">
             <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-2xl">
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   Supporting docs include architecture notes, the Milestone 11 runbook, workflow
                   JSON, reporting definitions, and milestone screenshot folders.
                 </p>

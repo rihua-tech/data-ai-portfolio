@@ -78,7 +78,7 @@ export function Navbar() {
                 <Link
                   href={resolveHref(link.href)}
                   onClick={() => setMobileOpen(false)}
-                  className="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                  className="block rounded-md px-3 py-2 text-sm text-foreground/85 transition-colors hover:bg-secondary hover:text-foreground"
                 >
                   {link.label}
                 </Link>

@@ -198,7 +198,7 @@ function SectionShell({
             {title}
           </h2>
           {description && (
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-base leading-relaxed text-body-foreground">
               {description}
             </p>
           )}
@@ -247,7 +247,7 @@ function BulletList({ items }: { items: string[] }) {
       {items.map((item) => (
         <li
           key={item}
-          className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground"
+          className="flex items-start gap-3 text-[15px] leading-relaxed text-body-foreground sm:text-base"
         >
           <CheckCircle2
             className="mt-0.5 size-4 shrink-0 text-primary"
@@ -296,7 +296,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                 <h1 className="mt-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                   Financial Complaint Auto-Routing with NLP
                 </h1>
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-body-foreground">
                   Leakage-safe eight-class CFPB complaint-routing study
                   comparing a locked TF-IDF + Linear SVM benchmark with a frozen
                   DistilBERT challenger, model-specific selective routing, and
@@ -341,7 +341,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
           <div className="grid gap-6 lg:grid-cols-3">
             <Surface>
               <h3 className="text-lg font-semibold text-foreground">Problem</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 CFPB complaint narratives are unstructured and must be assigned
                 consistently to one of eight product categories before entering
                 the appropriate workflow.
@@ -351,7 +351,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
               <h3 className="text-lg font-semibold text-foreground">
                 Approach
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Two frozen models were evaluated with separately selected
                 policies that recommend either an eligible Auto-Route
                 recommendation or Human Review.
@@ -359,7 +359,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
             </Surface>
             <Surface className="border-primary/20 bg-primary/10">
               <h3 className="text-lg font-semibold text-foreground">Scope</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Offline decision-support study with selective routing and Human
                 Review; not a production deployment.
               </p>
@@ -393,7 +393,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
           <div className="mb-6 grid items-center gap-4 rounded-2xl border border-primary/20 bg-primary/10 p-5 sm:grid-cols-[1fr_auto_1fr] md:p-6">
             <div>
               <p className="text-3xl font-bold text-foreground">39.39%</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 3,876 of 9,840 original test rows shared normalized text with
                 training
               </p>
@@ -404,7 +404,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
             />
             <div>
               <p className="text-3xl font-bold text-primary">0 overlap</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 between development and final-test normalized-text groups after
                 redesign
               </p>
@@ -419,7 +419,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                 <h3 className="mt-4 font-semibold text-foreground">
                   {step.label}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   {step.value}
                 </p>
               </Surface>
@@ -441,7 +441,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
               <h3 className="mt-3 text-2xl font-semibold text-foreground">
                 V1: TF-IDF + Linear SVM
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Classical NLP benchmark selected through group-aware development
                 evaluation, locked before final scoring, and retained as the
                 temporally validated reference model.
@@ -454,7 +454,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
               <h3 className="mt-3 text-2xl font-semibold text-foreground">
                 V2: DistilBERT
               </h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Transformer challenger trained using the locked 2024 development
                 data and evaluated on the shared benchmark. It improved
                 classification metrics but was not promoted beyond frozen
@@ -508,7 +508,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                     </dd>
                   </div>
                 </dl>
-                <p className="mt-4 border-t border-border pt-3 text-xs leading-relaxed text-muted-foreground">
+                <p className="mt-4 border-t border-border pt-3 text-sm leading-relaxed text-body-foreground">
                   {metric.note}
                 </p>
               </Surface>
@@ -573,7 +573,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
             ))}
           </div>
           <Surface className="mt-4">
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Both models and policies remained frozen. V2 again improved
               aggregate classification and coverage, but did not improve routed
               risk on the headline cohort. Both models also weakened relative to
@@ -596,7 +596,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
               <p className="mt-4 text-2xl font-semibold text-foreground">
                 23.56% → 29.84%
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Primary-cohort misroute rate increased from V1 to V2.
               </p>
             </Surface>
@@ -607,7 +607,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
               <p className="mt-4 text-2xl font-semibold text-foreground">
                 16.67% → 32.08%
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 V2 nearly doubled the primary misroute rate, and its primary F1
                 was 0.0257 below V1.
               </p>
@@ -619,7 +619,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
               <p className="mt-4 text-lg font-semibold text-foreground">
                 More routes, uneven risk
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 V2 routed more complaints, but broader coverage did not
                 consistently reduce routed error across categories.
               </p>
@@ -644,7 +644,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                 </h3>
                 <span className="font-mono text-sm text-primary">3.23 MiB</span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Smaller CPU-only stack, substantially faster on the measured
                 local notebook benchmark, and slightly lower routed risk under
                 the locked 2024 policy.
@@ -662,7 +662,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                   256.35 MiB
                 </span>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 About 79× larger, with higher shared-benchmark Macro F1 and
                 coverage but a slower measured local inference path and greater
                 dependency, monitoring, privacy, and governance complexity.
@@ -677,7 +677,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
           title="Auto-Route recommendation or Human Review"
           description="Each model uses its own development-selected routing policy. Eligible cases receive an Auto-Route recommendation, while uncertain or unusable signals remain in Human Review."
         >
-          <p className="mb-5 text-sm text-muted-foreground">
+          <p className="mb-5 text-[15px] text-body-foreground sm:text-base">
             Model scores are not treated as one shared probability scale.
           </p>
           <div className="grid gap-6 md:grid-cols-2">
@@ -691,7 +691,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                   Auto-Route
                 </h3>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 When a model-specific policy passes both score and margin
                 criteria, the case is eligible for an Auto-Route recommendation
                 to the predicted product workflow.
@@ -704,7 +704,7 @@ export default function FinancialComplaintNlpCaseStudyPage() {
                   Human Review
                 </h3>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Uncertain, tied, invalid, non-finite, or otherwise unusable
                 signals remain with a reviewer. This is an intentional oversight
                 outcome, not a model failure state.

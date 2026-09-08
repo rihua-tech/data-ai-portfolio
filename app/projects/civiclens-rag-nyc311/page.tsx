@@ -290,7 +290,7 @@ function SectionShell({
             {title}
           </h2>
           {description && (
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">{description}</p>
+            <p className="mt-4 text-base leading-relaxed text-body-foreground">{description}</p>
           )}
         </div>
         {children}
@@ -320,7 +320,10 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-3">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-muted-foreground">
+        <li
+          key={item}
+          className="flex items-start gap-3 text-[15px] leading-relaxed text-body-foreground sm:text-base"
+        >
           <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
           <span>{item}</span>
         </li>
@@ -442,7 +445,7 @@ export default function CivicLensRagCaseStudyPage() {
                 <h1 className="mt-4 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl">
                   CivicLens RAG — NYC 311 Operations Copilot
                 </h1>
-                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+                <p className="mt-5 max-w-2xl text-lg leading-relaxed text-body-foreground">
                   Hosted hybrid RAG system for grounded NYC 311 documentation Q&A with semantic
                   and full-text retrieval, deterministic RRF, validated citations, explicit
                   abstention handling, and bounded approved analytics.
@@ -485,7 +488,7 @@ export default function CivicLensRagCaseStudyPage() {
                     />
                   </div>
                 </Surface>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <p className="text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   Next.js is the recruiter-facing product UI. Streamlit remains a separate
                   engineering, validation, and debugging client. CivicLens is not a live NYC
                   municipal service.
@@ -523,14 +526,14 @@ export default function CivicLensRagCaseStudyPage() {
           <div className="grid gap-6 lg:grid-cols-3">
             <Surface>
               <h3 className="text-xl font-semibold text-foreground">Problem</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Operational documentation, runbooks, field definitions, and system guidance are
                 difficult to search reliably while preserving source traceability.
               </p>
             </Surface>
             <Surface>
               <h3 className="text-xl font-semibold text-foreground">Solution</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Manifest-controlled ingestion and section-aware chunks feed PostgreSQL/pgvector,
                 lexical retrieval, deterministic RRF, grounded generation, and application-owned
                 citation validation.
@@ -538,7 +541,7 @@ export default function CivicLensRagCaseStudyPage() {
             </Surface>
             <Surface>
               <h3 className="text-xl font-semibold text-foreground">Outcome</h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 A hosted non-production RAG application with measurable retrieval quality,
                 validated citations, bounded analytics, safe-abstention behavior, and deployment
                 proof.
@@ -561,7 +564,7 @@ export default function CivicLensRagCaseStudyPage() {
             <div className="mt-6">
               <FlowList steps={productPath} />
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Render FastAPI remains the AI application boundary. Hybrid RAG uses externally
               managed Neon PostgreSQL + pgvector; Next.js contains presentation and one typed API
               client, not RAG logic.
@@ -598,7 +601,7 @@ export default function CivicLensRagCaseStudyPage() {
             <div className="mt-6">
               <FlowList steps={analyticsPath} compact />
             </div>
-            <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               This branch is not unrestricted text-to-SQL, an autonomous agent, or arbitrary tool
               execution. Streamlit consumes the same FastAPI contract as an engineering/debug UI.
             </p>
@@ -628,7 +631,7 @@ export default function CivicLensRagCaseStudyPage() {
               <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
                 Real-local evaluation profile — not the hosted runtime
               </p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 24-question curated fixture; 14 retrieval-eligible questions;
                 sentence-transformers/all-MiniLM-L6-v2 at 384 dimensions; PostgreSQL/pgvector;
                 PostgreSQL full-text retrieval; RRF_K=60; top_k=5; optional cached cross-encoder
@@ -636,7 +639,7 @@ export default function CivicLensRagCaseStudyPage() {
               </p>
             </div>
             <RetrievalComparison />
-            <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Recall@5 and MRR use section-level relevance and macro averages over n=14. This is a
               small portfolio benchmark, not a production-scale or statistically significant
               result.
@@ -653,7 +656,7 @@ export default function CivicLensRagCaseStudyPage() {
             <Surface className="border-primary/20 bg-primary/10">
               <ShieldCheck className="size-6 text-primary" />
               <h3 className="mt-4 text-lg font-semibold text-foreground">Evaluation boundary</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 The evaluator records retrieval configuration and denominators separately from
                 routing, citations, and safe no-answer behavior. It does not use an LLM judge or
                 tune retrieval to hide failed cases.
@@ -685,7 +688,7 @@ export default function CivicLensRagCaseStudyPage() {
                 <TriangleAlert className="mt-0.5 size-5 shrink-0 text-amber-300" />
                 <div>
                   <h3 className="text-xl font-semibold text-foreground">Observed failures</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                     Safe no-answer accuracy was 33.33% across six no-answer cases. Four questions
                     expected to abstain — q015, q021, q022, and q024 — were answered. Adversarial
                     q023 routed to approved analytics instead of document RAG and was counted as
@@ -696,7 +699,7 @@ export default function CivicLensRagCaseStudyPage() {
             </Surface>
             <Surface>
               <h3 className="text-xl font-semibold text-foreground">Improvement boundary</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 The next experiments should test stronger abstention thresholds, better
                 unsupported-intent detection, and tighter analytics routing guards. These are
                 documented directions, not completed improvements.
@@ -733,7 +736,7 @@ export default function CivicLensRagCaseStudyPage() {
                   </Tag>
                 ))}
               </div>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-5 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Strict typed inputs resolve through an immutable allowlist and read only four
                 hard-coded checked-in sample CSV files. There is no SQL selection, arbitrary file
                 path, dynamic import, or unrestricted tool execution.
@@ -760,7 +763,7 @@ export default function CivicLensRagCaseStudyPage() {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                         {item.description}
                       </p>
                     </div>
@@ -775,7 +778,7 @@ export default function CivicLensRagCaseStudyPage() {
               <Workflow className="mt-0.5 size-5 shrink-0 text-primary" />
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Reproducible delivery</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   Ordered migrations, rerun-safe bootstrap, Docker packaging, readiness checks,
                   isolated CI paths, and recorded deployment evidence support reproducible review.
                   Streamlit remains available as the engineering and debugging client.
@@ -796,7 +799,7 @@ export default function CivicLensRagCaseStudyPage() {
               <Monitor className="size-6 text-primary" />
               <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">Vercel</p>
               <h3 className="mt-2 text-lg font-semibold text-foreground">Next.js Product UI</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Recruiter-facing browser experience and typed FastAPI client.
               </p>
             </Surface>
@@ -804,7 +807,7 @@ export default function CivicLensRagCaseStudyPage() {
               <Server className="size-6 text-primary" />
               <p className="mt-4 font-mono text-xs tracking-[0.2em] text-primary uppercase">Render</p>
               <h3 className="mt-2 text-lg font-semibold text-foreground">FastAPI Boundary</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Validation, orchestration, retrieval, generation, and sanitized responses.
               </p>
             </Surface>
@@ -814,7 +817,7 @@ export default function CivicLensRagCaseStudyPage() {
               <h3 className="mt-2 text-lg font-semibold text-foreground">
                 PostgreSQL + pgvector
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Canonical corpus state, lexical retrieval, and hosted dense-vector storage.
               </p>
             </Surface>
@@ -831,7 +834,7 @@ export default function CivicLensRagCaseStudyPage() {
               <p className="font-mono text-[11px] tracking-[0.2em] text-primary uppercase">
                 Hosted runtime profile
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Deterministic local-deterministic-1536 embeddings, hybrid retrieval, Neon
                 PostgreSQL + pgvector, and ANSWER_PROVIDER=openai for grounded generation.
                 CivicLens validates citations before the public response.
@@ -852,7 +855,7 @@ export default function CivicLensRagCaseStudyPage() {
             <p className="font-mono text-xs tracking-[0.2em] text-amber-300 uppercase">
               Non-Production Portfolio Demo
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Render Free can cold-start. The demo has no SLA, production authentication, HA, or
               live NYC 311 operational claim.
             </p>
@@ -897,7 +900,7 @@ export default function CivicLensRagCaseStudyPage() {
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
                 Try the hosted demo or inspect the evidence
               </h2>
-              <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-body-foreground">
                 Start with the product experience, then review the source, measured retrieval
                 results, architecture boundaries, and dated deployment proof.
               </p>

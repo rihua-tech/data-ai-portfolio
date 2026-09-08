@@ -298,7 +298,9 @@ export function ProjectCard({
                 <ProjectStatusBadge status={project.status} />
               </div>
               <h3 className="text-2xl font-bold text-foreground">{project.title}</h3>
-              <p className="mt-2 leading-relaxed text-muted-foreground">{project.subtitle}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
+                {project.subtitle}
+              </p>
             </div>
 
             {homepageHighlights.length > 0 && (
@@ -306,7 +308,7 @@ export function ProjectCard({
                 {homepageHighlights.map((highlight) => (
                   <li
                     key={highlight}
-                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                    className="flex items-start gap-2 text-[15px] leading-relaxed text-body-foreground sm:text-base"
                   >
                     <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-primary" />
                     {highlight}
@@ -372,13 +374,18 @@ export function ProjectCard({
           >
             {project.title}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{project.subtitle}</p>
+          <p className="mt-2 text-[15px] leading-relaxed text-body-foreground sm:text-base">
+            {project.subtitle}
+          </p>
         </div>
 
         {homepageHighlights.length > 0 && project.showHighlights && (
           <ul className="mt-3.5 flex flex-col gap-2">
             {homepageHighlights.map((highlight) => (
-              <li key={highlight} className="flex items-start gap-2 text-sm text-muted-foreground">
+              <li
+                key={highlight}
+                className="flex items-start gap-2 text-[15px] leading-relaxed text-body-foreground sm:text-base"
+              >
                 <span className="mt-1.5 block size-1.5 shrink-0 rounded-full bg-primary" />
                 {highlight}
               </li>

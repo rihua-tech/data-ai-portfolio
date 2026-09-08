@@ -411,13 +411,13 @@ export default function CloudFlightFarePipelinePage() {
               <h1 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
                 Cloud Flight Fare Pipeline
               </h1>
-              <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-body-foreground sm:text-lg">
                 Real AWS cloud data engineering proof project using EventBridge Scheduler,
                 ECS/Fargate, S3, Redshift Serverless, dbt, and CloudWatch Logs to run a scheduled
                 batch pipeline from flight API ingestion to analytics-ready marts.
               </p>
 
-              <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4 text-sm leading-relaxed text-muted-foreground">
+              <div className="mt-5 rounded-xl border border-primary/20 bg-primary/5 p-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 <span className="font-semibold text-foreground">Validated cloud scope:</span>{" "}
                 proven AWS batch execution with EventBridge Scheduler, ECS/Fargate, S3 Bronze
                 landing, Redshift Serverless loading, dbt marts/tests, CloudWatch success logs,
@@ -478,7 +478,7 @@ export default function CloudFlightFarePipelinePage() {
             <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
               Current Proven AWS Path
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Real AWS execution path showing how EventBridge Scheduler triggers an ECS/Fargate
               batch container to ingest flight data, land raw data in S3 Bronze, load Redshift
               Serverless, build dbt staging/marts/tests, and capture execution proof in CloudWatch
@@ -513,7 +513,7 @@ export default function CloudFlightFarePipelinePage() {
               <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
                 Reproducible local review path
               </h2>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 Run the project locally with Docker, Postgres, dbt, and proof queries before
                 reviewing the AWS proof path.
               </p>
@@ -553,7 +553,7 @@ export default function CloudFlightFarePipelinePage() {
             <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
               Two clear paths, one analytics-ready outcome
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               The project is easiest to review through two paths: a reproducible local validation
               path and a proven AWS execution path. Both produce dbt-modeled marts and
               analytics-ready SQL outputs.
@@ -584,7 +584,7 @@ export default function CloudFlightFarePipelinePage() {
                     {card.items.map((item) => (
                       <li
                         key={item.key}
-                        className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground"
+                        className="flex items-start gap-2 text-[15px] leading-relaxed text-body-foreground sm:text-base"
                       >
                         <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
                         <span>{item.content}</span>
@@ -609,7 +609,7 @@ export default function CloudFlightFarePipelinePage() {
                 <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
                   Full Repository Architecture
                 </h2>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   Detailed repository architecture showing ingestion, raw/bronze landing, cleaned
                   processing, dbt modeling, validation, and analytics outputs.
                 </p>
@@ -655,7 +655,7 @@ export default function CloudFlightFarePipelinePage() {
               <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
                 Downstream analysis is visible, not implied
               </h2>
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-body-foreground sm:text-base">
                 The project goes beyond ingestion and modeling by documenting marts, SQL query
                 patterns, and downstream handoff artifacts reviewers can inspect after the pipeline
                 runs.
@@ -672,7 +672,7 @@ export default function CloudFlightFarePipelinePage() {
                     className="flex h-full flex-col rounded-xl border border-border bg-card/60 p-4 backdrop-blur-sm"
                   >
                     <h3 className="text-base font-semibold text-foreground">{card.title}</h3>
-                    <div className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    <div className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                       {card.description}
                     </div>
                     <a
@@ -713,7 +713,7 @@ export default function CloudFlightFarePipelinePage() {
                     Downstream preview artifact
                   </h3>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 text-[15px] leading-relaxed text-body-foreground sm:text-base">
                   Static downstream handoff artifact for reviewer inspection, not a live hosted BI
                   app.
                 </p>
@@ -740,7 +740,7 @@ export default function CloudFlightFarePipelinePage() {
             <h2 className="mt-3 text-2xl font-bold text-foreground sm:text-3xl">
               Real proof assets shown directly on the page
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Reviewer evidence is surfaced here instead of hidden behind link lists. These proof
               assets show the AWS scheduler, ECS/Fargate execution, CloudWatch success logs,
               Redshift/dbt validation, S3 Bronze landing, and local validation support.
@@ -763,7 +763,7 @@ export default function CloudFlightFarePipelinePage() {
         <section className="mx-auto max-w-6xl px-6 pb-16 pt-2 md:pb-20">
           <div className="rounded-xl border border-border bg-card/60 p-6 backdrop-blur-sm">
             <h2 className="text-2xl font-bold text-foreground">Reviewer path</h2>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-body-foreground sm:text-base">
               Start with the Current Proven AWS Path diagram, then review the AWS proof assets,
               local validation path, and downstream outputs. This page separates cloud proof, local
               validation, and reviewer handoff without overclaiming a live production service.

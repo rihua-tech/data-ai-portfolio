@@ -91,7 +91,7 @@ export function Hero() {
           Data Scientist building and evaluating{" "}
           <span className="lg:block">practical AI systems</span>
         </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground md:text-lg lg:mx-0">
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-body-foreground md:text-lg lg:mx-0">
           Building and evaluating NLP classifiers and RAG retrieval systems with Python, 
           scikit-learn, PyTorch, Transformers, and rigorous evaluation.
         </p>
