@@ -2,9 +2,9 @@ const FALLBACK_SITE_URL = "http://localhost:3000"
 
 export const siteConfig = {
   name: "Data Scientist Portfolio",
-  title: "Rihua Van Steenburgh | Data Scientist",
+  title: "Rihua Van Steenburgh | Data Scientist | Applied AI & Machine Learning",
   description:
-    "Data Scientist focused on applied AI, NLP, model evaluation, and RAG systems, with projects spanning machine learning, retrieval evaluation, analytics, and cloud data platforms.",
+    "Data Scientist building production-oriented machine learning and applied AI applications, with strengths in NLP, RAG, model and LLM evaluation, and cloud data engineering.",
   ogImage: "/projects/financial-complaint-nlp-routing-architecture-v2.jpg",
 } as const
 

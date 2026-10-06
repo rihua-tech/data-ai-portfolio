@@ -1,10 +1,10 @@
 export type SkillCategory =
   | "Programming & Analysis"
-  | "Machine Learning & NLP"
-  | "Model Evaluation & Experimentation"
-  | "AI / RAG"
-  | "Data & Analytics"
-  | "Engineering & Cloud"
+  | "Data Science & Machine Learning"
+  | "Model & LLM Evaluation"
+  | "Applied AI & RAG"
+  | "Data & Cloud Engineering"
+  | "Software & Production"
 
 export interface SkillGroup {
   category: SkillCategory
@@ -14,52 +14,49 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     category: "Programming & Analysis",
-    skills: ["Python", "SQL", "pandas", "NumPy", "Statistical Analysis", "Exploratory Data Analysis"],
+    skills: ["Python", "SQL", "pandas", "NumPy", "Statistical Analysis"],
   },
   {
-    category: "Machine Learning & NLP",
+    category: "Data Science & Machine Learning",
     skills: [
       "scikit-learn",
-      "TF-IDF",
-      "Linear SVM",
       "PyTorch",
       "Transformers",
-      "DistilBERT",
+      "NLP",
+      "Predictive Modeling",
       "Text Classification",
     ],
   },
   {
-    category: "Model Evaluation & Experimentation",
+    category: "Model & LLM Evaluation",
     skills: [
       "Macro F1",
-      "Coverage",
       "Model Comparison",
-      "Error Analysis",
-      "Leakage Prevention",
-      "Group-Aware Validation",
-      "Time-Based Validation",
-      "Backtesting",
+      "Leakage-Safe Validation",
+      "Temporal Validation",
+      "Retrieval Evaluation",
+      "Error / Failure Analysis",
     ],
   },
   {
-    category: "AI / RAG",
+    category: "Applied AI & RAG",
     skills: [
       "Embeddings",
       "Vector Search",
       "Hybrid Retrieval",
-      "RRF",
       "PostgreSQL/pgvector",
-      "Retrieval Evaluation",
+      "RRF",
       "Grounded Generation",
+      "Citation Validation",
       "Safe Abstention",
     ],
   },
   {
-    category: "Data & Analytics",
-    skills: ["PostgreSQL", "PySpark", "Delta Lake", "dbt", "Databricks", "Power BI", "Dimensional Modeling"],
+    category: "Data & Cloud Engineering",
+    skills: ["AWS", "Azure", "Databricks", "PySpark", "dbt", "Delta Lake", "Data Pipelines"],
   },
   {
-    category: "Engineering & Cloud",
-    skills: ["FastAPI", "Docker", "GitHub Actions", "Azure", "AWS", "Apache Airflow", "Cloud Data Pipelines"],
+    category: "Software & Production",
+    skills: ["FastAPI", "Docker", "GitHub Actions", "APIs", "Testing", "CI/CD"],
   },
 ]

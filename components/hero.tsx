@@ -83,17 +83,16 @@ export function Hero() {
         <div className="min-w-0">
         <div className="mb-5 flex justify-center lg:justify-start">
           <p className="inline-flex items-center rounded-full border border-border bg-background/70 px-4 py-1.5 font-mono text-xs font-medium tracking-[0.28em] text-primary uppercase shadow-sm backdrop-blur-sm">
-            Applied AI • NLP • Model Evaluation
+            Machine Learning • NLP • RAG • LLM Evaluation
           </p>
         </div>
 
         <h1 className="text-balance text-4xl font-bold leading-tight tracking-tight text-foreground md:text-[2.75rem] xl:text-[3rem]">
-          Data Scientist building and evaluating{" "}
-          <span className="lg:block">practical AI systems</span>
+          Data Scientist building reliable ML and applied AI systems
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-body-foreground md:text-lg lg:mx-0">
-          Building and evaluating NLP classifiers and RAG retrieval systems with Python, 
-          scikit-learn, PyTorch, Transformers, and rigorous evaluation.
+          Building and evaluating predictive ML, NLP, and RAG applications with Python, scikit-learn,
+          PyTorch, Transformers, FastAPI, retrieval evaluation, and cloud deployment.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">

@@ -1,10 +1,9 @@
 import { Section } from "@/components/Section"
 
 const aboutParagraphs = [
-  
-  "I’m a Data Scientist focused on applied AI and practical AI systems. I build and evaluate NLP classifiers, retrieval systems, and RAG applications, with particular attention to model quality, failure modes, grounded outputs, and reliable evaluation.",
-  "I’m currently completing an M.S. in Information Technology with a Data Analytics concentration, with coursework focused heavily on data science, machine learning, predictive analytics, and statistical modeling.",
-  "My background in web development and cloud data engineering across AWS and Azure helps me connect the full workflow—from data ingestion and transformation to models, APIs, and user-facing applications.",
+  "I’m a Data Scientist focused on applied AI, machine learning, and NLP. I build and evaluate production-oriented ML and generative AI applications spanning predictive modeling, retrieval, RAG, and LLM evaluation, with particular attention to data quality, failure modes, grounded outputs, and reliable evaluation.",
+  "I’m currently completing an M.S. in Information Technology with a Data Analytics concentration at Middle Georgia State University, expected December 2026. My graduate coursework emphasizes data science, machine learning, predictive analytics, and statistical modeling.",
+  "My software development foundation and cloud data engineering experience across AWS and Azure help me connect the full workflow—from data ingestion and transformation to models, APIs, deployment, and user-facing applications.",
 ]
 export function AboutSection() {
   return (
