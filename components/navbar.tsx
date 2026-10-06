@@ -64,6 +64,8 @@ export function Navbar() {
             className="md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls={mobileOpen ? "mobile-navigation" : undefined}
           >
             {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </Button>
@@ -71,7 +73,7 @@ export function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="border-b border-border bg-background/95 backdrop-blur-md md:hidden">
+        <div id="mobile-navigation" className="border-b border-border bg-background/95 backdrop-blur-md md:hidden">
           <ul className="flex flex-col gap-1 px-6 pb-4">
             {navLinks.map((link) => (
               <li key={link.href}>

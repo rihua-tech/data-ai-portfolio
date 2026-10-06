@@ -17,9 +17,9 @@ export function ProjectsSection() {
     <Section id="projects" title="Projects" showHeader={false}>
       {featuredProjects.length > 0 && (
         <div className="mb-16 md:mb-20">
-          <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
+          <h2 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
             Featured Data Science &amp; Applied AI
-          </h3>
+          </h2>
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6 lg:grid-cols-2">
             {featuredProjects.map((project) => (
@@ -30,9 +30,9 @@ export function ProjectsSection() {
       )}
 
       <div className="mb-16 md:mb-20">
-        <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
+        <h2 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
           Data &amp; Cloud Foundations
-        </h3>
+        </h2>
         <div className="mb-6 h-px bg-border" />
         <div className="grid gap-6 md:grid-cols-2">
           {dataFoundationProjects.map((project) => (
@@ -42,9 +42,9 @@ export function ProjectsSection() {
       </div>
 
       <div>
-        <h3 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
+        <h2 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
           Supporting Analytics &amp; Applications
-        </h3>
+        </h2>
         <div className="mb-6 h-px bg-border" />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {supportingProjects.map((project) => (

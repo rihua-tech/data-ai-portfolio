@@ -1,4 +1,4 @@
-const FALLBACK_SITE_URL = "http://localhost:3000"
+const FALLBACK_SITE_URL = "https://rihua.dev"
 
 export const siteConfig = {
   name: "Data Scientist Portfolio",
