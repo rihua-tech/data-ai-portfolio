@@ -18,7 +18,7 @@ export function ProjectsSection() {
       {featuredProjects.length > 0 && (
         <div className="mb-16 md:mb-20">
           <h2 className="mb-2 font-mono text-base md:text-lg tracking-widest text-primary uppercase">
-            Featured Data Science &amp; Applied AI
+            Featured Data Science • ML • Applied AI
           </h2>
           <div className="mb-6 h-px bg-border" />
           <div className="grid gap-6 lg:grid-cols-2">

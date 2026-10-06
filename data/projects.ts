@@ -114,11 +114,11 @@ export const projects: PortfolioProject[] = [
   {
     category: "MLAI",
     homepageFeatured: true,
-    topLabel: "NLP CLASSIFICATION / MODEL EVALUATION",
+    topLabel: "ML / NLP / MODEL EVALUATION",
     status: "COMPLETED V1–V2 STUDY",
     title: "Financial Complaint Auto-Routing with NLP",
     subtitle:
-      "Leakage-safe eight-class CFPB text-classification study comparing a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger and human-in-the-loop routing.",
+      "Leakage-safe machine learning and NLP study for eight-class CFPB complaint classification, comparing a locked TF-IDF + Linear SVM benchmark with a frozen DistilBERT challenger and human-in-the-loop routing.",
     image: "/projects/financial-complaint-nlp-routing-architecture-v3.jpg",
     imageAlt:
       "Financial Complaint Auto-Routing NLP workflow showing leakage-safe preparation, TF-IDF and DistilBERT evaluation, selective routing, and retrospective validation.",
@@ -141,7 +141,7 @@ export const projects: PortfolioProject[] = [
       "Model Evaluation",
     ],
     highlights: [
-      "Removed duplicate-text leakage and used group-aware 2024 development/test splits with zero normalized-text overlap.",
+      "Identified and remediated 39.39% normalized-text leakage in the original test split; corrected group-aware development/final-test splits achieved zero normalized-text overlap.",
       "On the shared 2024 benchmark, the frozen DistilBERT challenger increased Macro F1 from 0.7671 to 0.7949; both frozen models were later compared on a 30,156-row retrospective 2025 cohort.",
     ],
     homepageHighlightLimit: 2,
@@ -151,11 +151,11 @@ export const projects: PortfolioProject[] = [
   {
     category: "AIDE",
     homepageFeatured: true,
-    topLabel: "APPLIED AI / RAG EVALUATION",
+    topLabel: "APPLIED AI / RAG / RETRIEVAL EVALUATION",
     status: "HOSTED PORTFOLIO DEMO",
     title: "CivicLens RAG — NYC 311 Operations Copilot",
     subtitle:
-      "Hosted hybrid RAG application for grounded NYC 311 documentation Q&A with semantic + full-text retrieval, validated citations, safe abstention, and bounded analytics.",
+      "Hosted portfolio RAG application for grounded NYC 311 documentation Q&A with semantic + full-text retrieval, validated citations, explicit abstention handling, and bounded analytics.",
     image: "/projects/civiclens-rag-nyc311-hosted-v2.jpg",
     imageAlt:
       "CivicLens hybrid RAG workflow showing NYC 311 document ingestion, pgvector retrieval, cited answers, Next.js UI, analytics routing, and local evaluation.",
@@ -175,7 +175,7 @@ export const projects: PortfolioProject[] = [
       "PostgreSQL",
       "pgvector",
       "FastAPI",
-      "RAG Evaluation",
+      "Retrieval Evaluation",
     ],
     highlights: [
       "Combined semantic search and PostgreSQL full-text retrieval with deterministic Reciprocal Rank Fusion (RRF) over curated NYC 311 knowledge.",
